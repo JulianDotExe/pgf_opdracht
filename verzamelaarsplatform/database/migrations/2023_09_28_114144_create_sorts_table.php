@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sorts', function (Blueprint $table) {
-            $table->id('sort_id');
+            $table->id();
             $table->string('sort_name');
         });
     }

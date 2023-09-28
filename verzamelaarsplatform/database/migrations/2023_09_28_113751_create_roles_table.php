@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->id('role_id');
+            $table->id();
             $table->string('role_name');
             $table->timestamps();
         });
@@ -20,8 +20,7 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     */
-    public function down(): void
+     */    public function down(): void
     {
         Schema::dropIfExists('roles');
     }
