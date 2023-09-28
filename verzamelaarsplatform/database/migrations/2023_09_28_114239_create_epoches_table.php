@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('epoches', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('epoche_name');
         });
     }
 

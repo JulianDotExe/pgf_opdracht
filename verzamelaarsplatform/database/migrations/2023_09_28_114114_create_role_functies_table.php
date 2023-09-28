@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('overviews', function (Blueprint $table) {
-            $table->id();
+        Schema::create('role_functies', function (Blueprint $table) {
+            $table->foreignId('role_id')->constrained('roles');
+            $table->foreignId('functie_id')->constrained('functies');
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('overviews');
+        Schema::dropIfExists('role__functies');
     }
 };

@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('news', function (Blueprint $table) {
-            $table->id();
+            $table->id('artikel_id');
+            $table->foreignId('category_id')->constrained('categories');
+            $table->string('titel');
+            $table->string('inhoud');
+            $table->string('link');
+            $table->string('auteur');
             $table->timestamps();
         });
     }
