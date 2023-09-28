@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sorts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('sort_id');
+            $table->string('sort_name');
         });
     }
 

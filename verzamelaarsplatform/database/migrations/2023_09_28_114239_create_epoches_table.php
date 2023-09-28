@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('epoches', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('epoche_id');
+            $table->string('epoche_name');
         });
     }
 
