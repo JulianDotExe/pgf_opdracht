@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Overzicht;
+use App\Models\Role_Functie;
 use Illuminate\Http\Request;
 
-class OverzichtController extends Controller
+class RoleFunctieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class OverzichtController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Overzicht $overzicht)
+    public function show(Role_Functie $role_Functie)
     {
         //
     }
@@ -42,7 +42,7 @@ class OverzichtController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Overzicht $overzicht)
+    public function edit(Role_Functie $role_Functie)
     {
         //
     }
@@ -50,7 +50,7 @@ class OverzichtController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Overzicht $overzicht)
+    public function update(Request $request, Role_Functie $role_Functie)
     {
         //
     }
@@ -58,7 +58,7 @@ class OverzichtController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Overzicht $overzicht)
+    public function destroy(Role_Functie $role_Functie)
     {
         //
     }
