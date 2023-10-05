@@ -1,6 +1,15 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\EpocheController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OverviewController;
+use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SortController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::resource("overviews", OverviewController::class);
+
 
 require __DIR__.'/auth.php';
