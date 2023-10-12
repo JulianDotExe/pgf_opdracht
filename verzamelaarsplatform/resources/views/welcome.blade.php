@@ -58,10 +58,21 @@
                 <div class="bg-[url('../img/Night.png')] sm:block hidden w-full sm:absolute top-0 h-screen bg-no-repeat bg-contain z-1"></div>
             </div>
 
+
             <div class="relative">
-                <div class="bg-gradient-to-t from-blue-700 to-blue-900 w-full h-screen z-5"></div>
+                <div class="bg-[url('../img/wave/wave2.svg')] w-full h-screen sm:h-[10rem] bg-no-repeat bg-cover bg-[#121212]"></div>
+            </div>
+
+            <div class="relative">
+                <div class="bg-gradient-to-b from-blue-700 to-blue-900 w-full h-[450px] z-5"></div>
+            </div>
+
+            <div class="relative">
+                <div class="bg-[url('../img/wave/wave3.svg')] w-full sm:h-screen h-[100px] absolute top-0 bg-no-repeat bg-contain z-10"></div>
             </div>
         </main-content>
+
+
 
     </body>
 
