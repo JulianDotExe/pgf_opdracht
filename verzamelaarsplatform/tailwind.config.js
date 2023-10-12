@@ -14,6 +14,16 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            backgroundColor: {
+                'blue-700': 'rgb(31, 41, 54)',
+                'blue-800': 'your-custom-color-1',
+                'blue-900': 'rgb(19, 25, 33)',
+              },
+              gradientColorStops: {
+                'blue-700': 'rgb(31, 41, 54)',
+                'blue-800': 'your-custom-color-1',
+                'blue-900': 'rgb(19, 25, 33)',
+              },
         },
     },
 
