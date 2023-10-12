@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Overview;
 use App\Models\Sort;
+use App\Models\Brand;
+use App\Models\Epoche;
+use App\Models\Owner;
+use App\Models\Color;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
@@ -47,38 +51,90 @@ class OverviewController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'user' => 'required',
-            'sort' => 'required',
-            'brand' => 'required',
-            'catalogusnr' => 'required',
-            'epoche' => '',
-            'nummer' => '',
-            'eigenschappen' => 'required',
-            'owner' => '',
-            'color1' => 'required',
-            'color2' => '',
-            'bijzonderheden' => '',
-            'foto' => '',
+{
+    $request->validate([
+        'catalogusnr' => 'required',
+        'nummer' => 'required',
+        'eigenschappen' => 'required',
+        'bijzonderheden' => 'required',
+        'foto' => 'required',
+    ]);
 
+    $user = (1); // Standaardwaarde is "Ninoh"
+
+    // SORT
+    if ($request->filled('sort_name')) {
+        $sort = Sort::create([
+            'sort_name' => $request->input('sort_name'),
         ]);
-        Overview::create([
-            'user' => $request->user_id,
-            'sort' => $request->sort_name,
-            'brand' => $request->brand_name,
-            'catalogusnr' => $request->catalogusnr,
-            'epoche' => $request->epoche_name,
-            'nummer' => $request->nummer,
-            'eigenschappen' => $request->eigenschappen,
-            'owner' => $request->owner_name,
-            'color1' => $request->color_name,
-            'color2' => $request->color_name,
-            'bijzonderheden' => $request->bijzonderheden,
-            'foto' => $request->foto,
-        ]);
-        return to_route('overviews.index');
+        $sort_id = $sort->id;
+    } else {
+        $sort_id = $request->input('sort_id');
     }
+    // SORT
+
+    // BRAND
+    if ($request->filled('brand_name')) {
+        $brand = Brand::create([
+            'brand_name' => $request->input('brand_name'),
+        ]);
+        $brand_id = $brand->id;
+    } else {
+        $brand_id = $request->input('brand_id');
+    }
+    // BRAND
+
+    // EPOCHE
+    if ($request->filled('epoche_name')) {
+        $epoche = Epoche::create([
+            'epoche_name' => $request->input('epoche_name'),
+        ]);
+        $epoche_id = $epoche->id;
+    } else {
+        $epoche_id = $request->input('epoche_id');
+    }
+    // EPOCHE
+
+    // OWNER
+    if ($request->filled('owner_name')) {
+        $owner = Owner::create([
+            'owner_name' => $request->input('owner_name'),
+        ]);
+        $owner_id = $owner->id;
+    } else {
+        $owner_id = $request->input('owner_id');
+    }
+    // OWNER
+
+    // COLOR1
+    if ($request->filled('color_name')) {
+        $color = Color::create([
+            'color_name' => $request->input('color_name'),
+        ]);
+        $color_id = $color->id;
+    } else {
+        $color_id = $request->input('color_id');
+    }
+    // COLOR1
+
+    Overview::create([
+        'user' => $user,
+        'sort_id' => $sort_id,
+        'brand' => $brand_id,
+        'catalogusnr' => $request->catalogusnr,
+        'epoche' => $epoche_id,
+        'nummer' => $request->nummer,
+        'eigenschappen' => $request->eigenschappen,
+        'owner' => $owner_id,
+        'color' => $color_id,
+        'color' => $color_id,
+        'bijzonderheden' => $request->bijzonderheden,
+        'foto' => $request->foto,
+    ]);
+
+    return redirect()->route('overviews.index');
+}
+
 
     /**
      * Display the specified resource.

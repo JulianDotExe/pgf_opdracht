@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Color extends Model
 {
     use HasFactory;
+
+    protected $table = 'colors';
+
+    public $timestamps = false; // Als de tabel geen timestamps heeft
+
+    protected $fillable = ['color1_name']; // De kolommen die je kunt invullen
+
 }
