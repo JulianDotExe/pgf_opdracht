@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Epoche extends Model
 {
     use HasFactory;
+    protected $table = 'epoches';
+
+    public $timestamps = false; // Als de tabel geen timestamps heeft
+
+    protected $fillable = ['epoche_name']; // De kolommen die je kunt invullen
+
 }

@@ -19,7 +19,10 @@
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Admin') }}
                     </x-nav-link>
-                    @endrole
+                    <x-nav-link :href="route('overviews.index')" :active="request()->routeIs('overviews.index')">
+                        {{ __('Overzichten') }}
+                    </x-nav-link>
+                     @endrole
                 </div>
             </div>
 
