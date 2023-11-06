@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Epoche;
 use App\Models\Owner;
 use App\Models\Color;
+use App\Models\User;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
@@ -106,19 +107,21 @@ class OverviewController extends Controller
     }
     // OWNER
 
-    // COLOR1
-    if ($request->filled('color_name')) {
-        $color = Color::create([
-            'color_name' => $request->input('color_name'),
-        ]);
-        $color_id = $color->id;
-    } else {
-        $color_id = $request->input('color_id');
-    }
-    // COLOR1
+    // // COLOR1
+    // if ($request->filled('color_name')) {
+    //     $color = Color::create([
+    //         'color_name' => $request->input('color_name'),
+    //     ]);
+    //     $color_id = $color->id;
+    // } else {
+    //     $color_id = $request->input('color_id');
+    // }
+    // // COLOR1
+
+    $defaultUser = User::where('name', 'admin')->first();
 
     Overview::create([
-        'user' => $user,
+        'user' => $defaultUser->id, // Hier gebruiken we de ID van de juiste gebruiker
         'sort_id' => $sort_id,
         'brand' => $brand_id,
         'catalogusnr' => $request->catalogusnr,
@@ -126,8 +129,8 @@ class OverviewController extends Controller
         'nummer' => $request->nummer,
         'eigenschappen' => $request->eigenschappen,
         'owner' => $owner_id,
-        'color' => $color_id,
-        'color' => $color_id,
+        // 'color' => $color_id,
+        // 'color' => $color_id,
         'bijzonderheden' => $request->bijzonderheden,
         'foto' => $request->foto,
     ]);
@@ -158,29 +161,23 @@ class OverviewController extends Controller
     public function update(Request $request, Overview $overview)
     {
         $request->validate([
-            'sort' => 'required',
-            'brand' => 'required',
             'catalogusnr' => 'required',
-            'epoche' => 'required',
             'nummer' => 'required',
             'eigenschappen' => 'required',
-            'owner' => 'required',
-            'color1' => 'required',
-            'color2' => 'required',
             'bijzonderheden' => 'required',
             'foto' => 'required',
-
         ]);
         $overview->update([
-            'sort' => $request->sort_name,
-            'brand' => $request->brand_name,
+            'user' => $user,
+            'sort_id' => $sort_id,
+            'brand' => $brand_id,
             'catalogusnr' => $request->catalogusnr,
-            'epoche' => $request->epoche_name,
+            'epoche' => $epoche_id,
             'nummer' => $request->nummer,
             'eigenschappen' => $request->eigenschappen,
-            'owner' => $request->owner_name,
-            'color1' => $request->color_name,
-            'color2' => $request->color_name,
+            'owner' => $owner_id,
+            'color' => $color_id,
+            'color' => $color_id,
             'bijzonderheden' => $request->bijzonderheden,
             'foto' => $request->foto,
         ]);
