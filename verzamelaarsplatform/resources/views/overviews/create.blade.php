@@ -41,8 +41,6 @@
                 <a href="{{ route('overviews.index') }}" class="btn btn-primary mb-4">Terug</a> <br> {{-- Terug knop --}}
                 <button type="submit" class="btn btn-primary">Opslaan</button>
             </form>
-
-
             </div>
         </div>
     </div>

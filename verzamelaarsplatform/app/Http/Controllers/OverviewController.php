@@ -17,7 +17,6 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\EpocheController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SortController;
@@ -180,92 +179,31 @@ class OverviewController extends Controller
             'bijzonderheden' => 'required',
             'foto' => 'required',
         ]);
-
-        // SORT
-            if ($request->filled('sort_name')) {
-                $sort = Sort::update([
-                    'sort_name' => $request->input('sort_name'),
-                ]);
-                $sort_id = $sort->id;
-            } else {
-                $sort_id = $request->input('sort_id');
-            }
-        // SORT
     
-        // BRAND
-            if ($request->filled('brand_name')) {
-                $brand = Brand::update([
-                    'brand_name' => $request->input('brand_name'),
-                ]);
-                $brand_id = $brand->id;
-            } else {
-                $brand_id = $request->input('brand_id');
-            }
-        // BRAND
+        $user = $request->user(); // Assuming you want to get the authenticated user
+        $sort_id = $request->input('sort_id'); // Assuming you have sort_id in the request
+        $brand_id = $request->input('brand_id'); // Assuming you have brand_id in the request
+        $epoche_id = $request->input('epoche_id'); // Assuming you have epoche_id in the request
+        $owner_id = $request->input('owner_id'); // Assuming you have owner_id in the request
+        $color_id = $request->input('color_id'); // Assuming you have color_id in the request
     
-        // EPOCHE
-            if ($request->filled('epoche_name')) {
-                $epoche = Epoche::update([
-                    'epoche_name' => $request->input('epoche_name'),
-                ]);
-                $epoche_id = $epoche->id;
-            } else {
-                $epoche_id = $request->input('epoche_id');
-            }
-        // EPOCHE
-    
-        // OWNER
-            if ($request->filled('owner_name')) {
-                $owner = Owner::update([
-                    'owner_name' => $request->input('owner_name'),
-                ]);
-                $owner_id = $owner->id;
-            } else {
-                $owner_id = $request->input('owner_id');
-            }
-        // OWNER
-    
-        // COLOR1
-            if ($request->filled('color1')) {
-                $color1 = Color1::update([
-                    'color1' => $request->input('color1'),
-                ]);
-                $color1_id = $color1->id;
-            } else {
-                $color1_id = $request->input('color1_id');
-            }
-        // COLOR1
-    
-        // COLOR2
-            if ($request->filled('color2')) {
-                $color2 = Color2::update([
-                    'color2' => $request->input('color2'),
-                ]);
-                $color2_id = $color2->id;
-            } else {
-                $color2_id = $request->input('color2_id');
-            }
-        // COLOR2
-
-        // Haal de ID van de ingelogde gebruiker op
-        $user_id = Auth::id();
-
         $overview->update([
-            'user_id' => $user_id,
+            'user_id' => $user,
             'sort_id' => $sort_id,
             'brand' => $brand_id,
-            'catalogusnr' => $request->catalogusnr,
+            'catalogusnr' => $request->input('catalogusnr'),
             'epoche' => $epoche_id,
-            'nummer' => $request->nummer,
-            'eigenschappen' => $request->eigenschappen,
+            'nummer' => $request->input('nummer'),
+            'eigenschappen' => $request->input('eigenschappen'),
             'owner' => $owner_id,
-            'color1' => $color1_id,
-            'color2' => $color2_id,
-            'bijzonderheden' => $request->bijzonderheden,
-            'foto' => $request->foto,
+            'color' => $color_id,
+            'bijzonderheden' => $request->input('bijzonderheden'),
+            'foto' => $request->input('foto'),
         ]);
-        return view('overviews.show', compact('overview'));
+    
+        return redirect()->route('overviews.show', ['overview' => $overview]);
     }
+    
 
     /**
      * Remove the specified resource from storage.

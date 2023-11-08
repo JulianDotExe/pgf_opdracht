@@ -17,7 +17,7 @@
             </div>
 
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <h2 class="font-bold text-4xl text-blue-400 text-xl">
+                <h2 class="font-bold text-blue-400 text-xl">
                     <strong>Objectgegevens</strong>
                 </h2>
                 <div class="text">
