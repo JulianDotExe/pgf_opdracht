@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('epoche_id')->constrained('epoches');
             $table->bigInteger('nummer');
             $table->string('eigenschappen');
-            $table->foreignId('ownder_id')->constrained('owners');
+            $table->foreignId('owner_id')->constrained('owners');
             $table->foreignId('color1_id')->constrained('colors1');
             $table->foreignId('color2_id')->constrained('colors2');
             $table->string('bijzonderheden');

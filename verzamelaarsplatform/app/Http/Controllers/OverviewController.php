@@ -8,7 +8,8 @@ use App\Models\Sort;
 use App\Models\Brand;
 use App\Models\Epoche;
 use App\Models\Owner;
-use App\Models\Color;
+use App\Models\Color1;
+use App\Models\Color2;
 use App\Models\User;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
@@ -134,15 +135,15 @@ class OverviewController extends Controller
      // Maak het overzichtsrecord met de juiste user_id
      Overview::create([
          'user_id' => $user_id,
-         'sort' => $sort_id, //WERKT
+         'sort_id' => $sort_id, //WERKT
          'brand' => $brand_id, //WERKT
          'catalogusnr' => $request->catalogusnr,
          'epoche' => $epoche_id, //WERKT
          'nummer' => $request->nummer,
          'eigenschappen' => $request->eigenschappen,
          'owner' => $owner_id, //WERKT
-         'color1' => $color1_id,
-         'color2' => $color2_id,
+         'color1' => $color1_id, //WERKT
+         'color2' => $color2_id, //WERKT
          'bijzonderheden' => $request->bijzonderheden,
          'foto' => $request->foto,
      ]);
@@ -179,8 +180,78 @@ class OverviewController extends Controller
             'bijzonderheden' => 'required',
             'foto' => 'required',
         ]);
+
+        // SORT
+            if ($request->filled('sort_name')) {
+                $sort = Sort::update([
+                    'sort_name' => $request->input('sort_name'),
+                ]);
+                $sort_id = $sort->id;
+            } else {
+                $sort_id = $request->input('sort_id');
+            }
+        // SORT
+    
+        // BRAND
+            if ($request->filled('brand_name')) {
+                $brand = Brand::update([
+                    'brand_name' => $request->input('brand_name'),
+                ]);
+                $brand_id = $brand->id;
+            } else {
+                $brand_id = $request->input('brand_id');
+            }
+        // BRAND
+    
+        // EPOCHE
+            if ($request->filled('epoche_name')) {
+                $epoche = Epoche::update([
+                    'epoche_name' => $request->input('epoche_name'),
+                ]);
+                $epoche_id = $epoche->id;
+            } else {
+                $epoche_id = $request->input('epoche_id');
+            }
+        // EPOCHE
+    
+        // OWNER
+            if ($request->filled('owner_name')) {
+                $owner = Owner::update([
+                    'owner_name' => $request->input('owner_name'),
+                ]);
+                $owner_id = $owner->id;
+            } else {
+                $owner_id = $request->input('owner_id');
+            }
+        // OWNER
+    
+        // COLOR1
+            if ($request->filled('color1')) {
+                $color1 = Color1::update([
+                    'color1' => $request->input('color1'),
+                ]);
+                $color1_id = $color1->id;
+            } else {
+                $color1_id = $request->input('color1_id');
+            }
+        // COLOR1
+    
+        // COLOR2
+            if ($request->filled('color2')) {
+                $color2 = Color2::update([
+                    'color2' => $request->input('color2'),
+                ]);
+                $color2_id = $color2->id;
+            } else {
+                $color2_id = $request->input('color2_id');
+            }
+        // COLOR2
+
+        // Haal de ID van de ingelogde gebruiker op
+        $user_id = Auth::id();
+
         $overview->update([
-            'user' => $user,
+            'user_id' => $user_id,
             'sort_id' => $sort_id,
             'brand' => $brand_id,
             'catalogusnr' => $request->catalogusnr,
@@ -188,12 +259,12 @@ class OverviewController extends Controller
             'nummer' => $request->nummer,
             'eigenschappen' => $request->eigenschappen,
             'owner' => $owner_id,
-            'color' => $color_id,
-            'color' => $color_id,
+            'color1' => $color1_id,
+            'color2' => $color2_id,
             'bijzonderheden' => $request->bijzonderheden,
             'foto' => $request->foto,
         ]);
-        return to_route('overviews.show');
+        return view('overviews.show', compact('overview'));
     }
 
     /**
