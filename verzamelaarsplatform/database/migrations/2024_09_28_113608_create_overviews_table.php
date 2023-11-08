@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('overviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreignId('sort_id')->constrained('sorts');
             $table->foreignId('brand_id')->constrained('brands');
             $table->bigInteger('catalogusnr');
@@ -21,8 +22,8 @@ return new class extends Migration
             $table->bigInteger('nummer');
             $table->string('eigenschappen');
             $table->foreignId('ownder_id')->constrained('owners');
-            $table->foreignId('color_id1')->constrained('colors');
-            $table->foreignId('color_id2')->constrained('colors');
+            $table->foreignId('color1_id')->constrained('colors1');
+            $table->foreignId('color2_id')->constrained('colors2');
             $table->string('bijzonderheden');
             $table->string('foto');
             $table->timestamps();

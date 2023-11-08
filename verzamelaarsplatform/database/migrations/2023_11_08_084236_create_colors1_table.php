@@ -9,17 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-{
-    Schema::dropIfExists('colors');
-}
-
+    public function up(): void
+    {
+        Schema::create('colors1', function (Blueprint $table) {
+            $table->id();
+            $table->string('color1');
+        });
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('colors');
+        Schema::dropIfExists('colors1');
     }
 };

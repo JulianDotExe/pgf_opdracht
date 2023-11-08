@@ -45,5 +45,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    
+
+    public function overviews()
+    {
+        return $this->hasMany(Overview::class, 'user_id');
+    }
+
 }
+
+

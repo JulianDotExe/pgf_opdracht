@@ -15,7 +15,6 @@
             <form action="{{ route('overviews.store') }}"method="post">
                 @csrf
                 <!-- value nog veranderen en meerdere fields erbij doen -->
-                <x-text-input type="text" name="user" field="user" placeholder="Gebruikersnaam..." class="w-full" autocomplete="off" :value="@old('user')"></x-text-input> <br> <br>
 
                 <x-text-input type="text" name="sort_name" field="sort_name" placeholder="Soort..." class="w-full" autocomplete="off" :value="@old('sort_name')"></x-text-input> <br> <br>
 
@@ -31,9 +30,9 @@
 
                 <x-text-input type="text" name="owner_name" field="owner_name" placeholder="Eigenaar..." class="w-full" autocomplete="off" :value="@old('owner_name')"></x-text-input> <br> <br>
 
-                <x-text-input type="text" name="color_name" field="color_name" placeholder="Kleur 1..." class="w-full" autocomplete="off" :value="@old('color_name')"></x-text-input> <br> <br>
+                <x-text-input type="text" name="color1" field="color2" placeholder="Kleur 1..." class="w-full" autocomplete="off" :value="@old('color1')"></x-text-input> <br> <br>
 
-                <x-text-input type="text" name="color_name" field="color_name" placeholder="Kleur 2..." class="w-full" autocomplete="off" :value="@old('color_name')"></x-text-input> <br> <br>
+                <x-text-input type="text" name="color2" field="color2" placeholder="Kleur 2..." class="w-full" autocomplete="off" :value="@old('color2')"></x-text-input> <br> <br>
 
                 <x-text-input type="text" name="bijzonderheden" field="bijzonderheden" placeholder="Bijzonderheden..." class="w-full" autocomplete="off" :value="@old('bijzonderheden')"></x-text-input> <br> <br>
 

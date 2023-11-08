@@ -10,8 +10,16 @@ class Overview extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'sort_name',
+        'catalogusnr',
+        'nummer',
+        'eigenschappen',
+        'bijzonderheden',
+        'foto',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
 
