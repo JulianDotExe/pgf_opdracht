@@ -7,25 +7,26 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('overviews.create') }}" class="btn bg-white btn-link btn-lg mb-2">+ Nieuw object</a>
+            <a href="{{ route('overviews.create') }}" class="bg-blue-500 text-white py-2 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">+ Nieuw object</a>
             
             @forelse($overviews as $overview)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2><strong>Soort:</strong>{{ $overview->sort_name }}</h2>
                     <p><strong>Merk:</strong> {{ $overview->brand_name }}</p>
 
-                    <form method="POST" action="{{ route('overviews.destroy', $overview) }}">
+                    <!-- Verwijderknop -->
+                    <form method="POST" action="{{ route('overviews.destroy', $overview->id) }}" class="inline">
                         @csrf
-                        @method('delete')
-                        <x-dropdown-link :href="route('overviews.destroy', $overview)" onclick="event.preventDefault(); this.closest('form').submit();">
-                            {{ __('Delete') }}
-                        </x-dropdown-link>
+                        @method('DELETE')
+                        <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijder</button>
                     </form>
 
 
-                    <h2>
-                        <a href="{{ route('overviews.show', $overview->id ) }}">Meer details</a>    
-                    </h2>
+
+                    <h1>
+                        <a href="{{ route('overviews.show', $overview->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
+                    </h1>
+
                     {{-- Je kunt hier andere treingegevens toevoegen --}}
                 </div>
             @empty

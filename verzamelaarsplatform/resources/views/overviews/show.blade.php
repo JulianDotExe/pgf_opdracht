@@ -8,10 +8,10 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex">
-                <p class="opacity-70">
+                <p class="bg-blue-500 text-white py-2 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">
                     <strong>Created: </strong> {{ $overview->created_at->diffForHumans() }}
-                </p>
-                <p class="opacity-70 ml-8">
+                </p> 
+                <p class="bg-blue-500 text-white py-2 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">
                     <strong>Updated at: </strong> {{ $overview->updated_at->diffForHumans() }}
                 </p>
             </div>
@@ -34,8 +34,8 @@
                     <p><strong>Foto:</strong> {{ $overview->foto }}</p>
 
                 </div> <br>
-                <a href="{{ route('overviews.index') }}" class="btn btn-primary mb-4">Terug</a> <br> {{-- Terug knop --}}
-                <a href="{{ route('overviews.edit', $overview->id)  }}" class="btn-link ml-auto">Edit Object</a>
+                <a href="{{ route('overviews.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
+                <a href="{{ route('overviews.edit', $overview->id)  }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Edit Object</a>
 
             </div>
         </div>
