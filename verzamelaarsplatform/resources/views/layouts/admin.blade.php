@@ -70,6 +70,9 @@
             </div>
             <nav :class="{'block': open, 'hidden': !open}"
                 class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
+                <x-admin-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    Dashboard
+                </x-admin-link>
                 <x-admin-link :href="route('admin.roles.index')" :active="request()->routeIs('admin.roles.index')">
                     Roles
                 </x-admin-link>
