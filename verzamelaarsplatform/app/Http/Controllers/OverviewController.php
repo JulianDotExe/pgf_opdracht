@@ -210,6 +210,8 @@ class OverviewController extends Controller
      */
     public function destroy(Overview $overview)
     {
-        //
+        $overview->delete();
+ 
+        return redirect(route('overviews.index'));
     }
 }
