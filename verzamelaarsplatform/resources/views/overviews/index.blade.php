@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Overzichten') }}
+            {{ __('Collecties') }}
         </h2>
     </x-slot>
 
@@ -18,7 +18,7 @@
                     <form method="POST" action="{{ route('overviews.destroy', $overview->id) }}" class="inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijder</button>
+                        <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                     </form>
 
 

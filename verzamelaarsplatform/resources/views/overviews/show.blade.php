@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Object') }}
+            {{ __('Collecties') }}
         </h2>
     </x-slot>
 
@@ -18,7 +18,7 @@
 
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <h2 class="font-bold text-blue-400 text-xl">
-                    <strong>Objectgegevens</strong>
+                    <strong>Collectie gegevens</strong>
                 </h2>
                 <div class="text">
                     <p><strong>Soort:</strong> {{ $overview->sort_name }}</p>

@@ -54,6 +54,8 @@ class OverviewController extends Controller
      */
     public function store(Request $request)
     {
+
+        
         $request->validate([
             'catalogusnr' => 'required',
             'nummer' => 'required',
@@ -180,7 +182,6 @@ class OverviewController extends Controller
             'foto' => 'required',
         ]);
     
-        $user = $request->user(); // Assuming you want to get the authenticated user
         $sort_id = $request->input('sort_id'); // Assuming you have sort_id in the request
         $brand_id = $request->input('brand_id'); // Assuming you have brand_id in the request
         $epoche_id = $request->input('epoche_id'); // Assuming you have epoche_id in the request
@@ -188,7 +189,6 @@ class OverviewController extends Controller
         $color_id = $request->input('color_id'); // Assuming you have color_id in the request
     
         $overview->update([
-            'user_id' => $user,
             'sort_id' => $sort_id,
             'brand' => $brand_id,
             'catalogusnr' => $request->input('catalogusnr'),

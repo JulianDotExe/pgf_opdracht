@@ -20,7 +20,7 @@
                         {{ __('Admin') }}
                     </x-nav-link>
                     <x-nav-link :href="route('overviews.index')" :active="request()->routeIs('overviews.index')">
-                        {{ __('Overzichten') }}
+                        {{ __('Collecties') }}
                     </x-nav-link>
                      @endrole
                 </div>
