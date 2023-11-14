@@ -23,15 +23,23 @@
     </head>
 
     <body class="antialiased">
-        <header class="z-50 absolute">
-        <!-- <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white"> -->
-            @if (Route::has('login'))
-            
-                <div class="fixed sm:top-0 sm:right-0 p-9 text-center z-5 bg-[#1F2937] w-full border-none">
-                    <div class="bg-[url('../img/TrainLogo.png')] top-0 left-5px z-2 fixed w-20 h-20 bg-no-repeat bg-[length:4rem_4rem]"></div>     
-                    <!-- <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log sdsin</a>      -->
-                        <div class="fixed sm:top-0 sm:right-0 p-6 w-full border-none text-right">         
-                     @auth
+    <header class="z-50 absolute w-full">
+        @if (Route::has('login'))
+            <div class="flex items-center justify-between bg-[#1F2937] p-2">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <div class="bg-[url('../img/TrainLogo.png')] w-20 h-20 bg-no-repeat bg-[length:4rem_4rem]"></div>
+                </div>
+
+                <!-- Dashboard Links (Centered) -->
+                <div class="flex-grow flex items-center justify-center">
+                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                    <!-- Add more dashboard links as needed -->
+                </div>
+
+                <!-- Login/Register Section -->
+                <div class="flex items-center">
+                    @auth
                         <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
@@ -40,18 +48,19 @@
                             <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                         @endif
                     @endauth
-                    </div>
                 </div>
-            @endif
-        </header>
+            </div>
+        @endif
+    </header>
+    
         
 
 
         <head-content>
             <div class="bg-[url('../img/Background.png')] w-full h-screen  bg-no-repeat bg-cover -z-1"></div>
-                <div class="text-container absolute left-1/3 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
-                    <p class="text-white text-6xl">Welkom</p><br>
-                    <p class="text-white text-3xl mt-2">Waar onze liefde en passie<br> voor modeltreinen samenkomt!</p>
+                <div class="text-container absolute left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
+                    <p class="font-semibold text-white text-6xl">Welkom</p><br><br>
+                    <p class="font-semibold text-white text-3xl mt-2">Waar onze liefde en passie<br> voor modeltreinen samenkomt!</p>
                 </div>
         </head-content>
 
