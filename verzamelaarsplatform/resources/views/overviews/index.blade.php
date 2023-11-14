@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('overviews.create') }}" class="bg-blue-500 text-white py-2 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">+ Nieuw object</a>
+            <a href="{{ route('overviews.create') }}" class="bg-blue-500 text-white py-2 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">+ Nieuwe collectie</a>
             
             @forelse($overviews as $overview)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
@@ -31,7 +31,7 @@
                 </div>
             @empty
             <div class="btn bg-white btn-link btn-lg mb-2">
-                <p>Geen objecten beschikbaar...</p>
+                <p>Geen collecties beschikbaar...</p>
             </div>
             @endforelse
             {{ $overviews->links() }}

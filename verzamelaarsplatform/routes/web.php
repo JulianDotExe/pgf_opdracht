@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\OverviewController;
+use App\Http\Controllers\InrichtingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
@@ -55,6 +56,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource("overviews", OverviewController::class);
-
+Route::resource("inrichtings", InrichtingController::class);
+Route::post('/create-sort', [InrichtingController::class, 'createSort']);
+Route::post('/create-brand', [InrichtingController::class, 'createBrand']);
 
 require __DIR__.'/auth.php';

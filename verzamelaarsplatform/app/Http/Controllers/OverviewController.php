@@ -136,8 +136,8 @@ class OverviewController extends Controller
      // Maak het overzichtsrecord met de juiste user_id
      Overview::create([
          'user_id' => $user_id,
-         'sort_id' => $sort_id, //WERKT
-         'brand' => $brand_id, //WERKT
+         'sort_id' => $sort_id, 
+         'brand' => $brand_id,
          'catalogusnr' => $request->catalogusnr,
          'epoche' => $epoche_id, //WERKT
          'nummer' => $request->nummer,
