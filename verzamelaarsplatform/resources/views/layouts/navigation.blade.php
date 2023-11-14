@@ -22,6 +22,9 @@
                     <x-nav-link :href="route('overviews.index')" :active="request()->routeIs('overviews.index')">
                         {{ __('Collecties') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('inrichtings.index')" :active="request()->routeIs('inrichtings.index')">
+                        {{ __('Inrichting') }}
+                    </x-nav-link>
                      @endrole
                 </div>
             </div>
