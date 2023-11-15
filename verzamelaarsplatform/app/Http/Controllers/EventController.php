@@ -12,7 +12,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $users = Event::all();
+
+        return view('admin.users.index', compact('users'));
     }
 
     /**

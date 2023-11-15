@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use HasFactory;
+
+    protected $table = 'events';
+    public $timestamps = true;
+    protected $fillable = [
+        'event_date', 'event_name', 'beschrijving', 'locatie', 'link'
+    ];
+
 }
