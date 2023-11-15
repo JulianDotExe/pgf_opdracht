@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\NewUserRegistered;
+use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rules;
 
 
 class RequestUserController extends Controller
@@ -24,23 +26,27 @@ class RequestUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function requestAccount(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $user = $request->validate([
+        // Valideer de invoer
+
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        
-        // Get all admin users
-        $adminUsers = User::role('admin')->get();
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
 
-        // Send email to each admin user
-        foreach ($adminUsers as $adminUser) {
-            Mail::to($adminUser->email)->send(new NewUserRegistered($user));
-        }
+        // Stuur een e-mail naar de beheerder
+        $adminEmail = 'rikbalvers@outlook.com'; // Vervang dit door het e-mailadres van de beheerder
+        Mail::to($adminEmail)->send(new NewUserRegistered($user));
 
-        return back()->with('message', 'For ' . $user . ' Account requested');
+        return back()->with('message', 'Account aangevraagd');
     }
 
 }

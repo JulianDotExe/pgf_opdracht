@@ -5,7 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\User;
 
 class NewUserRegistered extends Mailable
 {
@@ -13,13 +13,14 @@ class NewUserRegistered extends Mailable
 
     public $user;
 
-    public function __construct($user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
 
     public function build()
     {
-        return $this->view('mail.new_user_registered');
+        return $this->view('mail.new_user_registered')
+                    ->subject('Nieuwe gebruiker geregistreerd');
     }
 }

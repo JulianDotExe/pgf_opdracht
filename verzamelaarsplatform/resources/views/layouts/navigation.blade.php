@@ -17,7 +17,7 @@
                     </x-nav-link>
                     @role('admin')
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                        {{ __('Admin') }}
+                        {{ __('Beheermodule') }}
                     </x-nav-link>
                     <x-nav-link :href="route('overviews.index')" :active="request()->routeIs('overviews.index')">
                         {{ __('Collecties') }}
