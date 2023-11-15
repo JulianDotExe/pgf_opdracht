@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Home</title>
+        <title>News</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -25,7 +25,7 @@
     <body class="antialiased">
     <header class="z-50 absolute w-full">
         @if (Route::has('login'))
-            <div class="flex items-center justify-between bg-[#1F2937] p-2 shadow-md">
+            <div class="flex items-center justify-between bg-[#1F2937] p-1 shadow-md">
                 <div class="flex items-center">
                     <!-- Logo -->
                     <div class="bg-[url('../img/TrainLogo.png')] w-20 h-20 bg-no-repeat bg-[length:4rem_4rem]"></div>
@@ -35,7 +35,7 @@
                 <div class="flex-grow flex items-center justify-center space-x-10">
                     <a href="{{ url('/welcome') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
                     <a href="{{ url('/about') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">De Leeuw</a>
-                    <a href="{{ url('/news') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">News</a>
+                    <a href="{{ url('/news') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"><u>News</u></a>
                     <a href="{{ url('/events') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Events</a>
                 </div>
 
@@ -57,7 +57,7 @@
     
     
         <head-content>
-            <div class="bg-[url('../img/Background.png')] w-full h-screen bg-no-repeat bg-cover -z-1"></div>
+            <!-- <div class="bg-[url('../img/Background.png')] w-full h-screen bg-no-repeat bg-cover -z-1"></div> -->
                 <div class="text-container absolute left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
                     <p class="font-semibold text-white text-6xl">Welkom</p><br><br>
                     <p class="font-semibold text-white text-3xl mt-2">Waar onze liefde en passie<br> voor modeltreinen samenkomt!</p>
