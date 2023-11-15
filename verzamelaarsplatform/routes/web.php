@@ -33,9 +33,14 @@ Route::get('/dashboard', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 });
-
 Route::get('/about', function () {
     return view('about');
+});
+Route::get('/events', function () {
+    return view('events');
+});
+Route::get('/news', function () {
+    return view('news');
 });
 
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function() {
