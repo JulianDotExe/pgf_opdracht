@@ -25,7 +25,7 @@
     <body class="antialiased">
     <header class="z-50 absolute w-full">
         @if (Route::has('login'))
-            <div class="flex items-center justify-between bg-[#1F2937] p-2 shadow-md">
+            <div class="flex items-center justify-between bg-[#1F2937] p-1 shadow-md">
                 <div class="flex items-center">
                     <!-- Logo -->
                     <div class="bg-[url('../img/TrainLogo.png')] w-20 h-20 bg-no-repeat bg-[length:4rem_4rem]"></div>
