@@ -16,6 +16,7 @@ class NewUserRegistered extends Mailable
     public function __construct(User $user)
     {
         $this->user = $user;
+        // dd($user);
     }
 
     public function build()
