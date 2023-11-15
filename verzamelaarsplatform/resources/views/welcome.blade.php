@@ -41,8 +41,6 @@
 
                 <!-- Login/Register -->
                 <div class="flex items-center">
-                    <div class="fixed sm:top-0 sm:right-0 p-6 text-right z-5 bg-[#1F2937] w-full border-none">
-                    <div class="bg-[url('../img/TrainLogo.png')] top-0 left-5px z-2 fixed w-20 h-20 bg-no-repeat bg-[length:4rem_4rem]"></div>                   
                     @auth
                         <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                     @else
