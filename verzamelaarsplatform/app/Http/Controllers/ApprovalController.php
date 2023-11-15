@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\UserApprovedMail;
 use App\Models\User;
 
-class ApproveController extends Controller
+class ApprovalController extends Controller
 {
     public function approveUser($userId)
     {
