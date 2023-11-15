@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
+
+    protected $table = 'news';
+    public $timestamps = true;
+    protected $fillable = [
+        'titel', 'inhoud', 'link', 'auteur'
+    ];
+
+    public function catagories()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

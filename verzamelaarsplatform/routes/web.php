@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\InrichtingController;
 use App\Http\Controllers\ProfileController;
@@ -60,7 +61,9 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::delete('/users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
 
     // Route::get('/approve-user/{userId}', [ApprovalController::class, 'approveUser'])->name('approve.user'); // nog ff aan werken
-    
+    Route::get('/events', [EventController::class,'index'])->name('events.index');
+    Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+
 });
 
 Route::middleware('auth')->group(function () {

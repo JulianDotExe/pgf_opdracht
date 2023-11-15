@@ -15,4 +15,9 @@ class Event extends Model
         'event_date', 'event_name', 'beschrijving', 'locatie', 'link'
     ];
 
+    public function catagories()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 }

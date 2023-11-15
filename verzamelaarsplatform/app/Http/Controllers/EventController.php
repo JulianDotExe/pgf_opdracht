@@ -11,11 +11,10 @@ class EventController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $users = Event::all();
-
-        return view('admin.users.index', compact('users'));
-    }
+{
+    $events = Event::paginate(8);
+    return view('admin.events.index', compact('events'));
+}
 
     /**
      * Show the form for creating a new resource.
