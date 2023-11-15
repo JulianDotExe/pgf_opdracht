@@ -63,7 +63,7 @@
                     <p class="font-semibold text-white text-6xl">Welkom</p><br><br>
                     <p class="font-semibold text-white text-3xl mt-2">Waar onze liefde en passie<br> voor modeltreinen samenkomt!</p>
                 </div>
-            </div
+            </div>
         </head-content>
 
     </body>
