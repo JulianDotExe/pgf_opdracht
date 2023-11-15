@@ -25,7 +25,7 @@
     <body class="antialiased">
     <header class="z-50 absolute w-full">
         @if (Route::has('login'))
-            <div class="flex items-center justify-between bg-[#1F2937] p-1 shadow-md">
+            <div class="flex items-center justify-between bg-[#1F2937] p-2 shadow-md">
                 <div class="flex items-center">
                     <!-- Logo -->
                     <div class="bg-[url('../img/TrainLogo.png')] w-20 h-20 bg-no-repeat bg-[length:4rem_4rem]"></div>
@@ -59,7 +59,7 @@
     
     
         <head-content>
-            <div class="bg-[url('../img/Background.png')] w-full h-screen  bg-no-repeat bg-cover -z-1"></div>
+            <div class="bg-[url('../img/Background.png')] w-full h-screen bg-no-repeat bg-cover -z-1"></div>
                 <div class="text-container absolute left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
                     <p class="font-semibold text-white text-6xl">Welkom</p><br><br>
                     <p class="font-semibold text-white text-3xl mt-2">Waar onze liefde en passie<br> voor modeltreinen samenkomt!</p>
