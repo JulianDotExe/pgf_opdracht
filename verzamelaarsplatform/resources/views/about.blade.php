@@ -59,9 +59,11 @@
         <head-content>
             <div class="bg-[#1f2936] h-full w-full absolute">
 
-                <div class="text-container absolute left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
-                    <p class="font-semibold text-white text-6xl">Welkom</p><br><br>
-                    <p class="font-semibold text-white text-3xl mt-2">Waar onze liefde en passie<br> voor modeltreinen samenkomt!</p>
+                <div class="text-container absolute left-2/3 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                    <p class="font-semibold text-white text-6xl ">About me</p><br><br>
+                    <p class="font-semibold text-white text-2xl mt-2">Wilbert de Leeuw is een enthousiaste modeltreinfanaat en webpionier.</p><br> 
+                    <p class="font-semibold text-white text-2xl mt-2">Via zijn website deelt hij zijn modeltreinpassie met anderen, inclusief zijn indrukwekkende verzameling, evenementen en nieuws in deze hobbywereld.</p><br>
+                    <p class="font-semibold text-white text-2xl mt-2">Zijn toewijding en inspirerende aanpak vallen op in de modeltreingemeenschap.</p>
                 </div>
             </div>
         </head-content>
