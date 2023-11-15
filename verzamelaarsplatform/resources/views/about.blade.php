@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="{{ asset('../img/favicon_io/favicon-32x32.png') }}">
@@ -24,48 +25,52 @@
 
     <body class="antialiased">
     <header class="z-50 absolute w-full">
-        @if (Route::has('login'))
-            <div class="flex items-center justify-between bg-[#1F2937] p-1 shadow-md">
-                <div class="flex items-center">
-                    <!-- Logo -->
-                    <div class="bg-[url('../img/TrainLogo.png')] w-20 h-20 bg-no-repeat bg-[length:4rem_4rem]"></div>
-                </div>
-
-                <!-- Navbar Links -->
-                <div class="flex-grow flex items-center justify-center space-x-10">
-                    <a href="{{ url('/welcome') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
-                    <a href="{{ url('/about') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"><u>De Leeuw</u></a>
-                    <a href="{{ url('/news') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">News</a>
-                    <a href="{{ url('/events') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Events</a>
-                </div>
-
-                <!-- Login/Register -->
-                <div class="flex items-center">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="mr-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                        @if (Route::has('request'))
-                            <a href="{{ route('request') }}" class=" font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Request account</a>
-                        @endif
-                    @endauth
-                </div>
+    @if (Route::has('login'))
+        <div class="flex items-center justify-between bg-[#1F2937] p-1 shadow-md">
+            <div class="flex items-center">
+                <!-- Logo -->
+                <div class="ml-4 bg-[url('../img/TrainLogo.png')] w-20 h-20 bg-no-repeat bg-[length:4rem_4rem]"></div>
             </div>
-        @endif
-    </header>
+
+            <!-- Navbar Links -->
+            <div class="ml-20 flex-grow flex items-center justify-center space-x-10">
+                <a href="{{ url('/welcome') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Home</a>
+                <a href="{{ url('/about') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"><u>About</u></a>
+                <a href="{{ url('/news') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">News</a>
+                <a href="{{ url('/events') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Events</a>
+            </div>
+
+            <!-- Login/Register -->
+            <div class="flex items-center">
+                @auth
+                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                @else
+                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500 flex items-center"><i class="fa fa-solid fa-lock mr-2"></i> Log in</a>
+
+                    <span class="text-gray-500 dark:text-gray-400 mx-2">|</span>
+
+                    @if (Route::has('request'))
+                        <a href="{{ route('request') }}" class="mr-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500 flex items-center"><i class="fa fa-solid fa-user-plus mr-2"></i> Request account</a>
+                    @endif
+                @endauth
+            </div>
+        </div>
+    @endif
+</header>
     
     
         <head-content>
-            <div class="bg-[#1f2936] h-full w-full absolute">
-
-                <div class="text-container absolute left-2/3 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                    <p class="font-semibold text-white text-6xl ">About me</p><br><br>
-                    <p class="font-semibold text-white text-2xl mt-2">Wilbert de Leeuw is een enthousiaste modeltreinfanaat en webpionier.</p><br> 
-                    <p class="font-semibold text-white text-2xl mt-2">Via zijn website deelt hij zijn modeltreinpassie met anderen, inclusief zijn indrukwekkende verzameling, evenementen en nieuws in deze hobbywereld.</p><br>
-                    <p class="font-semibold text-white text-2xl mt-2">Zijn toewijding en inspirerende aanpak vallen op in de modeltreingemeenschap.</p>
-                </div>
+        <div class="bg-[#1f2936] h-full w-full absolute">
+            <div class="absolute left-1/4 top-1/2 transform -translate-y-1/2 z-10">
+                <div class="bg-[url('../img/Eigenaar.png')] w-80 h-80 bg-no-repeat rounded-full bg-cover shadow-lg"></div>
             </div>
+            <div class="text-container absolute left-2/3 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                <p class="font-semibold text-white text-6xl">About me</p><br><br>
+                <p class="font-semibold text-white text-2xl mt-2">Wilbert de Leeuw is een enthousiaste modeltreinfanaat en webpionier.</p><br> 
+                <p class="font-semibold text-white text-2xl mt-2">Via zijn website deelt hij zijn modeltreinpassie met anderen, inclusief zijn indrukwekkende verzameling, evenementen en nieuws in deze hobbywereld.</p><br>
+                <p class="font-semibold text-white text-2xl mt-2">Zijn toewijding en inspirerende aanpak vallen op in de modeltreingemeenschap.</p>
+            </div>
+        </div>
         </head-content>
 
     </body>
