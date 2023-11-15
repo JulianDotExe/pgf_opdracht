@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Homepage</title>
+        <title>Home</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -25,27 +25,29 @@
     <body class="antialiased">
     <header class="z-50 absolute w-full">
         @if (Route::has('login'))
-            <div class="flex items-center justify-between bg-[#1F2937] p-2">
+            <div class="flex items-center justify-between bg-[#1F2937] p-1 shadow-md">
                 <div class="flex items-center">
                     <!-- Logo -->
                     <div class="bg-[url('../img/TrainLogo.png')] w-20 h-20 bg-no-repeat bg-[length:4rem_4rem]"></div>
                 </div>
 
-                <!-- Dashboard Links (Centered) -->
-                <div class="flex-grow flex items-center justify-center">
-                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    <!-- Add more dashboard links as needed -->
+                <!-- Navbar Links -->
+                <div class="flex-grow flex items-center justify-center space-x-10">
+                    <a href="{{ url('/welcome') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                    <a href="{{ url('/about') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">De Leeuw</a>
+                    <a href="{{ url('/news') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">News</a>
+                    <a href="{{ url('/events') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Events</a>
                 </div>
 
-                <!-- Login/Register Section -->
+                <!-- Login/Register -->
                 <div class="flex items-center">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                        <a href="{{ route('login') }}" class="mr-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                            <a href="{{ route('register') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                         @endif
                     @endauth
                 </div>
@@ -53,9 +55,7 @@
         @endif
     </header>
     
-        
-
-
+    
         <head-content>
             <div class="bg-[url('../img/Background.png')] w-full h-screen  bg-no-repeat bg-cover -z-1"></div>
                 <div class="text-container absolute left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
@@ -63,6 +63,9 @@
                     <p class="font-semibold text-white text-3xl mt-2">Waar onze liefde en passie<br> voor modeltreinen samenkomt!</p>
                 </div>
         </head-content>
+
+    </body>
+
 
         <!-- <main-content>
             <div class="relative">
@@ -87,7 +90,6 @@
 
 
 
-    </body>
 
 
 
