@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\NewUserRegistered;
+use App\Mail\ErrorOccurred;
 use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log;
 
 
 class RequestUserController extends Controller
@@ -36,17 +39,29 @@ class RequestUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        $data = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
 
-        // Stuur een e-mail naar de beheerder
-        $adminEmail = 'rikbalvers@outlook.com'; // Vervang dit door het e-mailadres van de beheerder
-        Mail::to($adminEmail)->send(new NewUserRegistered($user));
+        $adminRole = Role::where('name', 'admin')->first();
 
-        return back()->with('message', 'Account aangevraagd');
+        if ($adminRole) {
+            $adminUsers = $adminRole->users;
+
+            // Send email to each admin user
+            foreach ($adminUsers as $adminUser) {
+                Mail::to($adminUser->email)->send(new NewUserRegistered($data));
+            }
+        } else {
+            // Notify the new user about the error
+            Mail::to($data->email)->send(new ErrorOccurred($data));
+            // Log it
+            Log::warning("The 'admin' role doesn't exist. Please check the roles configuration.");
+        }
+
+        return redirect('/')->with('message', 'Account aangevraagd');
     }
 
 }

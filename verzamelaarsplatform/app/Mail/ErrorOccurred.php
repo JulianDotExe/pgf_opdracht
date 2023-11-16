@@ -10,16 +10,19 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
-class NewUserRegistered extends Mailable
+class ErrorOccurred extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $data;
 
+    /**
+     * Create a new message instance.
+     *  @param $data
+     */
     public function __construct($data)
     {
         $this->data = $data;
-        // dd($data);
     }
 
     /**
@@ -29,17 +32,17 @@ class NewUserRegistered extends Mailable
     {
         return new Envelope(
             from: new Address('h45759@45759.hbcdeveloper.nl', 'Verzamelaarsplatform'),
-            subject: 'Nieuwe gebruiker geregistreerd',
+            subject: 'Error Occured',
         );
     }
 
-     /**
+    /**
      * Get the message content definition.
      */
     public function content(): Content
     {
         return new Content(
-            view: 'mail.new_user_registered',
+            view: 'mail.error_occured',
             with: [
                 'data' => $this->data
             ]
@@ -51,8 +54,8 @@ class NewUserRegistered extends Mailable
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-    // public function attachments(): array
-    // {
-    //     return [];
-    // }
+//     public function attachments(): array
+//     {
+//         return [];
+//     }
 }

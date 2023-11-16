@@ -9,7 +9,9 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\InrichtingController;
 use App\Http\Controllers\ProfileController;
+use App\Mail\NewUserRegistered;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,9 +34,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-
-
 
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function() {
     Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -70,7 +69,6 @@ Route::get('/welcome', function () {
         Auth::logout();
         return redirect('/login'); // Redirect to the login page or any other page
     }
-
     return view('welcome');
 });
 
