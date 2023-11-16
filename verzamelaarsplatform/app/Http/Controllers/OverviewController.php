@@ -59,7 +59,6 @@ class OverviewController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         $request->validate([
             'user_id' => 'required',
             'sort_id' => 'required',
