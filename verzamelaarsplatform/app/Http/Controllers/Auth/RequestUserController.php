@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\NewUserRegistered;
 use App\Mail\ErrorOccurred;
+use App\Mail\NewUserRegisteredForUser;
 use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -54,6 +55,8 @@ class RequestUserController extends Controller
             foreach ($adminUsers as $adminUser) {
                 Mail::to($adminUser->email)->send(new NewUserRegistered($data));
             }
+
+            Mail::to($data->email)->send(new NewUserRegisteredForUser($data));
         } else {
             // Notify the new user about the error
             Mail::to($data->email)->send(new ErrorOccurred($data));
