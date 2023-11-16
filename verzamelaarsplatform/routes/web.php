@@ -9,7 +9,9 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\InrichtingController;
 use App\Http\Controllers\ProfileController;
+use App\Mail\NewUserRegistered;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Permission;
 
 /*
