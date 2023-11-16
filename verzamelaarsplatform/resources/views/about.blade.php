@@ -59,7 +59,7 @@
 </header>
     
     
-        <head-content>
+    <Main-content>
         <div class="bg-[#1f2936] h-full w-full absolute">
             <div class="absolute left-1/4 top-1/2 transform -translate-y-1/2 z-10">
                 <div class="bg-[url('../img/Eigenaar.png')] w-80 h-80 bg-no-repeat rounded-full bg-cover shadow-lg"></div>
@@ -71,6 +71,6 @@
                 <p class="font-semibold text-white text-2xl mt-2">Zijn toewijding en inspirerende aanpak vallen op in de modeltreingemeenschap.</p>
             </div>
         </div>
-        </head-content>
+    </Main-content>
 
-    </body>
+</body>
