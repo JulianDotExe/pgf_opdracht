@@ -67,18 +67,27 @@ Route::get('/welcome', function () {
     // Check if the user is logged in and should be logged out
     if (auth()->check()) {
         Auth::logout();
-        return redirect('/login'); // Redirect to the login page or any other page
+        return redirect('/'); // Redirect to the login page or any other page
     }
     return view('welcome');
 });
+
+Route::get('/', function () {
+    // Check if the user is logged in and should be logged out
+    if (auth()->check()) {
+        Auth::logout();
+        return redirect('/'); // Redirect to the login page or any other page
+    }
+    return view('welcome');
+});
+
 
 Route::get('/about', function () {
     // Check if the user is logged in and should be logged out
     if (auth()->check()) {
         Auth::logout();
-        return redirect('/login'); // Redirect to the login page or any other page
+        return redirect('/about'); // Redirect to the login page or any other page
     }
-
     return view('about');
 });
 
@@ -86,9 +95,8 @@ Route::get('/events', function () {
     // Check if the user is logged in and should be logged out
     if (auth()->check()) {
         Auth::logout();
-        return redirect('/login'); // Redirect to the login page or any other page
+        return redirect('/events'); // Redirect to the login page or any other page
     }
-
     return view('events');
 });
 
@@ -96,9 +104,8 @@ Route::get('/news', function () {
     // Check if the user is logged in and should be logged out
     if (auth()->check()) {
         Auth::logout();
-        return redirect('/login'); // Redirect to the login page or any other page
+        return redirect('/news'); // Redirect to the login page or any other page
     }
-
     return view('news');
 });
 
