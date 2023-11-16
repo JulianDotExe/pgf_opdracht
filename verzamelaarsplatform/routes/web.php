@@ -35,9 +35,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-
-
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function() {
     Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::resource('/roles', RoleController::class);
@@ -72,7 +69,6 @@ Route::get('/welcome', function () {
         Auth::logout();
         return redirect('/login'); // Redirect to the login page or any other page
     }
-
     return view('welcome');
 });
 
