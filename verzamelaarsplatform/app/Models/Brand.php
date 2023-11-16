@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     use HasFactory;
+    
     protected $table = 'brands';
 
     public $timestamps = false; // Als de tabel geen timestamps heeft

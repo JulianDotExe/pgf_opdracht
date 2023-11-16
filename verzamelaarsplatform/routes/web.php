@@ -76,5 +76,8 @@ Route::resource("overviews", OverviewController::class);
 Route::resource("inrichtings", InrichtingController::class);
 Route::post('/create-sort', [InrichtingController::class, 'createSort']);
 Route::post('/create-brand', [InrichtingController::class, 'createBrand']);
-
+Route::post('/create-epoche', [InrichtingController::class, 'createEpoche']);
+Route::post('/create-owner', [InrichtingController::class, 'createOwner']);
+Route::post('/create-color1', [InrichtingController::class, 'createColor1']);
+Route::post('/create-color2', [InrichtingController::class, 'createColor2']);
 require __DIR__.'/auth.php';
