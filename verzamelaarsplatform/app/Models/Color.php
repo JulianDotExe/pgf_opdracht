@@ -13,6 +13,6 @@ class Color extends Model
 
     public $timestamps = false; // Als de tabel geen timestamps heeft
 
-    protected $fillable = ['color1_name']; // De kolommen die je kunt invullen
+    protected $fillable = ['color1']; // De kolommen die je kunt invullen
 
 }

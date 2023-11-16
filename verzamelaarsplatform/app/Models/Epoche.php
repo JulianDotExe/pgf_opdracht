@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Epoche extends Model
 {
     use HasFactory;
+    
     protected $table = 'epoches';
 
     public $timestamps = false; // Als de tabel geen timestamps heeft

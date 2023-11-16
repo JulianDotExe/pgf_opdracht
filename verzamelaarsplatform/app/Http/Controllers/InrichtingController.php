@@ -55,28 +55,28 @@ class InrichtingController extends Controller
     //EPOCHE TOEVOEGEN
     public function createEpoche(Request $request)
     {
-         Brand::create($request->all());
+         Epoche::create($request->all());
          return redirect()->back();
     }
 
     //OWNER TOEVOEGEN
     public function createOwner(Request $request)
     {
-        Brand::create($request->all());
+        Owner::create($request->all());
         return redirect()->back();
     }
 
     //COLOR1 TOEVOEGEN
     public function createColor1(Request $request)
     {
-         Brand::create($request->all());
-         return redirect()->back();
+        Color1::create($request->all());
+        return redirect()->back();
     }
 
     //COLOR2 TOEVOEGEN
     public function createColor2(Request $request)
     {
-        Brand::create($request->all());
+        Color2::create($request->all());
         return redirect()->back();
     }
 }
