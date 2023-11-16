@@ -11,7 +11,7 @@
             
             @forelse($overviews as $overview)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                    <h2><strong>Soort:</strong>{{ $overview->sort_name }}</h2>
+                    <h2><strong>Soort:</strong>{{ $overview->sort_id }}</h2>
                     <p><strong>Merk:</strong> {{ $overview->brand_name }}</p>
 
                     <!-- Verwijderknop -->

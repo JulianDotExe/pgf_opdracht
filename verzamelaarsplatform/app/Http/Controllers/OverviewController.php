@@ -59,97 +59,38 @@ class OverviewController extends Controller
      */
     public function store(Request $request)
     {
-
-        
+        dd($request);
         $request->validate([
+            'user_id' => 'required',
+            'sort_id' => 'required',
+            'brand_id' => 'required',
             'catalogusnr' => 'required',
+            'epoche_id' => 'required',
             'nummer' => 'required',
             'eigenschappen' => 'required',
+            'owner_id' => 'required',
+            'color1_id' => 'required',
+            'color2_id' => 'required',
             'bijzonderheden' => 'required',
             'foto' => 'required',
         ]);
 
-    // SORT
-        if ($request->filled('sort_name')) {
-            $sort = Sort::create([
-                'sort_name' => $request->input('sort_name'),
-            ]);
-            $sort_id = $sort->id;
-        } else {
-            $sort_id = $request->input('sort_id');
-        }
-    // SORT
-
-    // BRAND
-        if ($request->filled('brand_name')) {
-            $brand = Brand::create([
-                'brand_name' => $request->input('brand_name'),
-            ]);
-            $brand_id = $brand->id;
-        } else {
-            $brand_id = $request->input('brand_id');
-        }
-    // BRAND
-
-    // EPOCHE
-        if ($request->filled('epoche_name')) {
-            $epoche = Epoche::create([
-                'epoche_name' => $request->input('epoche_name'),
-            ]);
-            $epoche_id = $epoche->id;
-        } else {
-            $epoche_id = $request->input('epoche_id');
-        }
-    // EPOCHE
-
-    // OWNER
-        if ($request->filled('owner_name')) {
-            $owner = Owner::create([
-                'owner_name' => $request->input('owner_name'),
-            ]);
-            $owner_id = $owner->id;
-        } else {
-            $owner_id = $request->input('owner_id');
-        }
-    // OWNER
-
-    // COLOR1
-        if ($request->filled('color1')) {
-            $color1 = Color1::create([
-                'color1' => $request->input('color1'),
-            ]);
-            $color1_id = $color1->id;
-        } else {
-            $color1_id = $request->input('color1_id');
-        }
-    // COLOR1
-
-    // COLOR2
-        if ($request->filled('color2')) {
-            $color2 = Color2::create([
-                'color2' => $request->input('color2'),
-            ]);
-            $color2_id = $color2->id;
-        } else {
-            $color2_id = $request->input('color2_id');
-        }
-    // COLOR2
 
      // Haal de ID van de ingelogde gebruiker op
      $user_id = Auth::id();
 
      // Maak het overzichtsrecord met de juiste user_id
      Overview::create([
-         'user_id' => $user_id,
-         'sort_id' => $sort_id, 
-         'brand' => $brand_id,
+         'user_id' => $request->$user_id,
+         'sort_id' => $request->$sort_id, 
+         'brand' => $request->$brand_id,
          'catalogusnr' => $request->catalogusnr,
-         'epoche' => $epoche_id, //WERKT
+         'epoche' => $request->$epoche_id, 
          'nummer' => $request->nummer,
          'eigenschappen' => $request->eigenschappen,
-         'owner' => $owner_id, //WERKT
-         'color1' => $color1_id, //WERKT
-         'color2' => $color2_id, //WERKT
+         'owner' => $request->$owner_id, 
+         'color1' => $request->$color1_id, 
+         'color2' => $request->$color2_id, 
          'bijzonderheden' => $request->bijzonderheden,
          'foto' => $request->foto,
      ]);
