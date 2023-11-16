@@ -12,7 +12,7 @@
             @forelse($overviews as $overview)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2><strong>Soort:</strong>{{ $overview->sort_id }}</h2>
-                    <p><strong>Merk:</strong> {{ $overview->brand_name }}</p>
+                    <p><strong>Merk:</strong> {{ $overview->brand_id }}</p>
 
                     <!-- Verwijderknop -->
                     <form method="POST" action="{{ route('overviews.destroy', $overview->id) }}" class="inline">
@@ -20,8 +20,6 @@
                         @method('DELETE')
                         <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                     </form>
-
-
 
                     <h1>
                         <a href="{{ route('overviews.show', $overview->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>

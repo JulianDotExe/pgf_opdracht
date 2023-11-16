@@ -58,9 +58,12 @@ class OverviewController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
+    try {
+        // Log the incoming request data
+        \Log::info('Request Data:', $request->all());
+
         $request->validate([
-            'user_id' => 'required',
             'sort_id' => 'required',
             'brand_id' => 'required',
             'catalogusnr' => 'required',
@@ -74,28 +77,72 @@ class OverviewController extends Controller
             'foto' => 'required',
         ]);
 
+        // Haal de ID van de ingelogde gebruiker op
+        $user_id = Auth::id();
 
-     // Haal de ID van de ingelogde gebruiker op
-     $user_id = Auth::id();
+        // Maak het overzichtsrecord met de juiste user_id
+        Overview::create([
+            'user_id' => $user_id,
+            'sort_id' => $request->sort_id,
+            'brand_id' => $request->brand_id,
+            'catalogusnr' => $request->catalogusnr,
+            'epoche_id' => $request->epoche_id,
+            'nummer' => $request->nummer,
+            'eigenschappen' => $request->eigenschappen,
+            'owner_id' => $request->owner_id,
+            'color1_id' => $request->color1_id,
+            'color2_id' => $request->color2_id,
+            'bijzonderheden' => $request->bijzonderheden,
+            'foto' => $request->foto,
+        ]);
 
-     // Maak het overzichtsrecord met de juiste user_id
-     Overview::create([
-         'user_id' => $request->$user_id,
-         'sort_id' => $request->$sort_id, 
-         'brand' => $request->$brand_id,
-         'catalogusnr' => $request->catalogusnr,
-         'epoche' => $request->$epoche_id, 
-         'nummer' => $request->nummer,
-         'eigenschappen' => $request->eigenschappen,
-         'owner' => $request->$owner_id, 
-         'color1' => $request->$color1_id, 
-         'color2' => $request->$color2_id, 
-         'bijzonderheden' => $request->bijzonderheden,
-         'foto' => $request->foto,
-     ]);
- 
-     return redirect()->route('overviews.index');
+        \Log::info('Data stored successfully.');
+
+        return redirect()->route('overviews.index')->with('success', 'Data stored successfully.');
+    } catch (\Exception $e) {
+        \Log::error('Error storing data: ' . $e->getMessage());
+        return back()->with('error', 'Error storing data. Please try again.');
+    }
 }
+//     public function store(Request $request)
+//     {
+//         $request->validate([
+//             'user_id' => 'required',
+//             'sort_id' => 'required',
+//             'brand_id' => 'required',
+//             'catalogusnr' => 'required',
+//             'epoche_id' => 'required',
+//             'nummer' => 'required',
+//             'eigenschappen' => 'required',
+//             'owner_id' => 'required',
+//             'color1_id' => 'required',
+//             'color2_id' => 'required',
+//             'bijzonderheden' => 'required',
+//             'foto' => 'required',
+//         ]);
+
+
+//      // Haal de ID van de ingelogde gebruiker op
+//      $user_id = Auth::id();
+
+//      // Maak het overzichtsrecord met de juiste user_id
+//      Overview::create([
+//         'user_id' => $user_id,
+//         'sort_id' => $request->sort_id,
+//         'brand_id' => $request->brand_id,
+//         'catalogusnr' => $request->catalogusnr,
+//         'epoche_id' => $request->epoche_id,
+//         'nummer' => $request->nummer,
+//         'eigenschappen' => $request->eigenschappen,
+//         'owner_id' => $request->owner_id,
+//         'color1_id' => $request->color1_id,
+//         'color2_id' => $request->color2_id,
+//         'bijzonderheden' => $request->bijzonderheden,
+//         'foto' => $request->foto,
+//     ]);
+ 
+//      return redirect()->route('overviews.index');
+// }
 
 
     /**
