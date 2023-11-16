@@ -42,10 +42,15 @@ class OverviewController extends Controller
      */
     public function create()
     {
+    $sorts = Sort::all();  
+    $brands = Brand::all();
+    $epoches = Epoche::all();
+    $owners = Owner::all();
+    $colors1 = Color1::all();
+    $colors2 = Color2::all();
 
-    $sorts = Sort::pluck('sort_name', 'id');
 
-    return view('overviews.create', ['sorts' => $sorts]);
+    return view('overviews.create', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2'));
     }   
 
 
