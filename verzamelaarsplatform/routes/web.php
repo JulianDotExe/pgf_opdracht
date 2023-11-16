@@ -11,6 +11,8 @@ use App\Http\Controllers\InrichtingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,18 +33,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/events', function () {
-    return view('events');
-});
-Route::get('/news', function () {
-    return view('news');
-});
+
+
 
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function() {
     Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -70,6 +62,46 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('/welcome', function () {
+    // Check if the user is logged in and should be logged out
+    if (auth()->check()) {
+        Auth::logout();
+        return redirect('/login'); // Redirect to the login page or any other page
+    }
+
+    return view('welcome');
+});
+
+Route::get('/about', function () {
+    // Check if the user is logged in and should be logged out
+    if (auth()->check()) {
+        Auth::logout();
+        return redirect('/login'); // Redirect to the login page or any other page
+    }
+
+    return view('about');
+});
+
+Route::get('/events', function () {
+    // Check if the user is logged in and should be logged out
+    if (auth()->check()) {
+        Auth::logout();
+        return redirect('/login'); // Redirect to the login page or any other page
+    }
+
+    return view('events');
+});
+
+Route::get('/news', function () {
+    // Check if the user is logged in and should be logged out
+    if (auth()->check()) {
+        Auth::logout();
+        return redirect('/login'); // Redirect to the login page or any other page
+    }
+
+    return view('news');
 });
 
 Route::resource("overviews", OverviewController::class);
