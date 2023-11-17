@@ -31,8 +31,17 @@
                     <p><strong>Kleur 1:</strong> {{ $overview->color1_id }}</p>
                     <p><strong>Kleur 2:</strong> {{ $overview->color2_id }}</p>
                     <p><strong>Bijzonderheden:</strong> {{ $overview->bijzonderheden }}</p>
-                    <p><strong>Foto:</strong> {{ $overview->foto }}</p>
-
+                    <!-- Display the image if available -->
+                    @if(!empty($overview->getImages()))
+                        <div>
+                            <h3>Images:</h3>
+                            <div>
+                                @foreach($overview->getImages() as $image)
+                                    <img src="{{ asset($image) }}" alt="Collection Image" class="my-4">
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                 </div> <br>
                 <a href="{{ route('overviews.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
                 <a href="{{ route('overviews.edit', $overview->id)  }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Collectie wijzigen</a>

@@ -12,7 +12,7 @@
                 <p>{{ $error }} </p>
             @endforeach -->
                 
-            <form action="{{ route('overviews.store') }}"method="post">
+            <form action="{{ route('overviews.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <!-- Dropdown voor studenten -->
                 <select name="sort_id" id="sort_id" class="w-full">
@@ -85,7 +85,7 @@
 
                     <br> <br>
 
-                <x-text-input type="text" name="foto" field="foto" placeholder="Foto..." class="w-full" autocomplete="off" :value="@old('foto')" style="background-color: white;"></x-text-input> 
+                    <x-text-input type="file" name="foto" field="foto" class="w-full" style="background-color: white;"></x-text-input>
                 <br> <br>
                 <a href="{{ route('overviews.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
                 <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Opslaan</button>
