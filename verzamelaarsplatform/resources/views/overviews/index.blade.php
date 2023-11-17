@@ -45,7 +45,6 @@
 
             {{ $overviews->links() }}
 
-            
         </div>
     </div>
 
