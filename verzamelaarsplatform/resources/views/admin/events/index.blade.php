@@ -21,8 +21,6 @@
                         <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                     </form>
 
-
-
                     <h1>
                         <a href="{{ route('event.show', $overview->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
                     </h1>
