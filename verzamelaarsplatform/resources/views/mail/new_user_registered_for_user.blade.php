@@ -6,7 +6,7 @@
 <body>
     <h1>Geregistreerd voor verzamelaarsplatform</h1>
 
-<p>Beste {{ $data->name }},</p>
+    <p>Beste {{ $data->name }},</p>
 
     <p>U heeft geregistreerd op onze platform met de onderstaande gegevens:</p>
 
