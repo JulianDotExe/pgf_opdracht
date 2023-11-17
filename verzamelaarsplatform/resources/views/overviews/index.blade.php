@@ -29,21 +29,28 @@
 
             {{ $overviews->links() }}
 
-            <!-- Confirmation popup -->
-            <div id="confirmationPopup" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
-                <div class="bg-white p-8 rounded-md shadow-md">
-                    <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
-                    <div class="flex justify-between">
-                        <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+            @forelse($overviews as $overviewItem)
 
-                        <form id="deleteForm" method="POST" action="{{ route('overviews.destroy', $overview->id) }}" class="inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
-                        </form>
+                <!-- Confirmation popup -->
+                <div id="confirmationPopup" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
+                    <div class="bg-white p-8 rounded-md shadow-md">
+                        <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
+                        <div class="flex justify-between">
+                            <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+
+                            <form id="deleteForm" method="POST" action="{{ route('overviews.destroy', $overviewItem->id) }}" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+                
+                @empty
+                <!-- Empty state content -->
+                <!-- ... -->
+            @endforelse
         </div>
     </div>
 
