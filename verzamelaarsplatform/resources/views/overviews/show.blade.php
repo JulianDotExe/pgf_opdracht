@@ -32,7 +32,7 @@
                     <p><strong>Kleur 2:</strong> {{ $overview->color2_id }}</p>
                     <p><strong>Bijzonderheden:</strong> {{ $overview->bijzonderheden }}</p>
                     <!-- Display the image if available -->
-                    @if(!empty($overview->getImages()))
+                    @if(count($overview->getImages()) > 0)
                         <div>
                             <h3>Images:</h3>
                             <div>
@@ -41,6 +41,8 @@
                                 @endforeach
                             </div>
                         </div>
+                    @else
+                        <p>There's no image associated with this collection.</p>
                     @endif
                 </div> <br>
                 <a href="{{ route('overviews.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
