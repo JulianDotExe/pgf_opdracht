@@ -45,50 +45,53 @@ class OverviewController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        try {
-            $request->validate([
-                'sort_id' => 'required',
-                'brand_id' => 'required',
-                'catalogusnr' => 'required',
-                'epoche_id' => 'required',
-                'nummer' => 'required',
-                'eigenschappen' => 'required',
-                'owner_id' => 'required',
-                'color1_id' => 'required',
-                'color2_id' => 'required',
-                'bijzonderheden' => 'required',
-                'foto.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-    
-            $images = [];
-            foreach ($request->file('foto') as $image) {
-                $imagePath = $image->storeAs('uploads/overviews', time() . '_' . $image->getClientOriginalName());
-                $images[] = $imagePath;
-            }
-    
-            $user_id = Auth::id();
-    
-            Overview::create([
-                'user_id' => $user_id,
-                'sort_id' => $request->sort_id,
-                'brand_id' => $request->brand_id,
-                'catalogusnr' => $request->catalogusnr,
-                'epoche_id' => $request->epoche_id,
-                'nummer' => $request->nummer,
-                'eigenschappen' => $request->eigenschappen,
-                'owner_id' => $request->owner_id,
-                'color1_id' => $request->color1_id,
-                'color2_id' => $request->color2_id,
-                'bijzonderheden' => $request->bijzonderheden,
-                'foto' => implode('|', $images),
-            ]);
-    
-            return redirect()->route('overviews.index')->with('success', 'Data stored successfully.');
-        } catch (\Exception $e) {
-            return back()->with('error', 'Error storing data. Please try again.');
+{
+    try {
+        $request->validate([
+            'sort_id' => 'required',
+            'brand_id' => 'required',
+            'catalogusnr' => 'required',
+            'epoche_id' => 'required',
+            'nummer' => 'required',
+            'eigenschappen' => 'required',
+            'owner_id' => 'required',
+            'color1_id' => 'required',
+            'color2_id' => 'required',
+            'bijzonderheden' => 'required',
+            'foto.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $images = [];
+        foreach ($request->file('foto') as $image) {
+            $imagePath = $image->storeAs('uploads/overviews', time() . '_' . $image->getClientOriginalName());
+            $images[] = $imagePath;
         }
+
+        dd($images);
+
+        $user_id = Auth::id();
+
+        Overview::create([
+            'user_id' => $user_id,
+            'sort_id' => $request->sort_id,
+            'brand_id' => $request->brand_id,
+            'catalogusnr' => $request->catalogusnr,
+            'epoche_id' => $request->epoche_id,
+            'nummer' => $request->nummer,
+            'eigenschappen' => $request->eigenschappen,
+            'owner_id' => $request->owner_id,
+            'color1_id' => $request->color1_id,
+            'color2_id' => $request->color2_id,
+            'bijzonderheden' => $request->bijzonderheden,
+            'foto' => implode('|', $images),
+        ]);
+
+        return redirect()->route('overviews.index')->with('success', 'Data stored successfully.');
+    } catch (\Exception $e) {
+        \Log::error($e->getMessage());
+        return back()->with('error', 'Error storing data. Please try again.');
     }
+}
 
     /**
      * Display the specified resource.
