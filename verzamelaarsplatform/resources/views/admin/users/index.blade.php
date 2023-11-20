@@ -7,6 +7,11 @@
                         <h1 class="flex font-semibold text-xl p-2">
                             {{ __("Users") }}
                         </h1>
+                        {{-- Search Bar --}}
+                        <form action="{{ route('admin.users.index') }}" method="GET">
+                            <input type="text" name="mail" placeholder="Search by email" class="border rounded-md px-2 py-1">
+                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
+                        </form>
                     </div>
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -63,7 +68,7 @@
                                 </table>
                             </div>
                             <div class="pt-2 pl-5 pr-2">
-                                {{ $users->links() }}
+                                {{ $users->appends(request()->input())->links() }}
                             </div>
                         </div>
                     </div>
