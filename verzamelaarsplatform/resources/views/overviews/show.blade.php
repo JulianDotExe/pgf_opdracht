@@ -28,8 +28,8 @@
                     <p><strong>Nummer:</strong> {{ $overview->nummer }}</p>
                     <p><strong>Eigenschappen:</strong> {{ $overview->eigenschappen }}</p>
                     <p><strong>Eigenaar:</strong> {{ $overview->owner_id }}</p>
-                    <p><strong>Kleur 1:</strong> {{ $overview->color1_id }}</p>
-                    <p><strong>Kleur 2:</strong> {{ $overview->color2_id }}</p>
+                    <p><strong>Kleur 1:</strong> {{ $overview->color1->color1 }}</p>
+                    <p><strong>Kleur 2:</strong> {{ $overview->color2->color2 }}</p>
                     <p><strong>Bijzonderheden:</strong> {{ $overview->bijzonderheden }}</p>
                     <!-- Display the image if available -->
                     @if(count($overview->getImages()) > 0)
