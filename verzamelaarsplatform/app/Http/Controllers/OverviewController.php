@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Overview;
 use App\Models\Sort;
@@ -45,53 +46,55 @@ class OverviewController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    try {
-        $request->validate([
-            'sort_id' => 'required',
-            'brand_id' => 'required',
-            'catalogusnr' => 'required',
-            'epoche_id' => 'required',
-            'nummer' => 'required',
-            'eigenschappen' => 'required',
-            'owner_id' => 'required',
-            'color1_id' => 'required',
-            'color2_id' => 'required',
-            'bijzonderheden' => 'required',
-            'foto.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+    {
+        try {
+            $request->validate([
+                'sort_id' => 'required',
+                'brand_id' => 'required',
+                'catalogusnr' => 'required',
+                'epoche_id' => 'required',
+                'nummer' => 'required',
+                'eigenschappen' => 'required',
+                'owner_id' => 'required',
+                'color1_id' => 'required',
+                'color2_id' => 'required',
+                'bijzonderheden' => 'required',
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
 
-        $images = [];
-        foreach ($request->file('foto') as $image) {
-            $imagePath = $image->storeAs('uploads/overviews', time() . '_' . $image->getClientOriginalName());
-            $images[] = $imagePath;
+            // Handle image upload
+            if ($request->hasFile('foto')) {
+                $image = $request->file('foto');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                
+                // Save the image directly to public/uploads/overviews
+                $image->move(public_path('uploads/overviews'), $imageName);
+
+                $data['foto'] = 'uploads/overviews/' . $imageName;
+            }
+
+            $user_id = Auth::id();
+
+            Overview::create([
+                'user_id' => $user_id,
+                'sort_id' => $request->sort_id,
+                'brand_id' => $request->brand_id,
+                'catalogusnr' => $request->catalogusnr,
+                'epoche_id' => $request->epoche_id,
+                'nummer' => $request->nummer,
+                'eigenschappen' => $request->eigenschappen,
+                'owner_id' => $request->owner_id,
+                'color1_id' => $request->color1_id,
+                'color2_id' => $request->color2_id,
+                'bijzonderheden' => $request->bijzonderheden,
+                'foto' => $fotoPath,
+            ]);
+
+            return redirect()->route('overviews.index')->with('success', 'Data stored successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error storing data. Please try again.');
         }
-
-        dd($images);
-
-        $user_id = Auth::id();
-
-        Overview::create([
-            'user_id' => $user_id,
-            'sort_id' => $request->sort_id,
-            'brand_id' => $request->brand_id,
-            'catalogusnr' => $request->catalogusnr,
-            'epoche_id' => $request->epoche_id,
-            'nummer' => $request->nummer,
-            'eigenschappen' => $request->eigenschappen,
-            'owner_id' => $request->owner_id,
-            'color1_id' => $request->color1_id,
-            'color2_id' => $request->color2_id,
-            'bijzonderheden' => $request->bijzonderheden,
-            'foto' => implode('|', $images),
-        ]);
-
-        return redirect()->route('overviews.index')->with('success', 'Data stored successfully.');
-    } catch (\Exception $e) {
-        \Log::error($e->getMessage());
-        return back()->with('error', 'Error storing data. Please try again.');
     }
-}
 
     /**
      * Display the specified resource.
@@ -113,45 +116,42 @@ class OverviewController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Overview $overview)
-{
-    $request->validate([
-        'catalogusnr' => 'required',
-        'nummer' => 'required',
-        'eigenschappen' => 'required',
-        'bijzonderheden' => 'required',
-        'foto.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ]);
+    {
+        $request->validate([
+            'catalogusnr' => 'required',
+            'nummer' => 'required',
+            'eigenschappen' => 'required',
+            'bijzonderheden' => 'required',
+            'foto.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-    $images = $overview->foto ? explode('|', $overview->foto) : [];
-
-    if ($request->hasFile('foto')) {
+        $images = [];
         foreach ($request->file('foto') as $image) {
             $imagePath = $image->storeAs('uploads/overviews', time() . '_' . $image->getClientOriginalName());
             $images[] = $imagePath;
         }
+
+        $sort_id = $request->input('sort_id');
+        $brand_id = $request->input('brand_id');
+        $epoche_id = $request->input('epoche_id');
+        $owner_id = $request->input('owner_id');
+        $color_id = $request->input('color_id');
+
+        $overview->update([
+            'sort_id' => $sort_id,
+            'brand' => $brand_id,
+            'catalogusnr' => $request->input('catalogusnr'),
+            'epoche' => $epoche_id,
+            'nummer' => $request->input('nummer'),
+            'eigenschappen' => $request->input('eigenschappen'),
+            'owner' => $owner_id,
+            'color' => $color_id,
+            'bijzonderheden' => $request->input('bijzonderheden'),
+            'foto' => implode('|', $images),
+        ]);
+
+        return redirect()->route('overviews.show', ['overview' => $overview]);
     }
-
-    $sort_id = $request->input('sort_id');
-    $brand_id = $request->input('brand_id');
-    $epoche_id = $request->input('epoche_id');
-    $owner_id = $request->input('owner_id');
-    $color_id = $request->input('color_id');
-
-    $overview->update([
-        'sort_id' => $sort_id,
-        'brand' => $brand_id,
-        'catalogusnr' => $request->input('catalogusnr'),
-        'epoche' => $epoche_id,
-        'nummer' => $request->input('nummer'),
-        'eigenschappen' => $request->input('eigenschappen'),
-        'owner' => $owner_id,
-        'color' => $color_id,
-        'bijzonderheden' => $request->input('bijzonderheden'),
-        'foto' => implode('|', $images),
-    ]);
-
-    return redirect()->route('overviews.show', ['overview' => $overview]);
-}
 
     /**
      * Remove the specified resource from storage.
