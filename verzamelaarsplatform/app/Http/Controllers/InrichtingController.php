@@ -11,6 +11,7 @@ use App\Models\Owner;
 use App\Models\Color1;
 use App\Models\Color2;
 use App\Models\User;
+use App\Models\Inrichting;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
@@ -25,13 +26,20 @@ use Illuminate\Http\Request;
 
 class InrichtingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // $inrichtings = Inrichting::all()->sortBy('sort_id');
-        // $inrichtings = Inrichting::paginate(3);
+        $type = $request->get('type', 'sorts'); // Standaard op 'sorts' als het type niet is opgegeven
 
-        return view('inrichtings.index');
+        $sorts = Sort::all();
+        $brands = Brand::all();
+        $epoches = Epoche::all();
+        $owners = Owner::all();
+        $colors1 = Color1::all();
+        $colors2 = Color2::all();
+    
+        return view('inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2', 'type'));
     }
+
 
     public function create()
     {
@@ -79,4 +87,14 @@ class InrichtingController extends Controller
         Color2::create($request->all());
         return redirect()->back();
     }
+
+
+    public function destroy(Overview $inrichting)
+    {
+        $inrichting->delete();
+ 
+        return redirect(route('inrichtings.index'));
+    }
+
+
 }

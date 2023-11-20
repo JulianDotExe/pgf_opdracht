@@ -15,4 +15,8 @@ class Sort extends Model
 
     protected $fillable = ['sort_name']; // De kolommen die je kunt invullen
 
+
+    // Primaire sleutel (optioneel, Laravel zal aannemen dat het 'id' is als het niet wordt opgegeven)
+    // protected $primaryKey = 'id';
+
 }
