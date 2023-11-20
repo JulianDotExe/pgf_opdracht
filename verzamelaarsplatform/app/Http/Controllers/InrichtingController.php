@@ -28,7 +28,7 @@ class InrichtingController extends Controller
 {
     public function index(Request $request)
     {
-        $type = $request->get('type', 'sorts'); // Standaard op 'sorts' als het type niet is opgegeven
+        $type = $request->get('type', 'sorts'); 
 
         $sorts = Sort::all();
         $brands = Brand::all();
@@ -92,7 +92,6 @@ class InrichtingController extends Controller
     public function destroy(Overview $inrichting)
     {
         $inrichting->delete();
- 
         return redirect(route('inrichtings.index'));
     }
 
