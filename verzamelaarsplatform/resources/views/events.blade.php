@@ -34,7 +34,7 @@
 
                 <!-- Navbar Links -->
                 <div class="ml-20 flex-grow flex items-center justify-center space-x-10">
-                    <a href="{{ url('/welcome') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Home</a>
+                    <a href="{{ url('/') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Home</a>
                     <a href="{{ url('/about') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">About</a>
                     <a href="{{ url('/news') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">News</a>
                     <a href="{{ url('/events') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"><u>Events</u></a>

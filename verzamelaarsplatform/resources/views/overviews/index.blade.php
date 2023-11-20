@@ -24,13 +24,27 @@
                     <h1>
                         <a href="{{ route('inrichtings.show', $sort->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
                     </h1>
+                </div>
 
-                    {{-- Je kunt hier andere treingegevens toevoegen --}}
+                <!-- Confirmation popup -->
+                <div id="confirmationPopup" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
+                    <div class="bg-white p-8 rounded-md shadow-md">
+                        <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
+                        <div class="flex justify-between">
+                            <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+
+                            <form id="deleteForm" method="POST" action="{{ route('overviews.destroy', $overview->id) }}" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             @empty
-            <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
-                <p>Geen collecties beschikbaar...</p>
-            </div>
+                <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
+                    <p>Geen collecties beschikbaar...</p>
+                </div>
             @endforelse
             </div>
             

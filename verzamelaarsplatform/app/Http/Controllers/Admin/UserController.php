@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\DeletedAccountEmail;
+use App\Mail\RoleAssignedEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -27,12 +31,19 @@ class UserController extends Controller
 
     public function assignRole(Request $request, User $user)
     {
-        if ($user->hasRole($request->role)) {
-            return back()->with('message', 'Role exists.');
-        }
-
+        $user->roles()->detach();
         $user->assignRole($request->role);
-        return back()->with('message', 'Role assigned.');
+        $role = $request->role;
+        $email = $user->email;
+        
+        if ($role) {
+            Mail::to($email)->send(new RoleAssignedEmail($user, $role));
+            return back()->with('message', 'Rol toegewezen en email verstuurd');
+        } else {
+            Log::warning("There has been an error, most likely there is no email available");
+            return back()->with('message', 'Er was iets fout gegaan');
+        }
+        
     }
 
     public function removeRole(User $user, Role $role)
@@ -66,10 +77,21 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if ($user->hasRole('admin')) {
-            return back()->with('message', 'you are admin.');
+            return back()->with('message', 'They are admin.');
         }
+
         $user->delete();
 
-        return back()->with('message', 'User deleted.');
+        $userName = $user->name;
+        $email = $user->email;
+        
+        if ($userName) {
+            Mail::to($email)->send(new DeletedAccountEmail($userName));
+            return back()->with('message', 'User deleted. An email has been sent');
+        } else {
+            Log::warning("There has been an error, most likely there is no email available");
+            return back()->with('message', 'Er was iets fout gegaan');
+        }
+
     }
 }

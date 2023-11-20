@@ -45,7 +45,7 @@
                         <button type="submit"
                             class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-md">Assign</button>
                     </div>
-                    </form>
+                </form>
                 </div>
                 <div class="mt-6 p-2 bg-slate-100">
                     <h2 class="text-2xl font-semibold">Permissions</h2>

@@ -72,6 +72,15 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    // Check if the user is logged in and should be logged out
+    if (auth()->check()) {
+        Auth::logout();
+        return redirect('/'); // Redirect to the login page or any other page
+    }
+    return view('welcome');
+});
+
 Route::get('/', function () {
     // Check if the user is logged in and should be logged out
     if (auth()->check()) {

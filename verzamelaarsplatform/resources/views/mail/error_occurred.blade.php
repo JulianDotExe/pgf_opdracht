@@ -9,7 +9,6 @@
     
     <p>There was an error processing your account creation request. Please contact the administrator for assistance.</p>
 
-    <p>Thank you,</p>
-    <p>Your Application Team</p>
+    <p>Vriendelijke groeten,<br> Onze verzamelaarsplatform</p>
 </body>
 </html>
