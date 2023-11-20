@@ -31,10 +31,6 @@
                                 <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                             </form>
 
-                            <h1>
-                                <a href="{{ route('inrichtings.show', $sort->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
-                            </h1>
-
                             {{-- Hier kun je andere details van de sort toevoegen --}}
                         </div>
                     @empty
@@ -55,10 +51,6 @@
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                             </form>
-
-                            <h1>
-                                <a href="{{ route('inrichtings.show', $brand->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
-                            </h1>
 
                             {{-- Hier kun je andere details van de sort toevoegen --}}
                         </div>
@@ -81,10 +73,6 @@
                                 <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                             </form>
 
-                            <h1>
-                                <a href="{{ route('inrichtings.show', $epoche->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
-                            </h1>
-
                             {{-- Hier kun je andere details van de sort toevoegen --}}
                         </div>
                     @empty
@@ -105,10 +93,6 @@
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                             </form>
-
-                            <h1>
-                                <a href="{{ route('inrichtings.show', $owner->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
-                            </h1>
 
                             {{-- Hier kun je andere details van de sort toevoegen --}}
                         </div>
@@ -131,10 +115,6 @@
                                 <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                             </form>
 
-                            <h1>
-                                <a href="{{ route('inrichtings.show', $color1->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
-                            </h1>
-
                             {{-- Hier kun je andere details van de sort toevoegen --}}
                         </div>
                     @empty
@@ -155,10 +135,6 @@
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                             </form>
-
-                            <h1>
-                                <a href="{{ route('inrichtings.show', $color2->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
-                            </h1>
 
                             {{-- Hier kun je andere details van de sort toevoegen --}}
                         </div>
