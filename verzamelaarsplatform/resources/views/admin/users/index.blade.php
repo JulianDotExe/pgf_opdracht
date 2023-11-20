@@ -62,6 +62,9 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="pt-2 pl-5 pr-2">
+                                {{ $users->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
