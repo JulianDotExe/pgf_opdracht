@@ -70,9 +70,7 @@ class OverviewController extends Controller
                 // Save the image directly to public/uploads/overviews
                 $image->move(public_path('uploads/overviews'), $imageName);
 
-                // $data['foto'] = 'uploads/overviews/' . $imageName;
-                $fotoPath = 'uploads/overviews/' . $imageName;
-
+                $data['foto'] = 'uploads/overviews/' . $imageName;
             }
 
             $user_id = Auth::id();

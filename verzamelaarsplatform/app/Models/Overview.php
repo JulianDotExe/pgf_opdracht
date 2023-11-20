@@ -24,16 +24,6 @@ class Overview extends Model
         'foto',
     ];
 
-    public function color1()
-    {
-        return $this->belongsTo(Color1::class, 'color1_id');
-    }
-
-    public function color2()
-    {
-        return $this->belongsTo(Color2::class, 'color2_id');
-    }
-    
     public function user()
     {
         return $this->belongsTo(User::class);
