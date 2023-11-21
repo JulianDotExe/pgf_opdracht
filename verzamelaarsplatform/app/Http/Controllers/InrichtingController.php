@@ -21,7 +21,6 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SortController;
-use App\Http\Controllers\InrichtingController;
 use Illuminate\Http\Request;
 
 class InrichtingController extends Controller
@@ -62,7 +61,7 @@ class InrichtingController extends Controller
     public function createSort(Request $request)
     {
         Sort::create($request->all());
-        $request->searchable();
+        // $request->searchable();
         return redirect()->back();
     }
 

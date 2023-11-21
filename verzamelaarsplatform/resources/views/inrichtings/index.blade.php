@@ -69,13 +69,25 @@
                             <h2><strong>Merk:</strong>{{ $brand->brand_name }}</h2>
 
                             <!-- Verwijderknop -->
-                            <form method="POST" action="{{ route('inrichtings.destroy', $brand->id) }}" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
-                            </form>
+                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $brand->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
 
                             {{-- Hier kun je andere details van de sort toevoegen --}}
+                        </div>
+
+                        <!-- Confirmation popup -->
+                        <div id="confirmationPopup" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
+                            <div class="bg-white p-8 rounded-md shadow-md">
+                                <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
+                                <div class="flex justify-between">
+                                    <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+
+                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroy', $brand->id) }}" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
@@ -90,13 +102,25 @@
                             <h2><strong>Epoche:</strong>{{ $epoche->epoche_name }}</h2>
 
                             <!-- Verwijderknop -->
-                            <form method="POST" action="{{ route('inrichtings.destroy', $epoche->id) }}" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
-                            </form>
+                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $epoche->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
 
                             {{-- Hier kun je andere details van de sort toevoegen --}}
+                        </div>
+
+                        <!-- Confirmation popup -->
+                        <div id="confirmationPopup" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
+                            <div class="bg-white p-8 rounded-md shadow-md">
+                                <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
+                                <div class="flex justify-between">
+                                    <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+
+                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroy', $epoche->id) }}" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
@@ -111,13 +135,25 @@
                             <h2><strong>Eigenaar:</strong>{{ $owner->owner_name }}</h2>
 
                             <!-- Verwijderknop -->
-                            <form method="POST" action="{{ route('inrichtings.destroy', $owner->id) }}" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
-                            </form>
+                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $owner->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
 
                             {{-- Hier kun je andere details van de sort toevoegen --}}
+                        </div>
+
+                        <!-- Confirmation popup -->
+                        <div id="confirmationPopup" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
+                            <div class="bg-white p-8 rounded-md shadow-md">
+                                <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
+                                <div class="flex justify-between">
+                                    <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+
+                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroy', $owner->id) }}" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
@@ -132,13 +168,25 @@
                             <h2><strong>Kleur 1:</strong>{{ $color1->color1 }}</h2>
 
                             <!-- Verwijderknop -->
-                            <form method="POST" action="{{ route('inrichtings.destroy', $color1->id) }}" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
-                            </form>
+                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $color2->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
 
                             {{-- Hier kun je andere details van de sort toevoegen --}}
+                        </div>
+
+                        <!-- Confirmation popup -->
+                        <div id="confirmationPopup" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
+                            <div class="bg-white p-8 rounded-md shadow-md">
+                                <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
+                                <div class="flex justify-between">
+                                    <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+
+                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroy', $color1->id) }}" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
@@ -153,13 +201,25 @@
                             <h2><strong>Kleur 2:</strong>{{ $color2->color2 }}</h2>
 
                             <!-- Verwijderknop -->
-                            <form method="POST" action="{{ route('inrichtings.destroy', $color2->id) }}" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
-                            </form>
+                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $color2->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
 
                             {{-- Hier kun je andere details van de sort toevoegen --}}
+                        </div>
+
+                        <!-- Confirmation popup -->
+                        <div id="confirmationPopup" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
+                            <div class="bg-white p-8 rounded-md shadow-md">
+                                <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
+                                <div class="flex justify-between">
+                                    <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+
+                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroy', $color2->id) }}" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
@@ -170,4 +230,20 @@
             @endif
         </div>
     </div>
+
+    <script>
+    function deleteOpenConfirmationPopup(itemId) {
+        // Set the form action dynamically based on the item ID
+        var form = document.getElementById('deleteForm');
+        form.action = "{{ route('overviews.destroy', '') }}" + '/' + itemId;
+
+        // Show the confirmation popup
+        document.getElementById('confirmationPopup').style.display = 'flex';
+    }
+
+    function deleteCloseConfirmationPopup() {
+        // Hide the confirmation popup
+        document.getElementById('confirmationPopup').style.display = 'none';
+    }
+    </script>
 </x-app-layout>
