@@ -19,9 +19,12 @@ class UserController extends Controller
         $usersQuery = User::query();
 
         // Zoekfunctionaliteit op e-mail
-        if ($request->has('mail')) {
-            $email = $request->input('mail');
-            $usersQuery->where('email', 'like', "%$email%");
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $usersQuery->where(function ($query) use ($searchTerm) {
+                $query->where('email', 'like', "%$searchTerm%")
+                    ->orWhere('name', 'like', "%$searchTerm%");
+            });
         }
 
         $users = $usersQuery->paginate(1);

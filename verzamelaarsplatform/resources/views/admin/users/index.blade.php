@@ -9,7 +9,7 @@
                         </h1>
                         {{-- Search Bar --}}
                         <form action="{{ route('admin.users.index') }}" method="GET">
-                            <input type="text" name="mail" placeholder="Search by email" class="border rounded-md px-2 py-1">
+                            <input type="text" name="search" placeholder="Search..." class="border rounded-md px-2 py-1">
                             <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
                         </form>
                     </div>
