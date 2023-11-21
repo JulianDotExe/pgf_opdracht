@@ -21,10 +21,9 @@ class OverviewController extends Controller
      */
     public function index()
     {
-        $overviews = Overview::all()->sortBy('sort_id');
-        $overviews = Overview::paginate(3);
-
+        $overviews = Overview::orderBy('created_at', 'desc')->paginate(3);
         return view('overviews.index', ['overviews' => $overviews]);
+
     }
 
     /**
@@ -70,6 +69,7 @@ class OverviewController extends Controller
                 // Save the image directly to public/uploads/overviews
                 $image->move(public_path('uploads/overviews'), $imageName);
 
+                // $fotoPath = 'uploads/overviews/' . $imageName;
                 $data['foto'] = 'uploads/overviews/' . $imageName;
             }
 
@@ -79,15 +79,15 @@ class OverviewController extends Controller
                 'user_id' => $user_id,
                 'sort_id' => $request->sort_id,
                 'brand_id' => $request->brand_id,
-                'catalogusnr' => $request->catalogusnr,
+                'catalogusnr' => (int) $request->catalogusnr,
                 'epoche_id' => $request->epoche_id,
-                'nummer' => $request->nummer,
+                'nummer' => (int) $request->nummer,
                 'eigenschappen' => $request->eigenschappen,
                 'owner_id' => $request->owner_id,
                 'color1_id' => $request->color1_id,
                 'color2_id' => $request->color2_id,
                 'bijzonderheden' => $request->bijzonderheden,
-                'foto' => $fotoPath,
+                'foto' => $data['foto'],
             ]);
 
             return redirect()->route('overviews.index')->with('success', 'Data stored successfully.');
@@ -135,17 +135,19 @@ class OverviewController extends Controller
         $brand_id = $request->input('brand_id');
         $epoche_id = $request->input('epoche_id');
         $owner_id = $request->input('owner_id');
-        $color_id = $request->input('color_id');
+        $color1_id = $request->input('color1_id');
+        $color2_id = $request->input('color2_id');
 
         $overview->update([
             'sort_id' => $sort_id,
-            'brand' => $brand_id,
+            'brand_id' => $brand_id,
             'catalogusnr' => $request->input('catalogusnr'),
-            'epoche' => $epoche_id,
+            'epoche_id' => $epoche_id,
             'nummer' => $request->input('nummer'),
             'eigenschappen' => $request->input('eigenschappen'),
-            'owner' => $owner_id,
-            'color' => $color_id,
+            'owner_id' => $owner_id,
+            'color1_id' => $color1_id,
+            'color2_id' => $color2_id,
             'bijzonderheden' => $request->input('bijzonderheden'),
             'foto' => implode('|', $images),
         ]);
