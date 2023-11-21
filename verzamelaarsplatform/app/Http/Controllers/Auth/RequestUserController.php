@@ -47,6 +47,7 @@ class RequestUserController extends Controller
         ]);
 
         $adminRole = Role::where('name', 'admin')->first();
+        $data->searchable();
 
         if ($adminRole) {
             $adminUsers = $adminRole->users;
@@ -57,6 +58,7 @@ class RequestUserController extends Controller
             }
 
             Mail::to($data->email)->send(new NewUserRegisteredForUser($data));
+            
         } else {
             // Notify the new user about the error
             Mail::to($data->email)->send(new ErrorOccurred($data));

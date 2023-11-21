@@ -14,13 +14,20 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(1);
+        $usersQuery = User::query();
+
+        // Zoekfunctionaliteit op e-mail
+        if ($request->has('mail')) {
+            $email = $request->input('mail');
+            $usersQuery->where('email', 'like', "%$email%");
+        }
+
+        $users = $usersQuery->paginate(1);
 
         return view('admin.users.index', compact('users'));
     }
-
     public function show(User $user)
     {
         $roles = Role::all();
