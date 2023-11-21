@@ -89,7 +89,7 @@ class InrichtingController extends Controller
     }
 
 
-    public function destroy(Overview $inrichting)
+    public function destroy(Inrichting $inrichting)
     {
         $inrichting->delete();
         return redirect(route('inrichtings.index'));
