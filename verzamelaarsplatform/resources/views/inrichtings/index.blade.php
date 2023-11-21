@@ -21,14 +21,14 @@
             @if($type == 'sorts')
                 <div>
                     <div class="flex justify-between p-2">
-                        <h1 class="flex font-semibold text-xl p-2">
-                            {{ __("Soorten") }}
-                        </h1>
+                        <h1 class="flex font-semibold text-xl p-2"></h1>
                         {{-- Search Bar --}}
-                        <form action="{{ route('admin.users.index') }}" method="GET">
-                            <input type="text" name="sort" placeholder="Search by sort" class="border rounded-md px-2 py-1">
+                        <form action="{{ route('inrichtings.index') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search by sort" class="border rounded-md px-2 py-1">
                             <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
                         </form>
+
+
                     </div>
 
                     @forelse($sorts as $sort)

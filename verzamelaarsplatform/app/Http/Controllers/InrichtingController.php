@@ -28,7 +28,7 @@ class InrichtingController extends Controller
 {
     public function index(Request $request)
     {
-        $type = $request->get('type', 'sorts'); 
+       
 
         $sorts = Sort::all();
         $brands = Brand::all();
@@ -36,8 +36,20 @@ class InrichtingController extends Controller
         $owners = Owner::all();
         $colors1 = Color1::all();
         $colors2 = Color2::all();
+
+        $type = $request->get('type', 'sorts'); 
+        $sortQuery = Sort::query();
+
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $sortQuery->where(function ($query) use ($searchTerm) {
+                $query->where('sort_name', 'like', "%$searchTerm%");
+            });
+        }
+
+        $sortSearch = $sortQuery->paginate(1);
     
-        return view('inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2', 'type'));
+        return view('inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2', 'type', 'sortSearch'));
     }
 
 
@@ -50,6 +62,7 @@ class InrichtingController extends Controller
     public function createSort(Request $request)
     {
         Sort::create($request->all());
+        $request->searchable();
         return redirect()->back();
     }
 
