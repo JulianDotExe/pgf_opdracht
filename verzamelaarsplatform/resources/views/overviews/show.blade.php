@@ -21,10 +21,10 @@
                     <strong>Collectie gegevens</strong>
                 </h2>
                 <div class="text">
-                    <p><strong>Soort:</strong> {{ $overview->sort_id }}</p>
-                    <p><strong>Merk:</strong> {{ $overview->brand_id }}</p>
+                    <p><strong>Soort:</strong> {{ $overview->sort_name }}</p>
+                    <p><strong>Merk:</strong> {{ $overview->brand_name }}</p>
                     <p><strong>Catalogusnummer:</strong> {{ $overview->catalogusnr }}</p>
-                    <p><strong>Epoche:</strong> {{ $overview->epoche_id }}</p>
+                    <p><strong>Epoche:</strong> {{ $overview->epoche_name }}</p>
                     <p><strong>Nummer:</strong> {{ $overview->nummer }}</p>
                     <p><strong>Eigenschappen:</strong> {{ $overview->eigenschappen }}</p>
                     <p><strong>Eigenaar:</strong> {{ $overview->owner_id }}</p>
