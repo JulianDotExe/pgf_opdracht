@@ -20,21 +20,21 @@ class InrichtingSeeder extends Seeder
     public function run(): void
     {
         $basicColors = [
-            'rood',
-            'blauw',
-            'groen',
-            'geel',
-            'zwart',
-            'wit',
-            'paars',
-            'oranje',
-            'bruin',
-            'roze',
-            'grijs',
-            'turquoise',
-            'indigo',
-            'kastanjebruin',
-            'limoen'
+            'Rood',
+            'Blauw',
+            'Groen',
+            'Geel',
+            'Zwart',
+            'Wit',
+            'Paars',
+            'Oranje',
+            'Bruin',
+            'Roze',
+            'Grijs',
+            'Turquoise',
+            'Indigo',
+            'Kastanjebruin',
+            'Limoen'
             // ... voeg meer kleuren toe zoals gewenst
         ];
 
