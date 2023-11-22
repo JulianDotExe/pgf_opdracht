@@ -21,16 +21,16 @@
                     <strong>Collectie gegevens</strong>
                 </h2>
                 <div class="text">
-                <p><strong>Soort:</strong> {{ $overview->sort->sort_name }}</p>
-                <p><strong>Merk:</strong> {{ $overview->brand->brand_name }}</p>
-                <p><strong>Catalogusnummer:</strong> {{ $overview->catalogusnr }}</p>
-                <p><strong>Epoche:</strong> {{ $overview->epoche->epoche_name }}</p>
-                <p><strong>Nummer:</strong> {{ $overview->nummer }}</p>
-                <p><strong>Eigenschappen:</strong> {{ $overview->eigenschappen }}</p>
-                <p><strong>Eigenaar:</strong> {{ $overview->owner->owner_name}}</p>
-                <p><strong>Kleur 1:</strong> {{ $overview->color1->color1 }}</p>
-                <p><strong>Kleur 2:</strong> {{ $overview->color2->color2 }}</p>
-                <p><strong>Bijzonderheden:</strong> {{ $overview->bijzonderheden }}</p>
+                <p><strong>Soort: </strong> {{ $overview->sort->sort_name }}</p>
+                <p><strong>Merk: </strong> {{ $overview->brand->brand_name }}</p>
+                <p><strong>Catalogusnummer: </strong> {{ $overview->catalogusnr }}</p>
+                <p><strong>Epoche: </strong> {{ $overview->epoche->epoche_name }}</p>
+                <p><strong>Nummer: </strong> {{ $overview->nummer }}</p>
+                <p><strong>Eigenschappen: </strong> {{ $overview->eigenschappen }}</p>
+                <p><strong>Eigenaar: </strong> {{ $overview->owner->owner_name}}</p>
+                <p><strong>1e Kleur: </strong> {{ $overview->color1->color1 }}</p>
+                <p><strong>2e Kleur: </strong> {{ $overview->color2->color2 }}</p>
+                <p><strong>Bijzonderheden: </strong> {{ $overview->bijzonderheden }}</p>
 
                     <!-- Display the image if available -->
                     @if(count($overview->getImages()) > 0)

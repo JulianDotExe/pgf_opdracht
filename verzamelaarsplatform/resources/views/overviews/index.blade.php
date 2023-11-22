@@ -12,9 +12,9 @@
             @forelse($overviews as $overview)
                 <div class="flex my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <div class="w-2/3 pr-6">
-                        <h2><strong>Eigenaar:</strong> {{ $overview->owner->owner_name}}</h2>
-                        <h2><strong>Soort:</strong> {{ $overview->sort->sort_name}}</h2>
-                        <p><strong>Merk:</strong> {{ $overview->brand->brand_name }}</p><br>
+                        <h2><strong>Eigenaar: </strong> {{ $overview->owner->owner_name}}</h2>
+                        <h2><strong>Soort: </strong> {{ $overview->sort->sort_name}}</h2>
+                        <p><strong>Merk: </strong> {{ $overview->brand->brand_name }}</p><br>
 
                         <!-- Verwijderknop -->
                         <button type="button" onclick="deleteOpenConfirmationPopup('{{ $overview->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>

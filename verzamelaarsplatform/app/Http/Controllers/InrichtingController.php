@@ -126,8 +126,6 @@ class InrichtingController extends Controller
     return redirect()->back()->with('message', 'Categorie created successfully!');
 }
 
-
-
     public function destroySort(Sort $inrichting)
     {
         $inrichting->delete();

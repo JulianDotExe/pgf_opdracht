@@ -31,7 +31,7 @@
 
                     @forelse($sorts as $sort)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                            <h2><strong>Soort:</strong>{{ $sort->sort_name }}</h2>
+                            <h2><strong>Soort: </strong>{{ $sort->sort_name }}</h2>
 
                             <!-- Verwijderknop -->
                             <button type="button" onclick="deleteOpenConfirmationPopup('{{ $sort->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
@@ -74,7 +74,7 @@
 
                     @forelse($brands as $brand)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                            <h2><strong>Merk:</strong>{{ $brand->brand_name }}</h2>
+                            <h2><strong>Merk: </strong>{{ $brand->brand_name }}</h2>
 
                             <!-- Verwijderknop -->
                             <button type="button" onclick="deleteOpenConfirmationPopup('{{ $brand->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
@@ -132,7 +132,7 @@
 
                     @forelse($epoches as $epoche)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                            <h2><strong>Epoche:</strong>{{ $epoche->epoche_name }}</h2>
+                            <h2><strong>Epoche: </strong>{{ $epoche->epoche_name }}</h2>
 
                             <!-- Verwijderknop -->
                             <button type="button" onclick="deleteOpenConfirmationPopup('{{ $epoche->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
@@ -174,7 +174,7 @@
 
                     @forelse($owners as $owner)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                            <h2><strong>Eigenaar:</strong>{{ $owner->owner_name }}</h2>
+                            <h2><strong>Eigenaar: </strong>{{ $owner->owner_name }}</h2>
 
                             <!-- Verwijderknop -->
                             <button type="button" onclick="deleteOpenConfirmationPopup('{{ $owner->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
@@ -216,7 +216,7 @@
 
                     @forelse($colors1 as $color1)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                            <h2><strong>Kleur 1:</strong>{{ $color1->color1 }}</h2>
+                            <h2><strong>1e Kleur: </strong>{{ $color1->color1 }}</h2>
 
                             <!-- Verwijderknop -->
                             <button type="button" onclick="deleteOpenConfirmationPopup('{{ $color1->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
@@ -258,7 +258,7 @@
 
                     @forelse($colors2 as $color2)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                            <h2><strong>Kleur 2:</strong>{{ $color2->color2 }}</h2>
+                            <h2><strong>2e Kleur: </strong>{{ $color2->color2 }}</h2>
 
                             <!-- Verwijderknop -->
                             <button type="button" onclick="deleteOpenConfirmationPopup('{{ $color2->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
