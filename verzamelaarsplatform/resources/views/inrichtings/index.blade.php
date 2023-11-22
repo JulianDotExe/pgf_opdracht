@@ -27,8 +27,6 @@
                             <input type="text" name="search" placeholder="Search by sort" class="border rounded-md px-2 py-1">
                             <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
                         </form>
-
-
                     </div>
 
                     @forelse($sorts as $sort)
@@ -48,14 +46,31 @@
                                 <div class="flex justify-between">
                                     <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
 
-                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroy', $sort->id) }}" class="inline">
+                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroySort', $sort->id) }}" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteCloseConfirmationPopup()">Bevestigen</button>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
+                        <!-- Script voor destroy -->
+                        <script>
+                            function deleteOpenConfirmationPopup(itemId) {
+                                // Set the form action dynamically based on the item ID
+                                var form = document.getElementById('deleteForm');
+                                form.action = "{{ route('inrichtings.destroySort', '') }}" + '/' + itemId;
+
+                                // Show the confirmation popup
+                                document.getElementById('confirmationPopup').style.display = 'flex';
+                            }
+
+                            function deleteCloseConfirmationPopup() {
+                                // Hide the confirmation popup
+                                document.getElementById('confirmationPopup').style.display = 'none';
+                            }
+                        </script>
                     @empty
                         <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
                             <p>Geen soorten beschikbaar...</p>
@@ -64,6 +79,15 @@
                 </div>
             @elseif($type == 'brands')
                 <div>
+                    <div class="flex justify-between p-2">
+                        <h1 class="flex font-semibold text-xl p-2"></h1>
+                        {{-- Search Bar --}}
+                        <form action="{{ route('inrichtings.index') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search by brand" class="border rounded-md px-2 py-1">
+                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
+                        </form>
+                    </div>
+
                     @forelse($brands as $brand)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Merk:</strong>{{ $brand->brand_name }}</h2>
@@ -81,7 +105,7 @@
                                 <div class="flex justify-between">
                                     <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
 
-                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroy', $brand->id) }}" class="inline">
+                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroyBrand', $brand->id) }}" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
@@ -89,6 +113,22 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Script voor destroy -->
+                        <script>
+                            function deleteOpenConfirmationPopup(itemId) {
+                                // Set the form action dynamically based on the item ID
+                                var form = document.getElementById('deleteForm');
+                                form.action = "{{ route('inrichtings.destroyBrand', '') }}" + '/' + itemId;
+
+                                // Show the confirmation popup
+                                document.getElementById('confirmationPopup').style.display = 'flex';
+                            }
+
+                            function deleteCloseConfirmationPopup() {
+                                // Hide the confirmation popup
+                                document.getElementById('confirmationPopup').style.display = 'none';
+                            }
+                        </script>
                     @empty
                         <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
                             <p>Geen merken beschikbaar...</p>
@@ -97,6 +137,15 @@
                 </div>
             @elseif($type == 'epoches')
                 <div>
+                    <div class="flex justify-between p-2">
+                        <h1 class="flex font-semibold text-xl p-2"></h1>
+                        {{-- Search Bar --}}
+                        <form action="{{ route('inrichtings.index') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search by epoche" class="border rounded-md px-2 py-1">
+                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
+                        </form>
+                    </div>
+
                     @forelse($epoches as $epoche)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Epoche:</strong>{{ $epoche->epoche_name }}</h2>
@@ -130,6 +179,15 @@
                 </div>
             @elseif($type == 'owners')
                 <div>
+                    <div class="flex justify-between p-2">
+                        <h1 class="flex font-semibold text-xl p-2"></h1>
+                        {{-- Search Bar --}}
+                        <form action="{{ route('inrichtings.index') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search by owner" class="border rounded-md px-2 py-1">
+                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
+                        </form>
+                    </div>
+
                     @forelse($owners as $owner)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Eigenaar:</strong>{{ $owner->owner_name }}</h2>
@@ -163,12 +221,21 @@
                 </div>
             @elseif($type == 'colors1')
                 <div>
+                    <div class="flex justify-between p-2">
+                        <h1 class="flex font-semibold text-xl p-2"></h1>
+                        {{-- Search Bar --}}
+                        <form action="{{ route('inrichtings.index') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search by color1" class="border rounded-md px-2 py-1">
+                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
+                        </form>
+                    </div>
+
                     @forelse($colors1 as $color1)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Kleur 1:</strong>{{ $color1->color1 }}</h2>
 
                             <!-- Verwijderknop -->
-                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $color2->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
+                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $color1->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
 
                             {{-- Hier kun je andere details van de sort toevoegen --}}
                         </div>
@@ -196,6 +263,15 @@
                 </div>
             @elseif($type == 'colors2')
                 <div>
+                    <div class="flex justify-between p-2">
+                        <h1 class="flex font-semibold text-xl p-2"></h1>
+                        {{-- Search Bar --}}
+                        <form action="{{ route('inrichtings.index') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search by color2" class="border rounded-md px-2 py-1">
+                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
+                        </form>
+                    </div>
+
                     @forelse($colors2 as $color2)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Kleur 2:</strong>{{ $color2->color2 }}</h2>
@@ -230,20 +306,4 @@
             @endif
         </div>
     </div>
-
-    <script>
-    function deleteOpenConfirmationPopup(itemId) {
-        // Set the form action dynamically based on the item ID
-        var form = document.getElementById('deleteForm');
-        form.action = "{{ route('overviews.destroy', '') }}" + '/' + itemId;
-
-        // Show the confirmation popup
-        document.getElementById('confirmationPopup').style.display = 'flex';
-    }
-
-    function deleteCloseConfirmationPopup() {
-        // Hide the confirmation popup
-        document.getElementById('confirmationPopup').style.display = 'none';
-    }
-    </script>
 </x-app-layout>
