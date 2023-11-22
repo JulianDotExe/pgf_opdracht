@@ -132,7 +132,10 @@ class InrichtingSeeder extends Seeder
             'Hornby',
             'Bachmann',
             'Electrotren',
-            'Heki'
+            'Heki',
+            'Märklin',
+            'Fleischman',
+            'Minitrixs'
             // ... voeg meer merken toe indien nodig
         ];
 
