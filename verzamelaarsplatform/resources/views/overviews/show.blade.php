@@ -21,29 +21,30 @@
                     <strong>Collectie gegevens</strong>
                 </h2>
                 <div class="text">
-                    <p><strong>Soort:</strong> {{ $overview->sort_id}}</p>
-                    <p><strong>Merk:</strong> {{ $overview->brand_id}}</p>
-                    <p><strong>Catalogusnummer:</strong> {{ $overview->catalogusnr }}</p>
-                    <p><strong>Epoche:</strong> {{ $overview->epoche_id }}</p>
-                    <p><strong>Nummer:</strong> {{ $overview->nummer }}</p>
-                    <p><strong>Eigenschappen:</strong> {{ $overview->eigenschappen }}</p>
-                    <p><strong>Eigenaar:</strong> {{ $overview->owner_id }}</p>
-                    <p><strong>Kleur 1:</strong> {{ $overview->color1->color1 }}</p>
-                    <p><strong>Kleur 2:</strong> {{ $overview->color2->color2 }}</p>
-                    <p><strong>Bijzonderheden:</strong> {{ $overview->bijzonderheden }}</p>
+                <p><strong>Soort:</strong> {{ $overview->sort->sort_name }}</p>
+                <p><strong>Merk:</strong> {{ $overview->brand->brand_name }}</p>
+                <p><strong>Catalogusnummer:</strong> {{ $overview->catalogusnr }}</p>
+                <p><strong>Epoche:</strong> {{ $overview->epoche->epoche_name }}</p>
+                <p><strong>Nummer:</strong> {{ $overview->nummer }}</p>
+                <p><strong>Eigenschappen:</strong> {{ $overview->eigenschappen }}</p>
+                <p><strong>Eigenaar:</strong> {{ $overview->owner->owner_name}}</p>
+                <p><strong>Kleur 1:</strong> {{ $overview->color1->color1 }}</p>
+                <p><strong>Kleur 2:</strong> {{ $overview->color2->color2 }}</p>
+                <p><strong>Bijzonderheden:</strong> {{ $overview->bijzonderheden }}</p>
+
                     <!-- Display the image if available -->
                     @if(count($overview->getImages()) > 0)
                         <div>
                             <div>
                                 @foreach($overview->getImages() as $image)
-                                    <img src="{{ asset($image) }}" alt="Collection Image" class="my-4">
+                                    <img src="{{ asset($image) }}" alt="Collection Image" class="my-4 fixed-size-image">
                                 @endforeach
                             </div>
                         </div>
                     @else
                         <p>There's no image associated with this collection.</p>
-                    @endif
-                </div> <br>
+                    @endif 
+            </div> <br>
                 <a href="{{ route('overviews.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
                 <a href="{{ route('overviews.edit', $overview->id)  }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Collectie wijzigen</a>
 
@@ -51,3 +52,16 @@
         </div>
     </div>
 </x-app-layout>
+
+<style>
+    .fixed-size-image-container {
+        position: sticky;
+        top: 0;
+    }
+
+    .fixed-size-image {
+        max-width: 25%;
+        height: auto;
+        width: 100%;
+    }
+</style>

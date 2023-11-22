@@ -39,7 +39,7 @@
                     </select>
                     <br> <br>
 
-                    <x-text-input type="text" name="catalogusnr" field="catalogusnr" placeholder="Catalogusnummer..." class="w-full" autocomplete="off" :value="$overview->catalogusnr"></x-text-input> <br> <br>
+                    <x-text-input type="text" name="catalogusnr" field="catalogusnr" placeholder="Catalogusnummer..." class="w-full" autocomplete="off" :value="$overview->catalogusnr" style="background-color: white; color: black;"></x-text-input> <br> <br>
 
                     <select name="epoche_id" id="epoche_id" class="w-full" required>
                         <option value="">Kies een merk</option> 
@@ -51,9 +51,9 @@
                     </select>
                     <br> <br>
 
-                    <x-text-input type="text" name="nummer" field="nummer" placeholder="Nummer..." class="w-full" autocomplete="off" :value="$overview->nummer"></x-text-input> <br> <br>
+                    <x-text-input type="text" name="nummer" field="nummer" placeholder="Nummer..." class="w-full" autocomplete="off" :value="$overview->nummer" style="background-color: white; color: black;"></x-text-input> <br> <br>
 
-                    <x-text-input type="text" name="eigenschappen" field="eigenschappen" placeholder="Eigenschappen..." class="w-full" autocomplete="off" :value="$overview->eigenschappen"></x-text-input> <br> <br>
+                    <x-text-input type="text" name="eigenschappen" field="eigenschappen" placeholder="Eigenschappen..." class="w-full" autocomplete="off" :value="$overview->eigenschappen" style="background-color: white; color: black;"></x-text-input> <br> <br>
 
                     <select name="owner_id" id="owner_id" class="w-full" required>
                         <option value="">Kies een merk</option> 
@@ -85,7 +85,7 @@
                     </select>
                     <br> <br>
 
-                    <x-text-input type="text" name="bijzonderheden" field="bijzonderheden" placeholder="Bijzonderheden..." class="w-full" autocomplete="off" :value="$overview->bijzonderheden"></x-text-input> <br> <br>
+                    <x-text-input type="text" name="bijzonderheden" field="bijzonderheden" placeholder="Bijzonderheden..." class="w-full" autocomplete="off" :value="$overview->bijzonderheden" style="background-color: white; color: black;"></x-text-input> <br> <br>
 
                     <x-text-input type="file" name="foto" field="foto" class="w-full" style="background-color: white; color: black;"></x-text-input>
                     <br> <br>                    
