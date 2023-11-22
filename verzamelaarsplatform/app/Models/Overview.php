@@ -25,20 +25,40 @@ class Overview extends Model
         'bijzonderheden',
         'foto',
     ];
-
+    
     public function color1()
     {
         return $this->belongsTo(Color1::class, 'color1_id');
     }
+
     public function color2()
     {
         return $this->belongsTo(Color2::class, 'color2_id');
     }
-    
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function sort()
+    {
+        return $this->belongsTo(Sort::class, 'sort_id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
+
+    public function epoche()
+    {
+        return $this->belongsTo(Epoche::class, 'epoche_id');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class, 'owner_id');
     }
 
     /**
