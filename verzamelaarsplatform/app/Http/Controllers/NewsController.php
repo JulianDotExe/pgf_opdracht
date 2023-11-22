@@ -68,8 +68,10 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        //
+        return view('admin.news.show', compact('news'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -92,6 +94,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        $news->delete();
+        return redirect(route('admin.news.index'));
     }
 }

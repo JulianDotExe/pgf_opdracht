@@ -62,7 +62,8 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::get('/news', [NewsController::class,'index'])->name('news.index');
     Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
     Route::post('/news', [NewsController::class, 'store'])->name('news.store');
-    Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
+    // Route::get('/admin/news/{news}', [NewsController::class, 'show'])->name('admin.news.show');
+
     Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 
 });
@@ -136,6 +137,7 @@ Route::post('/create-epoche', [InrichtingController::class, 'createEpoche']);
 Route::post('/create-owner', [InrichtingController::class, 'createOwner']);
 Route::post('/create-color1', [InrichtingController::class, 'createColor1']);
 Route::post('/create-color2', [InrichtingController::class, 'createColor2']);
+Route::post('/create-categorie', [InrichtingController::class, 'createCategorie']);
 Route::delete('/sort/{sort}', [InrichtingController::class, 'destroySort'])->name('inrichtings.destroySort');
 Route::delete('/brand/{brand}', [InrichtingController::class, 'destroyBrand'])->name('inrichtings.destroyBrand');
 

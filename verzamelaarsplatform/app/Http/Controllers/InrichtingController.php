@@ -10,6 +10,7 @@ use App\Models\Epoche;
 use App\Models\Owner;
 use App\Models\Color1;
 use App\Models\Color2;
+use App\Models\Categorie;
 use App\Models\User;
 use App\Models\Inrichting;
 use App\Http\Controllers\BrandController;
@@ -34,6 +35,7 @@ class InrichtingController extends Controller
         $owners = Owner::all();
         $colors1 = Color1::all();
         $colors2 = Color2::all();
+        $categories = Categorie::all();
 
         $type = $request->get('type', 'sorts'); 
         $sortQuery = Sort::query();
@@ -110,6 +112,20 @@ class InrichtingController extends Controller
         Color2::create($request->all());
         return redirect()->back();
     }
+
+    //CATEGORY TOEVOEGEN
+    public function createCategorie(Request $request)
+{
+    $data = $request->validate([
+        'category_name' => 'required|string|max:255',
+        // Add validation rules for other fields if needed
+    ]);
+
+    Categorie::create($data);
+
+    return redirect()->back();
+}
+
 
 
     public function destroySort(Sort $inrichting)
