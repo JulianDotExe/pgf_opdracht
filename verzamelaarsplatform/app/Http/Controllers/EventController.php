@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class EventController extends Controller
 {
@@ -31,7 +32,28 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        
+        try {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'event_date' => 'required|date_format:Y-m-d',
+            'event_name' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'location' => 'required|string',
+            'link' => 'nullable|url',
+            'beschrijving' => 'nullable|string',
+        ]);
+
+        Event::create($validatedData);
+        // If everything goes well, redirect
+        return redirect()->route('admin.events.index')->with('success', 'Event created successfully!');
+        } catch (ValidationException $e) {
+            // Validation failed; redirect back with errors
+            return redirect()->back()->withErrors($e->validator)->withInput();
+        } catch (\Exception $e) {
+            // Other exceptions/errors occurred
+            // Log the error or handle it as needed
+            return redirect()->back()->with('error', 'An error occurred while creating the event.');
+        }
     }
 
     /**
