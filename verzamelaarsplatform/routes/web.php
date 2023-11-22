@@ -54,7 +54,9 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     // Route::get('/approve-user/{userId}', [ApprovalController::class, 'approveUser'])->name('approve.user'); // nog ff aan werken
     Route::get('/events', [EventController::class,'index'])->name('events.index');
     Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
-    Route::post('/events/{events}', [EventController::class, 'store'])->name('events.store');
+    Route::post('/events', [EventController::class, 'store'])->name('events.store');
+    Route::get('/events/{events}', [EventController::class, 'show'])->name('events.show');
+    Route::delete('/events/{events}', [EventController::class, 'destroy'])->name('events.destroy');
 
 });
 

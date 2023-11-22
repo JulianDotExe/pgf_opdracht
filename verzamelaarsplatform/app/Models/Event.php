@@ -12,12 +12,12 @@ class Event extends Model
     protected $table = 'events';
     public $timestamps = true;
     protected $fillable = [
-        'event_date', 'event_name', 'beschrijving', 'locatie', 'link'
+        'event_date', 'categories_id', 'event_name', 'beschrijving', 'locatie', 'link'
     ];
 
     public function catagories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categorie::class);
     }
 
 }

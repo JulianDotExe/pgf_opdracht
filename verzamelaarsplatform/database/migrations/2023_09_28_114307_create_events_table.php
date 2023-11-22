@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id('event_id');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('categories_id')->constrained('categories');
             $table->date('event_date');
             $table->string('event_name');
             $table->string('beschrijving');

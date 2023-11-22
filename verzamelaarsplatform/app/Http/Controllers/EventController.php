@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Categorie;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -23,7 +23,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Categorie::all();
         return view('admin.events.create', compact('categories'));
     }
 
@@ -37,8 +37,8 @@ class EventController extends Controller
         $validatedData = $request->validate([
             'event_date' => 'required|date_format:Y-m-d',
             'event_name' => 'required|string',
-            'category_id' => 'required|exists:categories,id',
-            'location' => 'required|string',
+            'categories_id' => 'required|exists:categories,id',
+            'locatie' => 'required|string',
             'link' => 'nullable|url',
             'beschrijving' => 'nullable|string',
         ]);
@@ -54,6 +54,14 @@ class EventController extends Controller
             // Log the error or handle it as needed
             return redirect()->back()->with('error', 'An error occurred while creating the event.');
         }
+
+
+        // echo "$request->event_name<br>";
+        // echo "$request->categories_id<br>";
+        // echo "$request->locatie<br>";
+        // echo "$request->link<br>";
+        // echo "$request->beschrijving<br>";
+        // echo "$request->event_date<br>";
     }
 
     /**
