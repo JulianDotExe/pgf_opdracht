@@ -12,33 +12,84 @@
                     <p>{{ $error }} </p>
                 @endforeach -->
 
-                <form action="{{ route('overviews.update', $overview) }}" method="post" onsubmit="return confirmSaveChanges()">
+                <form action="{{ route('overviews.update', $overview) }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT') {{-- Voeg deze regel toe om een PUT-verzoek te maken voor het bijwerken van de gegevens --}}
+                    @method('PUT')
                     <!-- Voeg de oude waarden toe aan de invoervelden -->
-                    <x-text-input type="text" name="sort" field="sort" placeholder="Soort..." class="w-full" autocomplete="off" :value="$overview->sort"></x-text-input> <br> <br>
 
-                    <x-text-input type="text" name="brand" field="brand" placeholder="Merk..." class="w-full" autocomplete="off" :value="$overview->brand"></x-text-input> <br> <br>
+                    <!-- Dropdown for sort -->
+                    <select name="sort_id" id="sort_id" class="w-full" required>
+                        <option value="">Kies een soort</option> 
+                        @foreach ($sorts as $sort)
+                            <option value="{{ $sort->id }}" {{ $overview->sort_id == $sort->id ? 'selected' : '' }}>
+                                {{ $sort->sort_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <br> <br>
+
+                    <!-- Dropdown for brand -->
+                    <select name="brand_id" id="brand_id" class="w-full" required>
+                        <option value="">Kies een merk</option> 
+                        @foreach ($brands as $brand)
+                            <option value="{{ $brand->id }}" {{ $overview->brand_id == $brand->id ? 'selected' : '' }}>
+                                {{ $brand->brand_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <br> <br>
 
                     <x-text-input type="text" name="catalogusnr" field="catalogusnr" placeholder="Catalogusnummer..." class="w-full" autocomplete="off" :value="$overview->catalogusnr"></x-text-input> <br> <br>
 
-                    <x-text-input type="text" name="epoche" field="epoche" placeholder="Epoche..." class="w-full" autocomplete="off" :value="$overview->epoche"></x-text-input> <br> <br>
+                    <select name="epoche_id" id="epoche_id" class="w-full" required>
+                        <option value="">Kies een merk</option> 
+                        @foreach ($epoches as $epoche)
+                            <option value="{{ $epoche->id }}" {{ $overview->epoche_id == $epoche->id ? 'selected' : '' }}>
+                                {{ $epoche->epoche_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <br> <br>
 
                     <x-text-input type="text" name="nummer" field="nummer" placeholder="Nummer..." class="w-full" autocomplete="off" :value="$overview->nummer"></x-text-input> <br> <br>
 
                     <x-text-input type="text" name="eigenschappen" field="eigenschappen" placeholder="Eigenschappen..." class="w-full" autocomplete="off" :value="$overview->eigenschappen"></x-text-input> <br> <br>
 
-                    <x-text-input type="text" name="owner" field="owner" placeholder="Eigenaar..." class="w-full" autocomplete="off" :value="$overview->owner"></x-text-input> <br> <br>
+                    <select name="owner_id" id="owner_id" class="w-full" required>
+                        <option value="">Kies een merk</option> 
+                        @foreach ($owners as $owner)
+                            <option value="{{ $owner->id }}" {{ $overview->owner_id == $owner->id ? 'selected' : '' }}>
+                                {{ $owner->owner_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <br> <br>
 
-                    <x-text-input type="text" name="color1" field="color1" placeholder="Kleur 1..." class="w-full" autocomplete="off" :value="$overview->color1"></x-text-input> <br> <br>
+                    <select name="color1_id" id="color1_id" class="w-full" required>
+                        <option value="">Kies een merk</option> 
+                        @foreach ($colors1 as $color1)
+                            <option value="{{ $color1->id }}" {{ $overview->color1_id == $color1->id ? 'selected' : '' }}>
+                                {{ $color1->color1 }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <br> <br>
 
-                    <x-text-input type="text" name="color2" field="color2" placeholder="Kleur 2..." class="w-full" autocomplete="off" :value="$overview->color2"></x-text-input> <br> <br>
+                    <select name="color2_id" id="color2_id" class="w-full" required>
+                        <option value="">Kies een merk</option> 
+                        @foreach ($colors2 as $color2)
+                            <option value="{{ $color2->id }}" {{ $overview->color2_id == $color2->id ? 'selected' : '' }}>
+                                {{ $color2->color2 }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <br> <br>
 
                     <x-text-input type="text" name="bijzonderheden" field="bijzonderheden" placeholder="Bijzonderheden..." class="w-full" autocomplete="off" :value="$overview->bijzonderheden"></x-text-input> <br> <br>
 
-                    <x-text-input type="text" name="foto" field="foto" placeholder="Foto..." class="w-full" autocomplete="off" :value="$overview->foto"></x-text-input> <br> <br>
-                    
-                    <a href="#" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out" onclick="editOpenConfirmationPopup(event)">Terug</a>
+                    <x-text-input type="file" name="foto" field="foto" class="w-full" style="background-color: white; color: black;"></x-text-input>
+                    <br> <br>                    
+                    <a href="{{ route('overviews.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
                     <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Opslaan</button>
                 </form>
 

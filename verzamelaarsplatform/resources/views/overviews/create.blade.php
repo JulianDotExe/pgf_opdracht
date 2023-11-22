@@ -33,7 +33,7 @@
 
                     <br> <br>
 
-                <x-text-input type="text" name="catalogusnr" field="catalogusnr" placeholder="Catalogusnummer..." class="w-full" autocomplete="off" :value="@old('catalogusnr')" style="background-color: white;" required></x-text-input> 
+                <x-text-input type="text" name="catalogusnr" field="catalogusnr" placeholder="Catalogusnummer..." class="w-full" autocomplete="off" :value="@old('catalogusnr')" style="background-color: white; color: black;" required></x-text-input> 
                 
                     <br> <br>
 
@@ -46,11 +46,11 @@
 
                     <br> <br>
 
-                <x-text-input type="text" name="nummer" field="nummer" placeholder="Nummer..." class="w-full" autocomplete="off" :value="@old('nummer')" style="background-color: white;" required></x-text-input>
+                <x-text-input type="text" name="nummer" field="nummer" placeholder="Nummer..." class="w-full" autocomplete="off" :value="@old('nummer')" style="background-color: white; color: black;" required></x-text-input>
                 
                     <br> <br>
 
-                <x-text-input type="text" name="eigenschappen" field="eigenschappen" placeholder="Eigenschappen..." class="w-full" autocomplete="off" :value="@old('eigenschappen')" style="background-color: white;" required></x-text-input> 
+                <x-text-input type="text" name="eigenschappen" field="eigenschappen" placeholder="Eigenschappen..." class="w-full" autocomplete="off" :value="@old('eigenschappen')" style="background-color: white; color: black;;" required></x-text-input> 
                 
                     <br> <br>
 
@@ -81,11 +81,11 @@
 
                     <br> <br>
 
-                <x-text-input type="text" name="bijzonderheden" field="bijzonderheden" placeholder="Bijzonderheden..." class="w-full" autocomplete="off" :value="@old('bijzonderheden')" style="background-color: white;"></x-text-input> 
+                <x-text-input type="text" name="bijzonderheden" field="bijzonderheden" placeholder="Bijzonderheden..." class="w-full" autocomplete="off" :value="@old('bijzonderheden')" style="background-color: white; color: black;"></x-text-input> 
 
                     <br> <br>
 
-                    <x-text-input type="file" name="foto" field="foto" class="w-full" style="background-color: white;" required></x-text-input>
+                    <x-text-input type="file" name="foto" field="foto" class="w-full" style="background-color: white; color: black;" required></x-text-input>
                 <br> <br>
                 <a href="{{ route('overviews.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
                 <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Opslaan</button>

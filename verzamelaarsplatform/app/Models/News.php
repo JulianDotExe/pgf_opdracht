@@ -10,13 +10,14 @@ class News extends Model
     use HasFactory;
 
     protected $table = 'news';
+    protected $primaryKey = 'artikel_id'; // specify the primary key
     public $timestamps = true;
     protected $fillable = [
-        'titel', 'inhoud', 'link', 'auteur'
+        'titel', 'categories_id', 'inhoud', 'link', 'auteur'
     ];
 
-    public function catagories()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categorie::class, 'categories_id');
     }
 }

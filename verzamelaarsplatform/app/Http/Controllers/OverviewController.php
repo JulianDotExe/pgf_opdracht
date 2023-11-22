@@ -109,51 +109,63 @@ class OverviewController extends Controller
      */
     public function edit(Overview $overview)
     {
-        return view('overviews.edit', compact('overview'));
+        $sorts = Sort::all();
+        $brands = Brand::all();
+        $epoches = Epoche::all();
+        $owners = Owner::all();
+        $colors1 = Color1::all();
+        $colors2 = Color2::all();
+    
+        return view('overviews.edit', compact('overview', 'sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Overview $overview)
-    {
-        $request->validate([
-            'catalogusnr' => 'required',
-            'nummer' => 'required',
-            'eigenschappen' => 'required',
-            'bijzonderheden' => 'required',
-            'foto.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+{
+    $request->validate([
+        'catalogusnr' => 'required',
+        'nummer' => 'required',
+        'eigenschappen' => 'required',
+        'bijzonderheden' => 'required',
+        'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-        $images = [];
-        foreach ($request->file('foto') as $image) {
-            $imagePath = $image->storeAs('uploads/overviews', time() . '_' . $image->getClientOriginalName());
-            $images[] = $imagePath;
+    // Handle image upload
+    if ($request->hasFile('foto')) {
+        $image = $request->file('foto');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+        // Save the new image to public/uploads/overviews
+        $image->move(public_path('uploads/overviews'), $imageName);
+
+        // Delete old images if any
+        foreach (explode('|', $overview->foto) as $oldImage) {
+            Storage::delete($oldImage);
         }
 
-        $sort_id = $request->input('sort_id');
-        $brand_id = $request->input('brand_id');
-        $epoche_id = $request->input('epoche_id');
-        $owner_id = $request->input('owner_id');
-        $color1_id = $request->input('color1_id');
-        $color2_id = $request->input('color2_id');
-
-        $overview->update([
-            'sort_id' => $sort_id,
-            'brand_id' => $brand_id,
-            'catalogusnr' => $request->input('catalogusnr'),
-            'epoche_id' => $epoche_id,
-            'nummer' => $request->input('nummer'),
-            'eigenschappen' => $request->input('eigenschappen'),
-            'owner_id' => $owner_id,
-            'color1_id' => $color1_id,
-            'color2_id' => $color2_id,
-            'bijzonderheden' => $request->input('bijzonderheden'),
-            'foto' => implode('|', $images),
-        ]);
-
-        return redirect()->route('overviews.show', ['overview' => $overview]);
+        // Update the foto field in the database with the new image path
+        $overview->update(['foto' => 'uploads/overviews/' . $imageName]);
     }
+
+    // Update other fields
+    $overview->update([
+        'sort_id' => $request->sort_id,
+        'brand_id' => $request->brand_id,
+        'catalogusnr' => $request->catalogusnr,
+        'epoche_id' => $request->epoche_id,
+        'nummer' => $request->nummer,
+        'eigenschappen' => $request->eigenschappen,
+        'owner_id' => $request->owner_id,
+        'color1_id' => $request->color1_id,
+        'color2_id' => $request->color2_id,
+        'bijzonderheden' => $request->bijzonderheden,
+    ]);
+
+    return redirect()->route('overviews.show', ['overview' => $overview]);
+}
 
     /**
      * Remove the specified resource from storage.

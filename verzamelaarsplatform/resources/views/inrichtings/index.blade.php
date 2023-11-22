@@ -55,22 +55,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Script voor destroy -->
-                        <script>
-                            function deleteOpenConfirmationPopup(itemId) {
-                                // Set the form action dynamically based on the item ID
-                                var form = document.getElementById('deleteForm');
-                                form.action = "{{ route('inrichtings.destroySort', '') }}" + '/' + itemId;
-
-                                // Show the confirmation popup
-                                document.getElementById('confirmationPopup').style.display = 'flex';
-                            }
-
-                            function deleteCloseConfirmationPopup() {
-                                // Hide the confirmation popup
-                                document.getElementById('confirmationPopup').style.display = 'none';
-                            }
-                        </script>
                     @empty
                         <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
                             <p>Geen soorten beschikbaar...</p>
@@ -306,4 +290,21 @@
             @endif
         </div>
     </div>
+
+    <!-- Script voor destroy -->
+    <script>
+        function deleteOpenConfirmationPopup(itemId) {
+            // Set the form action dynamically based on the item ID
+            var form = document.getElementById('deleteForm');
+            form.action = "{{ route('inrichtings.destroySort', '') }}" + '/' + itemId;
+
+            // Show the confirmation popup
+            document.getElementById('confirmationPopup').style.display = 'flex';
+        }
+
+        function deleteCloseConfirmationPopup() {
+            // Hide the confirmation popup
+            document.getElementById('confirmationPopup').style.display = 'none';
+        }
+    </script>
 </x-app-layout>
