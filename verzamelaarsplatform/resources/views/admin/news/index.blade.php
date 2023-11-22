@@ -10,7 +10,7 @@
             @foreach($news as $new)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2><strong>News name:</strong>{{ $new->titel }}</h2>
-                    <p><strong>Date:</strong> {{ $new->link }}</p>
+                    <p><strong>Link:</strong> {{ $new->link }}</p>
 
                     <!-- Verwijderknop -->
                     <form method="POST" action="{{ route('admin.news.destroy', $new->artikel_id) }}" class="inline">
@@ -18,6 +18,10 @@
                         @method('DELETE')
                         <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                     </form>
+
+                    <h1>
+                        <a href="{{ route('admin.news.show', $new->artikel_id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
+                    </h1>
                     
                 </div>
             @endforeach
