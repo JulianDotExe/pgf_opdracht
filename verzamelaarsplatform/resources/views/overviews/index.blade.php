@@ -67,6 +67,20 @@
     </div>
 </x-app-layout>
 
+<script>
+    function deleteOpenConfirmationPopup(itemId) {
+        // Set the form action dynamically based on the item ID
+        var form = document.getElementById('deleteForm');
+        form.action = "{{ route('overviews.destroy', '') }}" + '/' + itemId;
+        // Show the confirmation popup
+        document.getElementById('confirmationPopup').style.display = 'flex';
+    }
+    function deleteCloseConfirmationPopup() {
+        // Hide the confirmation popup
+        document.getElementById('confirmationPopup').style.display = 'none';
+    }
+</script>
+
 <style>
     .small-image {
         max-width: 100px; /* Adjust the max-width as needed */

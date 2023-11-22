@@ -28,7 +28,6 @@ class InrichtingController extends Controller
     public function index(Request $request)
     {
        
-
         $sorts = Sort::all();
         $brands = Brand::all();
         $epoches = Epoche::all();
@@ -38,6 +37,8 @@ class InrichtingController extends Controller
 
         $type = $request->get('type', 'sorts'); 
         $sortQuery = Sort::query();
+        $brandQuery = Sort::query();
+
 
         if ($request->filled('search')) {
             $searchTerm = $request->input('search');
@@ -46,9 +47,19 @@ class InrichtingController extends Controller
             });
         }
 
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $brandQuery->where(function ($query) use ($searchTerm) {
+                $query->where('sort_name', 'like', "%$searchTerm%");
+            });
+        }
+        
+
         $sortSearch = $sortQuery->paginate(1);
-    
-        return view('inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2', 'type', 'sortSearch'));
+        $brandSearch = $brandQuery->paginate(1);
+        // return view('inrichtings.index', compact('sortSearch', 'brandSearch'));
+
+        return view('inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2', 'type'));
     }
 
 
@@ -101,11 +112,15 @@ class InrichtingController extends Controller
     }
 
 
-    public function destroy(Inrichting $inrichting)
+    public function destroySort(Sort $inrichting)
     {
         $inrichting->delete();
         return redirect(route('inrichtings.index'));
     }
 
-
+    public function destroyBrand(Brand $inrichting)
+    {
+        $inrichting->delete();
+        return redirect(route('inrichtings.index'));
+    }
 }

@@ -34,7 +34,6 @@
                     <!-- Display the image if available -->
                     @if(count($overview->getImages()) > 0)
                         <div>
-                            <h3>Images:</h3>
                             <div>
                                 @foreach($overview->getImages() as $image)
                                     <img src="{{ asset($image) }}" alt="Collection Image" class="my-4">
