@@ -12,12 +12,12 @@ class Categorie extends Model
     protected $table = 'categories';
     public $timestamps = true;
     protected $fillable = [
-        'category_name', 'event_name', 'beschrijving', 'locatie', 'link'
+        'category_name'
     ];
 
     public function events()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class, 'categories_id', 'id');
     }
 
     public function news()
