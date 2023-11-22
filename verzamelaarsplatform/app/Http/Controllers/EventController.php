@@ -48,14 +48,14 @@ class EventController extends Controller
 
         Event::create($validatedData);
         // If everything goes well, redirect
-        return redirect()->route('admin.events.index')->with('success', 'Event created successfully!');
+        return redirect()->route('admin.events.index')->with('message', 'Event created successfully!');
         } catch (ValidationException $e) {
             // Validation failed; redirect back with errors
             return redirect()->back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
             // Other exceptions/errors occurred
             // Log the error or handle it as needed
-            return redirect()->back()->with('error', 'An error occurred while creating the event.');
+            return redirect()->back()->with('message', 'An error occurred while creating the event.');
         }
 
     }
@@ -113,7 +113,7 @@ class EventController extends Controller
         } catch (\Exception $e) {
             // Other exceptions/errors occurred
             // Log the error or handle it as needed
-            return redirect()->back()->with('error', 'An error occurred while updating the event.');
+            return redirect()->back()->with('message', 'An error occurred while updating the event.');
         }
 
 
@@ -138,7 +138,7 @@ class EventController extends Controller
             return redirect()->route('admin.events.index')->with('message', 'Event deleted successfully!');
         } catch (\Exception $e) {
             // Log the error or handle it as needed
-            return redirect()->back()->with('error', 'An error occurred while deleting the event.');
+            return redirect()->back()->with('message', 'An error occurred while deleting the event.');
         }
     }
 }

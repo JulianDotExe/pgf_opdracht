@@ -13,7 +13,7 @@
                     <p><strong>Date:</strong> {{ $event->event_date }}</p>
 
                     <!-- Verwijderknop -->
-                    <form method="POST" action="{{ route('admin.events.destroy', $event->event_id) }}" class="inline">
+                    <form method="POST" action="{{ route('admin.events.destroy', $event->event_id) }}" class="inline" onsubmit="return confirm('Are you sure you want to delete this event?')">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>

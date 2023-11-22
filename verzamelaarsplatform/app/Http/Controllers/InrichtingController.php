@@ -75,42 +75,42 @@ class InrichtingController extends Controller
     {
         Sort::create($request->all());
         // $request->searchable();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Soort created successfully!');
     }
 
     //BRAND TOEVOEGEN
     public function createBrand(Request $request)
     {
         Brand::create($request->all());
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Merk created successfully!');
     }
 
     //EPOCHE TOEVOEGEN
     public function createEpoche(Request $request)
     {
-         Epoche::create($request->all());
-         return redirect()->back();
+        Epoche::create($request->all());
+        return redirect()->back()->with('message', 'Epoche created successfully!');
     }
 
     //OWNER TOEVOEGEN
     public function createOwner(Request $request)
     {
         Owner::create($request->all());
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Eigenaar created successfully!');
     }
 
     //COLOR1 TOEVOEGEN
     public function createColor1(Request $request)
     {
         Color1::create($request->all());
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Kleur 1 created successfully!');
     }
 
     //COLOR2 TOEVOEGEN
     public function createColor2(Request $request)
     {
         Color2::create($request->all());
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Kleur 2 created successfully!');
     }
 
     //CATEGORY TOEVOEGEN
@@ -123,7 +123,7 @@ class InrichtingController extends Controller
 
     Categorie::create($data);
 
-    return redirect()->back();
+    return redirect()->back()->with('message', 'Categorie created successfully!');
 }
 
 
@@ -131,12 +131,12 @@ class InrichtingController extends Controller
     public function destroySort(Sort $inrichting)
     {
         $inrichting->delete();
-        return redirect(route('inrichtings.index'));
+        return redirect(route('inrichtings.index'))->with('message', 'Soort deleted successfully!');
     }
 
     public function destroyBrand(Brand $inrichting)
     {
         $inrichting->delete();
-        return redirect(route('inrichtings.index'));
+        return redirect(route('inrichtings.index'))->with('message', 'Merk deleted successfully!');
     }
 }
