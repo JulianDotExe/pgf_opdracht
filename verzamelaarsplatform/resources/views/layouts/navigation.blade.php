@@ -28,6 +28,9 @@
                     <x-nav-link :href="route('admin.events.index')" :active="request()->routeIs('admin.events.index')">
                         {{ __('Evenementen') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.news.index')" :active="request()->routeIs('admin.news.index')">
+                        {{ __('News') }}
+                    </x-nav-link>
                      @endrole
                 </div>
             </div>

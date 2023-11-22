@@ -9,6 +9,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\InrichtingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NewsController;
 use App\Mail\NewUserRegistered;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -57,6 +58,12 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
     Route::get('/events/{events}', [EventController::class, 'show'])->name('events.show');
     Route::delete('/events/{events}', [EventController::class, 'destroy'])->name('events.destroy');
+
+    Route::get('/news', [NewsController::class,'index'])->name('news.index');
+    Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
+    Route::post('/news', [NewsController::class, 'store'])->name('news.store');
+    Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
+    Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 
 });
 
