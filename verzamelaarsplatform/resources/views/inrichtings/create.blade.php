@@ -87,6 +87,19 @@
                 </form>
             <!-- COLOR2 TOEVOEGEN-->
 
+            <br>
+
+            <!-- CATEGORY TOEVOEGEN-->
+            <div class="bg-red-300 text-white rounded-lg p-2 w-60">
+                    <h1 class="text-1xl font-semibold text-align">Categorie toevoegen</h1>
+                </div>
+                <form action="/create-categorie" method="post">
+                    @csrf
+                    <x-text-input type="text" name="category_name" field="category_name" placeholder="Categorie..." class="" autocomplete="off" :value="@old('category_name')"></x-text-input> 
+                    <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg categorie toe</button> 
+                </form>
+            <!-- CATEGORY TOEVOEGEN-->
+
             <br>    
                 <a href="{{ route('inrichtings.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
 

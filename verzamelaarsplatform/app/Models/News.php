@@ -12,11 +12,11 @@ class News extends Model
     protected $table = 'news';
     public $timestamps = true;
     protected $fillable = [
-        'titel', 'inhoud', 'link', 'auteur'
+        'titel', 'categories_id', 'inhoud', 'link', 'auteur'
     ];
 
     public function catagories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categorie::class);
     }
 }
