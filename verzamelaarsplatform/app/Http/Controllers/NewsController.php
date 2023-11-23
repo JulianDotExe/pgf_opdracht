@@ -14,7 +14,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::paginate(3);
+        $news = News::orderBy('created_at', 'desc')->paginate(3);
         return view('admin.news.index', compact('news'));
     }
 
@@ -83,7 +83,6 @@ class NewsController extends Controller
         return view('admin.news.edit', compact('news', 'categories'));
 
     }
-
     /**
      * Update the specified resource in storage.
      */

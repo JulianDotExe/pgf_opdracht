@@ -31,7 +31,7 @@
                     <x-text-input type="text" name="auteur" placeholder="Auteur..." class="w-full" autocomplete="off"  :value="$news->auteur"></x-text-input>
                     <label for="link" class="pt-3 block text-sm font-medium text-gray-700"> URL/Link: </label>
                     <x-text-input type="text" name="link" placeholder="Url..." class="w-full" autocomplete="off"  :value="$news->link"></x-text-input><br><br>
-                    <a href="#" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out" onclick="editOpenConfirmationPopup(news)">Terug</a>
+                    <a href="#" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out" onclick="editOpenConfirmationPopup(event)">Terug</a>
                     <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Opslaan</button>
                 </form>
 
@@ -61,7 +61,7 @@
             return true;
         }
 
-        function editOpenConfirmationPopup(news) {
+        function editOpenConfirmationPopup(event) {
             event.preventDefault();
             document.getElementById('confirmationPopup').style.display = 'flex';
         }
