@@ -73,3 +73,9 @@
         }
     </script>
 </x-app-layout>
+
+<style>
+    #event_date::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+</style>
