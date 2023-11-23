@@ -230,48 +230,48 @@
                         @endforelse
                     </div>
                     @elseif($type == 'categories')
-                    <div>
-                        <div class="flex justify-between p-2">
-                            <h1 class="flex font-semibold text-xl p-2"></h1>
-                            {{-- Search Bar --}}
-                            <form action="{{ route('inrichtings.index') }}" method="GET">
-                                <input type="text" name="search" placeholder="Search by category" class="border rounded-md px-2 py-1">
-                                <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
-                            </form>
-                        </div>
-
-                        @forelse($categories as $category)
-                            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                                <h2><strong>Categorie: </strong>{{ $category->category_name }}</h2>
-
-                                <!-- Verwijderknop -->
-                                <button type="button" onclick="deleteOpenConfirmationPopup('{{ $category->id }}', 'categories')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
-
-                                {{-- Hier kun je andere details van de categorie toevoegen --}}
+                        <div>
+                            <div class="flex justify-between p-2">
+                                <h1 class="flex font-semibold text-xl p-2"></h1>
+                                {{-- Search Bar --}}
+                                <form action="{{ route('inrichtings.index') }}" method="GET">
+                                    <input type="text" name="search" placeholder="Search by category" class="border rounded-md px-2 py-1">
+                                    <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
+                                </form>
                             </div>
 
-                            <!-- Confirmation popup -->
-                            <div class="confirmationPopup fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
-                                <div class="bg-white p-8 rounded-md shadow-md">
-                                    <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
-                                    <div class="flex justify-between">
-                                        <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+                            @forelse($categories as $category)
+                                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                                    <h2><strong>Categorie: </strong>{{ $category->category_name }}</h2>
 
-                                        <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroyCategory', $category->id) }}" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
-                                        </form>
+                                    <!-- Verwijderknop -->
+                                    <button type="button" onclick="deleteOpenConfirmationPopup('{{ $category->id }}', 'categories')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
+
+                                    {{-- Here you can add other details of the category --}}
+                                </div>
+
+                                <!-- Confirmation popup -->
+                                <div id="confirmationPopup" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
+                                    <div class="bg-white p-8 rounded-md shadow-md">
+                                        <p class="text-lg mb-4">Weet je zeker dat je dit wilt verwijderen?</p>
+                                        <div class="flex justify-between">
+                                            <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
+
+                                            <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroyCategory', $category->id) }}" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @empty
-                            <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
-                                <p>Geen categorieën beschikbaar...</p>
-                            </div>
-                        @endforelse
-                    </div>
-                @endif
+                            @empty
+                                <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
+                                    <p>Geen categorieën beschikbaar...</p>
+                                </div>
+                            @endforelse
+                        </div>
+                    @endif
         </div>
     </div>
 

@@ -203,15 +203,19 @@ class InrichtingController extends Controller
         return redirect()->route('inrichtings.index')->with('message', 'Kleur deleted successfully!');
     }
 
+
     public function destroyCategory(Categorie $categorie)
-    {
-        // Delete related overviews
-        $categorie->overviews()->delete();
+{
+    // Delete related news and events
+    $categorie->news()->delete();
+    $categorie->events()->delete();
 
-        // Now, delete the Owner record
-        $categorie->delete();
+    // Delete related overviews
+    $categorie->overviews()->delete();
 
-        return redirect()->route('inrichtings.index')->with('message', 'Categorie deleted successfully!');
-    }
+    // Now, delete the category record
+    $categorie->delete();
 
+    return redirect()->route('inrichtings.index')->with('message', 'Category deleted successfully!');
+}
 }

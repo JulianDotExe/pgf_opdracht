@@ -16,10 +16,11 @@ class News extends Model
         'titel', 'categories_id', 'inhoud', 'link', 'auteur'
     ];
 
-    public function catagories()
+    public function categories()
     {
-        return $this->belongsTo(Categorie::class, 'categories_id', 'id');
+        return $this->belongsTo(Categorie::class, 'category_id', 'id');
     }
+
     public function category()
     {
         return Categorie::find($this->categories_id);
