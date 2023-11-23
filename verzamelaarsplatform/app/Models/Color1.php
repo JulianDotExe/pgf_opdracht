@@ -15,4 +15,8 @@ class Color1 extends Model
 
     protected $fillable = ['color1']; // De kolommen die je kunt invullen
 
+    public function overviews()
+    {
+        return $this->hasMany(Overview::class);
+    }
 }

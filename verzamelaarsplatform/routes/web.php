@@ -146,5 +146,7 @@ Route::delete('/sort/{sort}', [InrichtingController::class, 'destroySort'])->nam
 Route::delete('/brand/{brand}', [InrichtingController::class, 'destroyBrand'])->name('inrichtings.destroyBrand');
 Route::delete('/epoche/{epoche}', [InrichtingController::class, 'destroyEpoche'])->name('inrichtings.destroyEpoche');
 Route::delete('/owner/{owner}', [InrichtingController::class, 'destroyOwner'])->name('inrichtings.destroyOwner');
+Route::delete('/color/{color}', [InrichtingController::class, 'destroyColor'])->name('inrichtings.destroyColor');
+Route::delete('/category/{category}', [InrichtingController::class, 'destroyCategory'])->name('inrichtings.destroyCategory');
 
 require __DIR__.'/auth.php';

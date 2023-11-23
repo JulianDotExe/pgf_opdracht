@@ -29,40 +29,45 @@ class InrichtingController extends Controller
 {
     public function index(Request $request)
     {
-       
         $sorts = Sort::all();
         $brands = Brand::all();
         $epoches = Epoche::all();
         $owners = Owner::all();
+        $categories = Categorie::all();
         $colors1 = Color1::all();
         $colors2 = Color2::all();
-        $categories = Categorie::all();
-
+        $colors = $colors1->merge($colors2);
+    
         $type = $request->get('type', 'sorts'); 
         $sortQuery = Sort::query();
-        $brandQuery = Sort::query();
-
-
+        $brandQuery = Brand::query();
+    
         if ($request->filled('search')) {
             $searchTerm = $request->input('search');
             $sortQuery->where(function ($query) use ($searchTerm) {
                 $query->where('sort_name', 'like', "%$searchTerm%");
             });
         }
-
+    
         if ($request->filled('search')) {
             $searchTerm = $request->input('search');
             $brandQuery->where(function ($query) use ($searchTerm) {
-                $query->where('sort_name', 'like', "%$searchTerm%");
+                $query->where('brand_name', 'like', "%$searchTerm%");
             });
         }
-        
-
-        $sortSearch = $sortQuery->paginate(1);
-        $brandSearch = $brandQuery->paginate(1);
+    
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $colors = $colors->filter(function ($color) use ($searchTerm) {
+                return str_contains(strtolower($color->color_name), strtolower($searchTerm));
+            });
+        }
+    
+        $sortSearch = $sortQuery->paginate(3, ['*'], 'sort_page');
+        $brandSearch = $brandQuery->paginate(3, ['*'], 'brand_page');
         // return view('inrichtings.index', compact('sortSearch', 'brandSearch'));
 
-        return view('inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2', 'type'));
+        return view('inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors', 'categories', 'type'));
     }
 
 
@@ -147,7 +152,7 @@ class InrichtingController extends Controller
         // Delete related overviews
         $brand->overviews()->delete();
 
-        // Now, delete the Sort record
+        // Now, delete the Brand record
         $brand->delete();
 
         return redirect()->route('inrichtings.index')->with('message', 'Merk deleted successfully!');
@@ -174,4 +179,39 @@ class InrichtingController extends Controller
 
         return redirect()->route('inrichtings.index')->with('message', 'Eigenaar deleted successfully!');
     }
+
+    public function destroyColor($colorId)
+    {
+        // Find the color using the color ID
+        $color1 = Color1::findOrFail($colorId);
+        $color2 = Color2::where('color2', $color1->color1)->first();
+
+        // Delete related overviews for Color1
+        $color1->overviews()->delete();
+
+        // Delete related overviews for Color2
+        if ($color2) {
+            $color2->overviews()->delete();
+        }
+
+        // Now, delete the Color1 and Color2 records
+        $color1->delete();
+        if ($color2) {
+            $color2->delete();
+        }
+
+        return redirect()->route('inrichtings.index')->with('message', 'Kleur deleted successfully!');
+    }
+
+    public function destroyCategory(Categorie $categorie)
+    {
+        // Delete related overviews
+        $categorie->overviews()->delete();
+
+        // Now, delete the Owner record
+        $categorie->delete();
+
+        return redirect()->route('inrichtings.index')->with('message', 'Categorie deleted successfully!');
+    }
+
 }
