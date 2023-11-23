@@ -7,20 +7,25 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('overviews.create') }}" class="bg-blue-500 text-white p-3 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Collectie toevoegen</a>
+            <div class="flex justify-between p-2">
+                <a href="{{ route('overviews.create') }}" class="bg-blue-500 text-white p-3 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Collectie toevoegen</a>
+                {{-- Search Bar --}}
+                <form class="pt-2 pb-1" action="{{ route('overviews.index') }}" method="GET">
+                    <input type="text" name="search" placeholder="Search..." class="border rounded-md px-2 py-1">
+                    <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
+                </form>
+            </div>
 
             @forelse($overviews as $overview)
                 <div class="flex my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <div class="w-2/3 pr-6">
                         <h2><strong>Eigenaar: </strong> {{ $overview->owner->owner_name}}</h2>
                         <h2><strong>Soort: </strong> {{ $overview->sort->sort_name}}</h2>
-                        <p><strong>Merk: </strong> {{ $overview->brand->brand_name }}</p><br>
-
-                        <!-- Verwijderknop -->
-                        <button type="button" onclick="deleteOpenConfirmationPopup('{{ $overview->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
-
-                        <h1>
-                            <a href="{{ route('overviews.show', $overview->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a>
+                        <p><strong>Merk: </strong> {{ $overview->brand->brand_name }}</p>
+                        <h1 class="pt-2">
+                            <p><a href="{{ route('overviews.show', $overview->id) }}" class="text-blue-500 hover:underline hover:text-blue-700 transition duration-300 ease-in-out">Meer details</a></p>
+                            <!-- Verwijderknop -->
+                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $overview->id }}')" class="text-red-500 hover:underline hover:text-red-700 transition duration-300 ease-in-out">Verwijderen</button>
                         </h1>
                     </div>
 
@@ -62,7 +67,8 @@
                 </div>
             @endforelse
 
-            {{ $overviews->links() }}
+            {{ $overviews->appends(request()->input())->links() }}
+            {{-- {{ $overviews->links() }} --}}
 
         </div>
     </div>
