@@ -45,8 +45,8 @@
                         <p>There's no image associated with this collection.</p>
                     @endif 
             </div> <br>
-                <a href="{{ route('overviews.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
-                <a href="{{ route('overviews.edit', $overview->id)  }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Collectie wijzigen</a>
+            <a href="{{ url()->previous() }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
+            <a href="{{ route('overviews.edit', $overview->id)  }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Collectie wijzigen</a>
 
             </div>
         </div>
