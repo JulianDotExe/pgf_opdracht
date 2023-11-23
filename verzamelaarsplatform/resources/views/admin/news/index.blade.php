@@ -27,7 +27,6 @@
             @endforeach
 
             <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
-                <p>Geen nieuwtjes beschikbaar...</p>
             </div>
             
         </div>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Edit Collectie') }}
+            {{ __('Edit Evenementen') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -48,7 +48,7 @@
                 Niet-opgeslagen wijzigingen gaan verloren.</p>
             <div class="flex justify-center w-full">
                 <a href="#" class="bg-gray-500 text-white px-4 py-2 rounded mr-2 hover:bg-gray-700 transition duration-300 ease-in-out" onclick="editCloseConfirmationPopup()">Annuleren</a>
-                <a href="{{ route('overviews.index') }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300 ease-in-out">Bevestigen</a>
+                <a href="{{ route('admin.events.index') }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300 ease-in-out">Bevestigen</a>
             </div>
         </div>
     </div>
