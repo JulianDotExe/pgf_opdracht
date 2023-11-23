@@ -14,7 +14,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::paginate(3);
+        $news = News::orderBy('created_at', 'desc')->paginate(3);
         return view('admin.news.index', compact('news'));
     }
 
@@ -78,15 +78,25 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        $categories = Categorie::all(); // Assuming you have a Category model
+        return view('admin.news.edit', compact('news', 'categories'));
     }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, News $news)
     {
-        //
+        $request->validate([
+            'titel' => 'required',
+            'categories_id' => 'required|exists:categories,id',
+            'inhoud' => 'required',
+            'auteur' => 'required',
+            'link' => 'required|url',
+        ]);
+    
+        $news->update($request->all());
+    
+        return redirect()->route('admin.news.index')->with('success', 'News article updated successfully.');
     }
 
     /**

@@ -32,15 +32,15 @@
                     <strong>News gegevens</strong>
                 </h2>
                 <div class="text">
-                    <p><strong>Titel:</strong> {{ $news->titel}}</p>
+                    <p><strong>Titel: </strong> {{ $news->titel}}</p>
                     @if($news->category())
-                        <p><strong>Categorie:</strong> {{ $news->category()->category_name }}</p>
+                        <p><strong>Categorie: </strong> {{ $news->category()->category_name }}</p>
                     @else
-                        <p><strong>Categorie:</strong> Geen categorie</p>
+                        <p><strong>Categorie: </strong> Geen categorie</p>
                     @endif
-                    <p><strong>Inhoud:</strong> {{ $news->inhoud}}</p>
-                    <p><strong>Auteur:</strong> {{ $news->auteur }}</p>
-                    <p><strong>Url/Link:</strong> <a class="underline text-blue-400 hover:text-blue-600" href="{{ $news->link }}" target="_blank">{{ $news->link }}</a></p>
+                    <p><strong>Inhoud: </strong> {{ $news->inhoud}}</p>
+                    <p><strong>Auteur: </strong> {{ $news->auteur }}</p>
+                    <p><strong>Url/Link: </strong> <a class="underline text-blue-400 hover:text-blue-600" href="{{ $news->link }}" target="_blank">{{ $news->link }}</a></p>
                 </div> <br>
                 <a href="{{ route('admin.news.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
                 <a href="{{ route('admin.news.edit', $news->artikel_id) }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Informatie wijzigen</a>
