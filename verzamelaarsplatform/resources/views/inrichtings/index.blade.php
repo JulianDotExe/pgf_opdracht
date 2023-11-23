@@ -6,28 +6,28 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('inrichtings.create') }}" class="bg-blue-500 text-white p-3 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Inrichting toevoegen</a>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <a href="{{ route('inrichtings.create') }}" class="bg-blue-500 text-white p-3 rounded inline-block hover:bg-green-600 transition duration-300 ease-in-out">Voeg Inrichting toe</a>
 
-            <div class="my-6">
-                <a href="{{ route('inrichtings.index', ['type' => 'sorts']) }}" class="bg-blue-500 text-white p-1 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Soorten</a>
-                <a href="{{ route('inrichtings.index', ['type' => 'brands']) }}" class="bg-blue-500 text-white p-1 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Merken</a>
-                <a href="{{ route('inrichtings.index', ['type' => 'epoches']) }}" class="bg-blue-500 text-white p-1 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Epoches</a>
-                <a href="{{ route('inrichtings.index', ['type' => 'owners']) }}" class="bg-blue-500 text-white p-1 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Eigenaren</a>
-                <a href="{{ route('inrichtings.index', ['type' => 'colors1']) }}" class="bg-blue-500 text-white p-1 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Kleur 1</a>
-                <a href="{{ route('inrichtings.index', ['type' => 'colors2']) }}" class="bg-blue-500 text-white p-1 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Kleur 2</a>
-            </div>
+        <div class="my-6">
+            <a href="{{ route('inrichtings.index', ['type' => 'sorts']) }}" class="bg-blue-500 text-white p-2 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Soorten</a>
+            <a href="{{ route('inrichtings.index', ['type' => 'brands']) }}" class="bg-blue-500 text-white p-2 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Merken</a>
+            <a href="{{ route('inrichtings.index', ['type' => 'epoches']) }}" class="bg-blue-500 text-white p-2 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Epoches</a>
+            <a href="{{ route('inrichtings.index', ['type' => 'owners']) }}" class="bg-blue-500 text-white p-2 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Eigenaren</a>
+            <a href="{{ route('inrichtings.index', ['type' => 'colors1']) }}" class="bg-blue-500 text-white p-2 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Kleur 1</a>
+            <a href="{{ route('inrichtings.index', ['type' => 'colors2']) }}" class="bg-blue-500 text-white p-2 rounded inline-block hover:bg-blue-600 transition duration-300 ease-in-out">Toon Kleur 2</a>
+        </div>
 
-            @if($type == 'sorts')
-                <div>
-                    <div class="flex justify-between p-2">
-                        <h1 class="flex font-semibold text-xl p-2"></h1>
-                        {{-- Search Bar --}}
-                        <form action="{{ route('inrichtings.index') }}" method="GET">
-                            <input type="text" name="search" placeholder="Search by sort" class="border rounded-md px-2 py-1">
-                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
-                        </form>
-                    </div>
+        @if($type == 'sorts')
+            <div>
+                <div class="flex justify-between p-2">
+                    <h1 class="flex font-semibold text-xl p-2">Soorten</h1>
+                    {{-- Search Bar --}}
+                    <form action="{{ route('inrichtings.index') }}" method="GET" class="flex items-center mt-2"> <!-- Adjusted to mt-2 to provide space between links and search bar -->
+                        <input type="text" name="search" placeholder="Search by sort" class="border rounded-md px-2 py-2"> <!-- Adjusted py-2 for input to match filters -->
+                        <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-2 ml-2 hover:bg-blue-600 transition duration-300 ease-in-out">Zoeken</button> <!-- Adjusted py-2 for button to match filters -->
+                    </form>
+                </div>
 
                     @forelse($sorts as $sort)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
@@ -96,23 +96,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Script voor destroy -->
-                        <script>
-                            function deleteOpenConfirmationPopup(itemId) {
-                                // Set the form action dynamically based on the item ID
-                                var form = document.getElementById('deleteForm');
-                                form.action = "{{ route('inrichtings.destroyBrand', '') }}" + '/' + itemId;
-
-                                // Show the confirmation popup
-                                document.getElementById('confirmationPopup').style.display = 'flex';
-                            }
-
-                            function deleteCloseConfirmationPopup() {
-                                // Hide the confirmation popup
-                                document.getElementById('confirmationPopup').style.display = 'none';
-                            }
-                        </script>
+                    </div>
                     @empty
                         <div class="btn bg-transparent p-2 dark:text-slate-200 btn-link btn-lg mb-2">
                             <p>Geen merken beschikbaar...</p>

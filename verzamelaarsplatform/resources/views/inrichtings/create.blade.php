@@ -7,102 +7,78 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="mx-auto mt-4">
-            <!-- SORT TOEVOEGEN-->
-                    <div class="bg-red-300 text-white rounded-lg p-2 w-60">
-                        <h1 class="text-1xl font-semibold text-align">Soort toevoegen</h1>
-                    </div>
+            <div class="mx-auto mt-4">
+
+                <!-- SORT TOEVOEGEN -->
+                <div class="my-4 p-4 bg-white rounded-lg">
+                    <h1 class="text-lg text-gray-800 dark:text-black">Soort toevoegen</h1>
+                    <form action="/create-sort" method="post" class="mt-2">
+                        @csrf
+                        <x-text-input type="text" name="sort_name" field="sort_name" placeholder="Soort..." class="block w-full p-2 border rounded" autocomplete="off" :value="@old('sort_name')"></x-text-input>
+                        <button type="submit" class="mt-2 bg-blue-500 text-white py-2 px-4 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Soort toe</button>
+                    </form>
                 </div>
-                <form action="/create-sort" method="post">
-                    @csrf
-                    <x-text-input type="text" name="sort_name" field="sort_name" placeholder="Soort..." class="" autocomplete="off" :value="@old('sort_name')"></x-text-input> 
-                    <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Soort toe</button>
-                </form>
-            <!-- SORT TOEVOEGEN-->
+                <!-- SORT TOEVOEGEN -->
 
-            <br>
-
-            <!-- BRAND TOEVOEGEN-->
-
-                <div class="bg-red-300 text-white rounded-lg p-2 w-60">
-                    <h1 class="text-1xl font-semibold text-align">Merk toevoegen</h1>
+                <!-- BRAND TOEVOEGEN -->
+                <div class="my-4 p-4 bg-white rounded-lg">
+                    <h1 class="text-lg text-gray-800 dark:text-black">Merk toevoegen</h1>
+                    <form action="/create-brand" method="post" class="mt-2">
+                        @csrf
+                        <x-text-input type="text" name="brand_name" field="brand_name" placeholder="Merk..." class="block w-full p-2 border rounded" autocomplete="off" :value="@old('brand_name')"></x-text-input>
+                        <button type="submit" class="mt-2 bg-blue-500 text-white py-2 px-4 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Merk toe</button>
+                    </form>
                 </div>
-                <form action="/create-brand" method="post">
-                    @csrf
-                    <x-text-input type="text" name="brand_name" field="brand_name" placeholder="Merk..." class="" autocomplete="off" :value="@old('brand_name')"></x-text-input> 
-                    <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Merk toe</button> 
-                </form> 
-            <!-- BRAND TOEVOEGEN-->
+                <!-- BRAND TOEVOEGEN -->
 
-            <br>
-
-            <!-- EPOCHE TOEVOEGEN-->
-                <div class="bg-red-300 text-white rounded-lg p-2 w-60">
-                    <h1 class="text-1xl font-semibold text-align">Epoche toevoegen</h1>
+                <!-- EPOCHE TOEVOEGEN -->
+                <div class="my-4 p-4 bg-white rounded-lg">
+                    <h1 class="text-lg text-gray-800 dark:text-black">Epoche toevoegen</h1>
+                    <form action="/create-epoche" method="post" class="mt-2">
+                        @csrf
+                        <x-text-input type="text" name="epoche_name" field="epoche_name" placeholder="Epoche..." class="block w-full p-2 border rounded" autocomplete="off" :value="@old('epoche_name')"></x-text-input>
+                        <button type="submit" class="mt-2 bg-blue-500 text-white py-2 px-4 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Epoche toe</button>
+                    </form>
                 </div>
-                <form action="/create-epoche" method="post">
-                    @csrf
-                    <x-text-input type="text" name="epoche_name" field="epoche_name" placeholder="Epoche..." class="" autocomplete="off" :value="@old('epoche_name')"></x-text-input> 
-                    <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Epoche toe</button> 
-                </form>
-            <!-- EPOCHE TOEVOEGEN-->
+                <!-- EPOCHE TOEVOEGEN -->
 
-            <br>
-
-            <!-- OWNER TOEVOEGEN-->
-
-                <div class="bg-red-300 text-white rounded-lg p-2 w-60">
-                    <h1 class="text-1xl font-semibold text-align">Eigenaar toevoegen</h1>
+                <!-- OWNER TOEVOEGEN -->
+                <div class="my-4 p-4 bg-white rounded-lg">
+                    <h1 class="text-lg text-gray-800 dark:text-black">Eigenaar toevoegen</h1>
+                    <form action="/create-owner" method="post" class="mt-2">
+                        @csrf
+                        <x-text-input type="text" name="owner_name" field="owner_name" placeholder="Eigenaar..." class="block w-full p-2 border rounded" autocomplete="off" :value="@old('owner_name')"></x-text-input>
+                        <button type="submit" class="mt-2 bg-blue-500 text-white py-2 px-4 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Eigenaar toe</button>
+                    </form>
                 </div>
-                <form action="/create-owner" method="post">
-                    @csrf
-                    <x-text-input type="text" name="owner_name" field="owner_name" placeholder="Eigenaar..." class="" autocomplete="off" :value="@old('owner_name')"></x-text-input> 
-                    <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Eigenaar toe</button> 
-                </form>
-            <!-- EPOCHE TOEVOEGEN-->
+                <!-- EPOCHE TOEVOEGEN -->
 
-            <br>
-
-            <!-- COLOR1 TOEVOEGEN-->
-                <div class="bg-red-300 text-white rounded-lg p-2 w-60">
-                    <h1 class="text-1xl font-semibold text-align">Kleur 1 toevoegen</h1>
+                <!-- COLOR TOEVOEGEN -->
+                <div class="my-4 p-4 bg-white rounded-lg">
+                    <h1 class="text-lg text-gray-800 dark:text-black">Kleur toevoegen</h1>
+                    <form action="{{ route('createColor') }}" method="post" class="mt-2">
+                        @csrf
+                        <x-text-input type="text" name="color" field="color" placeholder="Kleur..." class="block w-full p-2 border rounded" autocomplete="off" :value="@old('color')"></x-text-input>
+                        <button type="submit" class="mt-2 bg-blue-500 text-white py-2 px-4 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Kleur toe</button>
+                    </form>
                 </div>
-                <form action="/create-color1" method="post">
-                    @csrf
-                    <x-text-input type="text" name="color1" field="color1" placeholder="Kleur 1..." class="" autocomplete="off" :value="@old('color1')"></x-text-input>
-                    <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Kleur 1 toe</button> 
-                </form>
-            <!-- COLOR1 TOEVOEGEN-->
+                <!-- COLOR TOEVOEGEN -->
 
-            <br>
-
-            <!-- COLOR2 TOEVOEGEN-->
-                <div class="bg-red-300 text-white rounded-lg p-2 w-60">
-                    <h1 class="text-1xl font-semibold text-align">Kleur 2 toevoegen</h1>
+                <!-- CATEGORY TOEVOEGEN -->
+                <div class="my-4 p-4 bg-white rounded-lg">
+                    <h1 class="text-lg text-gray-800 dark:text-black">Categorie toevoegen</h1>
+                    <form action="/create-categorie" method="post" class="mt-2">
+                        @csrf
+                        <x-text-input type="text" name="category_name" field="category_name" placeholder="Categorie..." class="block w-full p-2 border rounded" autocomplete="off" :value="@old('category_name')"></x-text-input>
+                        <button type="submit" class="mt-2 bg-blue-500 text-white py-2 px-4 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg categorie toe</button>
+                    </form>
                 </div>
-                <form action="/create-color2" method="post">
-                    @csrf
-                    <x-text-input type="text" name="color2" field="color2" placeholder="Kleur 2..." class="" autocomplete="off" :value="@old('color2')"></x-text-input> 
-                    <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg Kleur 2 toe</button> 
-                </form>
-            <!-- COLOR2 TOEVOEGEN-->
+                
+                <!-- CATEGORY TOEVOEGEN -->
 
-            <br>
+                <a href="{{ route('inrichtings.index') }}" class="bg-blue-500 text-white py-2 px-4 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
 
-            <!-- CATEGORY TOEVOEGEN-->
-            <div class="bg-red-300 text-white rounded-lg p-2 w-60">
-                    <h1 class="text-1xl font-semibold text-align">Categorie toevoegen</h1>
-                </div>
-                <form action="/create-categorie" method="post">
-                    @csrf
-                    <x-text-input type="text" name="category_name" field="category_name" placeholder="Categorie..." class="" autocomplete="off" :value="@old('category_name')"></x-text-input> 
-                    <button type="submit" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Voeg categorie toe</button> 
-                </form>
-            <!-- CATEGORY TOEVOEGEN-->
-
-            <br>    
-                <a href="{{ route('inrichtings.index') }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
-
+            </div>
         </div>
     </div>
 </x-app-layout>

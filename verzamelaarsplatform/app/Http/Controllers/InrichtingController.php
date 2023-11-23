@@ -100,17 +100,21 @@ class InrichtingController extends Controller
     }
 
     //COLOR1 TOEVOEGEN
-    public function createColor1(Request $request)
+    public function createColor(Request $request)
     {
-        Color1::create($request->all());
-        return redirect()->back()->with('message', 'Kleur 1 created successfully!');
-    }
-
-    //COLOR2 TOEVOEGEN
-    public function createColor2(Request $request)
-    {
-        Color2::create($request->all());
-        return redirect()->back()->with('message', 'Kleur 2 created successfully!');
+        $request->validate([
+            'color' => 'required|string|max:255', // Assuming you have a single input for color
+        ]);
+    
+        $color = $request->input('color');
+    
+        // Create Color1 record
+        Color1::create(['color1' => $color]);
+    
+        // Create Color2 record
+        Color2::create(['color2' => $color]);
+    
+        return redirect()->back()->with('message', 'Color created successfully!');
     }
 
     //CATEGORY TOEVOEGEN
