@@ -3,8 +3,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-2">
                 <div class="flex p-2">
-                    <a href="{{ route('admin.users.index') }}"
-                        class="px-4 py-2 bg-green-700 hover:bg-green-500 text-slate-100 rounded-md">Users Index</a>
+                    <a href="{{ url()->previous() }}"
+                        class="px-4 py-2 bg-green-700 hover:bg-green-500 text-slate-100 rounded-md">Back</a>
                 </div>
                 <div class="flex flex-col p-2 bg-slate-100">
                     <div>User Name: {{ $user->name }}</div>
