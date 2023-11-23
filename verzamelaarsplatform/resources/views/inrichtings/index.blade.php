@@ -290,9 +290,9 @@
                 form.action = "{{ route('inrichtings.destroyEpoche', '') }}" + '/' + itemId;
             } else if (type === 'owners') {
                 form.action = "{{ route('inrichtings.destroyOwner', '') }}" + '/' + itemId;
-            } else if (type=== 'colors'){
+            } else if (type === 'colors'){
                 form.action = "{{ route('inrichtings.destroyColor', '') }}" + '/' + itemId;    
-            } else {
+            } else if (type === 'categories') {
                 form.action = "{{ route('inrichtings.destroyCategory', '') }}" + '/' + itemId;
             }
 
