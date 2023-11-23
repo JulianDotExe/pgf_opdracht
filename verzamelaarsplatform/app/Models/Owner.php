@@ -15,4 +15,9 @@ class Owner extends Model
 
     protected $fillable = ['owner_name']; // De kolommen die je kunt invullen
 
+
+    public function overviews()
+    {
+        return $this->hasMany(Overview::class);
+    }
 }

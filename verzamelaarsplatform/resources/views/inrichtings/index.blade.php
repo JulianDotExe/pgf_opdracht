@@ -131,7 +131,7 @@
                                 <div class="flex justify-between">
                                     <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
 
-                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroy', $epoche->id) }}" class="inline">
+                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroyEpoche', $epoche->id) }}" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>
@@ -173,7 +173,7 @@
                                 <div class="flex justify-between">
                                     <button onclick="deleteCloseConfirmationPopup()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuleren</button>
 
-                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroy', $owner->id) }}" class="inline">
+                                    <form id="deleteForm" method="POST" action="{{ route('inrichtings.destroyOwner', $owner->id) }}" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Bevestigen</button>

@@ -140,7 +140,11 @@ Route::post('/create-epoche', [InrichtingController::class, 'createEpoche']);
 Route::post('/create-owner', [InrichtingController::class, 'createOwner']);
 Route::post('/create-color', [InrichtingController::class, 'createColor'])->name('createColor');
 Route::post('/create-categorie', [InrichtingController::class, 'createCategorie']);
+
+
 Route::delete('/sort/{sort}', [InrichtingController::class, 'destroySort'])->name('inrichtings.destroySort');
 Route::delete('/brand/{brand}', [InrichtingController::class, 'destroyBrand'])->name('inrichtings.destroyBrand');
+Route::delete('/epoche/{epoche}', [InrichtingController::class, 'destroyEpoche'])->name('inrichtings.destroyEpoche');
+Route::delete('/owner/{owner}', [InrichtingController::class, 'destroyOwner'])->name('inrichtings.destroyOwner');
 
 require __DIR__.'/auth.php';

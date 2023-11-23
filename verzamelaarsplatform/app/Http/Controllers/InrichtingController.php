@@ -23,6 +23,7 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SortController;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class InrichtingController extends Controller
 {
@@ -119,27 +120,58 @@ class InrichtingController extends Controller
 
     //CATEGORY TOEVOEGEN
     public function createCategorie(Request $request)
-{
-    $data = $request->validate([
-        'category_name' => 'required|string|max:255',
-        // Add validation rules for other fields if needed
-    ]);
+    {   
+        $data = $request->validate([
+            'category_name' => 'required|string|max:255',
+            // Add validation rules for other fields if needed
+        ]);
 
-    Categorie::create($data);
+        Categorie::create($data);
 
-    return redirect()->back()->with('message', 'Categorie created successfully!');
-}
-public function destroySort(Sort $sort)
-{
-    // $inrichting->delete();
-    $sort->delete();
-     return redirect(route('inrichtings.index'))->with('message', 'Soort deleted successfully!');
-}
+        return redirect()->back()->with('message', 'Categorie created successfully!');
+    }
 
-
-    public function destroyBrand(Brand $inrichting)
+    public function destroySort(Sort $sort)
     {
-        $inrichting->delete();
-        return redirect(route('inrichtings.index'))->with('message', 'Merk deleted successfully!');
+        // Delete related overviews
+        $sort->overviews()->delete();
+
+        // Now, delete the Sort record
+        $sort->delete();
+
+        return redirect()->route('inrichtings.index')->with('message', 'Soort deleted successfully!');
+    }
+
+    public function destroyBrand(Brand $brand)
+    {
+        // Delete related overviews
+        $brand->overviews()->delete();
+
+        // Now, delete the Sort record
+        $brand->delete();
+
+        return redirect()->route('inrichtings.index')->with('message', 'Merk deleted successfully!');
+    }
+
+    public function destroyEpoche(Epoche $epoche)
+    {
+        // Delete related overviews
+        $epoche->overviews()->delete();
+
+        // Now, delete the Epoche record
+        $epoche->delete();
+
+        return redirect()->route('inrichtings.index')->with('message', 'Epoche deleted successfully!');
+    }
+
+    public function destroyOwner(Owner $owner)
+    {
+        // Delete related overviews
+        $owner->overviews()->delete();
+
+        // Now, delete the Owner record
+        $owner->delete();
+
+        return redirect()->route('inrichtings.index')->with('message', 'Eigenaar deleted successfully!');
     }
 }
