@@ -129,12 +129,13 @@ class InrichtingController extends Controller
 
     return redirect()->back()->with('message', 'Categorie created successfully!');
 }
+public function destroySort(Sort $sort)
+{
+    // $inrichting->delete();
+    $sort->delete();
+     return redirect(route('inrichtings.index'))->with('message', 'Soort deleted successfully!');
+}
 
-    public function destroySort(Sort $inrichting)
-    {
-        $inrichting->delete();
-        return redirect(route('inrichtings.index'))->with('message', 'Soort deleted successfully!');
-    }
 
     public function destroyBrand(Brand $inrichting)
     {
