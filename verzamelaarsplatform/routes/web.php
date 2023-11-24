@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\InrichtingController;
@@ -120,8 +121,12 @@ Route::get('/events', function () {
         Auth::logout();
         return redirect('/events'); // Redirect to the login page or any other page
     }
-    return view('events');
+
+    $events = \App\Models\Event::all();
+    return view('events', ['events' => $events]);
 });
+
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 
 Route::get('/news', function () {
     // Check if the user is logged in and should be logged out

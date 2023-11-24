@@ -13,10 +13,7 @@
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2><strong>Event name: </strong>{{ $event->event_name }}</h2>
                     <p><strong>Date: </strong> {{ $event->event_date }}</p>
-<<<<<<< HEAD
                     <p><strong>Categorie:</strong> {{ $event->category()->category_name }}</p>
-=======
->>>>>>> 24535f4e45b99ad28aefcc104655b5b920564ccd
 
                     <!-- Verwijderknop -->
                     <div class="flex">

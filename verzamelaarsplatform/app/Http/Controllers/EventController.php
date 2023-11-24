@@ -142,4 +142,11 @@ class EventController extends Controller
             return redirect()->back()->with('message', 'An error occurred while deleting the event.');
         }
     }
+
+    // public function customerIndex()
+    // {
+    //     $events = Event::orderBy('event_date', 'asc')->get(); // Haal evenementen op, gesorteerd op datum
+    //     return view('klantenportaal.events.index', compact('events'));
+    // }
+
 }
