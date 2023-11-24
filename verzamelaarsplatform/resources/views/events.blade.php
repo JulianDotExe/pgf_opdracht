@@ -61,15 +61,18 @@
     <!-- Tijdelijk -->
     <Main-content>
         <div class="bg-[#121212] h-full w-full absolute">
-            <div class=" w-1/2 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div>
-            @foreach($events as $event)
-    <div class="event">
-        <h2>{{ $event->event_name }}</h2>
-        <p>Date: {{ $event->event_date }}</p>
-        <p>Location: {{ $event->locatie }}</p>
-        <!-- Add more details as needed -->
-    </div>
-@endforeach
+            {{-- <div class=" w-1/2 -z-0 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div> --}}
+            <div class="py-14 z-10">
+                <div class="max-w-xl mx-auto sm:px-6 lg:px-8 z-10">
+                    @foreach($events as $event)
+                        <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg z-10">
+                            <h2><strong>Event name: </strong>{{ $event->event_name }}</h2>
+                            <p><strong>Date: </strong> {{ $event->event_date }}</p>
+                            <p><strong>Categorie:</strong> {{ $event->category()->category_name }}</p>
+                        </div>
+                    @endforeach 
+                </div>
+            </div>
         </div>
     </Main-content>
 
