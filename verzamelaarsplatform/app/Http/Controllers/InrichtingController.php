@@ -207,24 +207,17 @@ class InrichtingController extends Controller
     public function destroyCategory(Categorie $category)
     {
         try {
-            \Log::info('Deleting category: ' . $category->category_name);
-
             // Delete related news and events
             $category->news()->delete();
             $category->events()->delete();
-
-            \Log::info('Related news and events deleted successfully.');
-
+    
             // Now, delete the category record
             $category->delete();
-
-            \Log::info('Category deleted successfully!');
-
+    
             return redirect()->route('inrichtings.index', ['type' => 'categories'])->with('message', 'Category deleted successfully!');
         } catch (\Exception $e) {
-            \Log::error('Error deleting category: ' . $e->getMessage());
-
             return redirect()->route('inrichtings.index', ['type' => 'categories'])->with('error', 'Error deleting category.');
         }
     }
+    
 }
