@@ -58,13 +58,27 @@
     </header>
     
     
-    <Main-content>
-        <div class="bg-[#121212] h-full w-full absolute">
-            <div class=" w-1/2 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div>
+    <!-- news.blade.php -->
 
+<Main-content>
+    <div class="bg-[#121212] h-full w-full absolute">
+        <div class="w-1/2 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div>
 
+        <div class="h-screen flex items-center ml-12 justify-center">
+            <div class="bg-blue p-10 rounded shadow-md">
+                <p class="text-xl p-10 text-white font-semibold">News</p>
+
+                <ul>
+                    @foreach ($news as $item)
+                        <li>{{ $item->title }}</li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
-    </Main-content>
+    </div>
+</Main-content>
+
+
 
 </body>
 

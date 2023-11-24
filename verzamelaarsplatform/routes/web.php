@@ -134,6 +134,8 @@ Route::get('/news', function () {
 
 Route::resource("overviews", OverviewController::class);
 Route::resource("inrichtings", InrichtingController::class);
+Route::resource("views", ViewsController::class);
+
 Route::post('/create-sort', [InrichtingController::class, 'createSort']);
 Route::post('/create-brand', [InrichtingController::class, 'createBrand']);
 Route::post('/create-epoche', [InrichtingController::class, 'createEpoche']);
