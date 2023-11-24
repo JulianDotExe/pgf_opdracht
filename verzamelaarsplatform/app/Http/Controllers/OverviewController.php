@@ -90,7 +90,7 @@ class OverviewController extends Controller
                 'color1_id' => 'required',
                 'color2_id' => 'required',
                 'bijzonderheden' => 'required',
-                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             ]);
 
             // Handle image upload
@@ -99,8 +99,12 @@ class OverviewController extends Controller
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 
                 // Save the image directly to public/uploads/overviews
-                $image->move(public_path('uploads/overviews'), $imageName);
-
+                if ($image->move(public_path('uploads/overviews'), $imageName)) {
+                    // Log success or any additional information if needed
+                } else {
+                    // Log an error if the move fails
+                    \Log::error('Failed to move the uploaded file.');
+                }
                 // $fotoPath = 'uploads/overviews/' . $imageName;
                 $data['foto'] = 'uploads/overviews/' . $imageName;
             }

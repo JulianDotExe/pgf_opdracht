@@ -42,27 +42,6 @@ class InrichtingController extends Controller
         $sortQuery = Sort::query();
         $brandQuery = Brand::query();
     
-        if ($request->filled('search')) {
-            $searchTerm = $request->input('search');
-            $sortQuery->where(function ($query) use ($searchTerm) {
-                $query->where('sort_name', 'like', "%$searchTerm%");
-            });
-        }
-    
-        if ($request->filled('search')) {
-            $searchTerm = $request->input('search');
-            $brandQuery->where(function ($query) use ($searchTerm) {
-                $query->where('brand_name', 'like', "%$searchTerm%");
-            });
-        }
-    
-        if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $colors = $colors->filter(function ($color) use ($searchTerm) {
-                return str_contains(strtolower($color->color_name), strtolower($searchTerm));
-            });
-        }
-    
         $sortSearch = $sortQuery->paginate(3, ['*'], 'sort_page');
         $brandSearch = $brandQuery->paginate(3, ['*'], 'brand_page');
         // return view('inrichtings.index', compact('sortSearch', 'brandSearch'));
