@@ -68,22 +68,26 @@
             <div class="h-screen flex items-center justify-center">
                 <div class="z-10 w-1/2 p-10 rounded shadow-md">
                     <p class="text-xl p-10 text-white font-semibold">Evenementen</p>
-
+            
                     <!-- Inside the loop where you're displaying events -->
                     @foreach($events as $event)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Event name: </strong>{{ $event->event_name }}</h2>
                             <p><strong>Category:</strong> {{ $event->category()->category_name }}</p>
                             <div x-data="{ open: false }">
-                            <!-- Additional details (visible when open is true) -->
-                            <div x-show="open" x-cloak>
-                                <p><strong>Date: </strong> {{ $event->event_date }}</p>
-                                <p><strong>Locatie:</strong> {{ $event->locatie }}</p>
-                                <p><strong>Beschrijving:</strong> {{ $event->beschrijving }}</p>
-                                <p><strong>Link:</strong> <a class="text-blue-500 hover:text-blue-600 hover:underline" href="{{ $event->link }}">{{ $event->link }}</a></p>
-                            </div>
-
-                            <!-- Dropdown to show more/less details -->
+                                <!-- Additional details (visible when open is true) -->
+                                <div x-show="open" x-cloak>
+                                    <p><strong>Date: </strong> {{ $event->event_date }}</p>
+                                    <p><strong>Locatie:</strong> {{ $event->locatie }}</p>
+                                    <p><strong>Beschrijving:</strong> {{ $event->beschrijving ?: 'N/A' }}</p>
+                                    @if($event->link)
+                                        <p><strong>Link:</strong> <a class="text-blue-500 hover:text-blue-600 hover:underline" href="{{ $event->link }}">{{ $event->link }}</a></p>
+                                    @else
+                                        <p><strong>Link:</strong> N/A</p>
+                                    @endif
+                                </div>
+            
+                                <!-- Dropdown to show more/less details -->
                                 <button @click="open = !open" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-5 focus:ring-offset-2">
                                     <span x-show="!open">More</span>
                                     <span x-show="open">Show less</span>
@@ -94,13 +98,14 @@
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-
+            
                             </div>
                         </div>
                     @endforeach
-                    {{ $events->links('') }}
+                    {{ $events->links() }}
                 </div>
             </div>
+                    
         </div>
     </Main-content>
 

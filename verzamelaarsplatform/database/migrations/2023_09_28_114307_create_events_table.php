@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('categories_id')->constrained('categories');
             $table->date('event_date');
             $table->string('event_name');
-            $table->string('beschrijving');
+            $table->string('beschrijving')->nullable();
             $table->string('locatie');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
