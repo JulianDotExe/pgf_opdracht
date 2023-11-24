@@ -15,4 +15,8 @@ class Brand extends Model
 
     protected $fillable = ['brand_name']; // De kolommen die je kunt invullen
 
+    public function overviews()
+    {
+        return $this->hasMany(Overview::class);
+    }
 }

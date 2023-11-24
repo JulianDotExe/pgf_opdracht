@@ -15,4 +15,9 @@ class Epoche extends Model
 
     protected $fillable = ['epoche_name']; // De kolommen die je kunt invullen
 
+    public function overviews()
+    {
+        return $this->hasMany(Overview::class);
+    }
+
 }

@@ -14,7 +14,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::paginate(3);
+        $news = News::orderBy('created_at', 'desc')->paginate(3);
         return view('admin.news.index', compact('news'));
     }
 
@@ -55,12 +55,6 @@ class NewsController extends Controller
                 return redirect()->back()->with('error', 'An error occurred while creating the news.');
             }
 
-            // echo "$request->event_name<br>";
-            // echo "$request->categories_id<br>";
-            // echo "$request->locatie<br>";
-            // echo "$request->link<br>";
-            // echo "$request->beschrijving<br>";
-            // echo "$request->event_date<br>";
     }
 
     /**
@@ -68,8 +62,15 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        return view('admin.news.show', compact('news'));
-    }
+        $news = News::find($news->artikel_id);
+
+        if (!$news) {
+            // Handle if the event is not found
+            return abort(404);
+        }
+    
+        // Display the event information
+        return view('admin.news.show', compact('news'));    }
 
 
 
@@ -78,15 +79,39 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
-    }
+        $categories = Categorie::all();
+        return view('admin.news.edit', compact('news', 'categories'));
 
+    }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, News $news)
     {
-        //
+        try {
+            // Validate the incoming request data
+            $validatedData = $request->validate([
+                'titel' => 'required|string',
+                'categories_id' => 'required|exists:categories,id',
+                'inhoud' => 'required|string',
+                'auteur' => 'nullable|string',
+                'link' => 'nullable|url',
+            ]);
+
+            $validatedData['updated_at'] = now();
+            // Update the event attributes with validated data
+            $news->update($validatedData);
+    
+            // If everything goes well, redirect
+            return redirect()->route('admin.news.index')->with('message', 'News updated successfully!');
+        } catch (ValidationException $e) {
+            // Validation failed; redirect back with errors
+            return redirect()->back()->withErrors($e->validator)->withInput();
+        } catch (\Exception $e) {
+            // Other exceptions/errors occurred
+            // Log the error or handle it as needed
+            return redirect()->back()->with('message', 'An error occurred while updating the news.');
+        }
     }
 
     /**
@@ -94,7 +119,15 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        $news->delete();
-        return redirect(route('admin.news.index'));
+        try {
+            // Use the delete method to remove the event
+            $news->delete();
+    
+            // Redirect with a success message
+            return redirect()->route('admin.news.index')->with('message', 'News deleted successfully!');
+        } catch (\Exception $e) {
+            // Log the error or handle it as needed
+            return redirect()->back()->with('message', 'An error occurred while deleting the news.');
+        }
     }
 }

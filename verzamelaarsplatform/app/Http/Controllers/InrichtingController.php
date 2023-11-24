@@ -23,45 +23,51 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SortController;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class InrichtingController extends Controller
 {
     public function index(Request $request)
     {
-       
         $sorts = Sort::all();
         $brands = Brand::all();
         $epoches = Epoche::all();
         $owners = Owner::all();
+        $categories = Categorie::all();
         $colors1 = Color1::all();
         $colors2 = Color2::all();
-        $categories = Categorie::all();
-
+        $colors = $colors1->merge($colors2);
+    
         $type = $request->get('type', 'sorts'); 
         $sortQuery = Sort::query();
-        $brandQuery = Sort::query();
-
-
+        $brandQuery = Brand::query();
+    
         if ($request->filled('search')) {
             $searchTerm = $request->input('search');
             $sortQuery->where(function ($query) use ($searchTerm) {
                 $query->where('sort_name', 'like', "%$searchTerm%");
             });
         }
-
+    
         if ($request->filled('search')) {
             $searchTerm = $request->input('search');
             $brandQuery->where(function ($query) use ($searchTerm) {
-                $query->where('sort_name', 'like', "%$searchTerm%");
+                $query->where('brand_name', 'like', "%$searchTerm%");
             });
         }
-        
-
-        $sortSearch = $sortQuery->paginate(1);
-        $brandSearch = $brandQuery->paginate(1);
+    
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $colors = $colors->filter(function ($color) use ($searchTerm) {
+                return str_contains(strtolower($color->color_name), strtolower($searchTerm));
+            });
+        }
+    
+        $sortSearch = $sortQuery->paginate(3, ['*'], 'sort_page');
+        $brandSearch = $brandQuery->paginate(3, ['*'], 'brand_page');
         // return view('inrichtings.index', compact('sortSearch', 'brandSearch'));
 
-        return view('inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2', 'type'));
+        return view('inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors', 'categories', 'type'));
     }
 
 
@@ -100,43 +106,116 @@ class InrichtingController extends Controller
     }
 
     //COLOR1 TOEVOEGEN
-    public function createColor1(Request $request)
+    public function createColor(Request $request)
     {
-        Color1::create($request->all());
-        return redirect()->back()->with('message', 'Kleur 1 created successfully!');
-    }
-
-    //COLOR2 TOEVOEGEN
-    public function createColor2(Request $request)
-    {
-        Color2::create($request->all());
-        return redirect()->back()->with('message', 'Kleur 2 created successfully!');
+        $request->validate([
+            'color' => 'required|string|max:255', // Assuming you have a single input for color
+        ]);
+    
+        $color = $request->input('color');
+    
+        // Create Color1 record
+        Color1::create(['color1' => $color]);
+    
+        // Create Color2 record
+        Color2::create(['color2' => $color]);
+    
+        return redirect()->back()->with('message', 'Color created successfully!');
     }
 
     //CATEGORY TOEVOEGEN
     public function createCategorie(Request $request)
+    {   
+        $data = $request->validate([
+            'category_name' => 'required|string|max:255',
+            // Add validation rules for other fields if needed
+        ]);
+
+        Categorie::create($data);
+
+        return redirect()->back()->with('message', 'Categorie created successfully!');
+    }
+
+    public function destroySort(Sort $sort)
+    {
+        // Delete related overviews
+        $sort->overviews()->delete();
+
+        // Now, delete the Sort record
+        $sort->delete();
+
+        return redirect()->route('inrichtings.index')->with('message', 'Soort deleted successfully!');
+    }
+
+    public function destroyBrand(Brand $brand)
+    {
+        // Delete related overviews
+        $brand->overviews()->delete();
+
+        // Now, delete the Brand record
+        $brand->delete();
+
+        return redirect()->route('inrichtings.index')->with('message', 'Merk deleted successfully!');
+    }
+
+    public function destroyEpoche(Epoche $epoche)
+    {
+        // Delete related overviews
+        $epoche->overviews()->delete();
+
+        // Now, delete the Epoche record
+        $epoche->delete();
+
+        return redirect()->route('inrichtings.index')->with('message', 'Epoche deleted successfully!');
+    }
+
+    public function destroyOwner(Owner $owner)
+    {
+        // Delete related overviews
+        $owner->overviews()->delete();
+
+        // Now, delete the Owner record
+        $owner->delete();
+
+        return redirect()->route('inrichtings.index')->with('message', 'Eigenaar deleted successfully!');
+    }
+
+    public function destroyColor($colorId)
+    {
+        // Find the color using the color ID
+        $color1 = Color1::findOrFail($colorId);
+        $color2 = Color2::where('color2', $color1->color1)->first();
+
+        // Delete related overviews for Color1
+        $color1->overviews()->delete();
+
+        // Delete related overviews for Color2
+        if ($color2) {
+            $color2->overviews()->delete();
+        }
+
+        // Now, delete the Color1 and Color2 records
+        $color1->delete();
+        if ($color2) {
+            $color2->delete();
+        }
+
+        return redirect()->route('inrichtings.index')->with('message', 'Kleur deleted successfully!');
+    }
+
+
+    public function destroyCategory(Categorie $categorie)
 {
-    $data = $request->validate([
-        'category_name' => 'required|string|max:255',
-        // Add validation rules for other fields if needed
-    ]);
+    // Delete related news and events
+    $categorie->news()->delete();
+    $categorie->events()->delete();
 
-    Categorie::create($data);
+    // Delete related overviews
+    $categorie->overviews()->delete();
 
-    return redirect()->back()->with('message', 'Categorie created successfully!');
+    // Now, delete the category record
+    $categorie->delete();
+
+    return redirect()->route('inrichtings.index')->with('message', 'Category deleted successfully!');
 }
-
-    public function destroySort(Sort $inrichting)
-    {
-        // $inrichting->delete();
-        dd ($inrichting);
-        // return redirect(route('inrichtings.index'))->with('message', 'Soort deleted successfully!');
-        
-    }
-
-    public function destroyBrand(Brand $inrichting)
-    {
-        $inrichting->delete();
-        return redirect(route('inrichtings.index'))->with('message', 'Merk deleted successfully!');
-    }
 }

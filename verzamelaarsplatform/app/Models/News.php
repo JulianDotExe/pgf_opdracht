@@ -18,6 +18,11 @@ class News extends Model
 
     public function categories()
     {
-        return $this->belongsTo(Categorie::class, 'categories_id');
+        return $this->belongsTo(Categorie::class, 'category_id', 'id');
+    }
+
+    public function category()
+    {
+        return Categorie::find($this->categories_id);
     }
 }

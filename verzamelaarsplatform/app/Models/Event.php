@@ -16,10 +16,11 @@ class Event extends Model
         'event_date', 'categories_id', 'event_name', 'beschrijving', 'locatie', 'link'
     ];
 
-    public function catagories()
+    public function categories()
     {
         return $this->belongsTo(Categorie::class, 'categories_id', 'id');
     }
+
     public function category()
     {
         return Categorie::find($this->categories_id);
