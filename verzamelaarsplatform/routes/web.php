@@ -122,7 +122,7 @@ Route::get('/events', function () {
         return redirect('/events'); // Redirect to the login page or any other page
     }
 
-    $events = \App\Models\Event::all();
+    $events = \App\Models\Event::paginate(1);
     return view('events', ['events' => $events]);
 });
 
@@ -141,7 +141,6 @@ Route::get('/news', function () {
 
 Route::resource("overviews", OverviewController::class);
 Route::resource("inrichtings", InrichtingController::class);
-Route::resource("views", ViewsController::class);
 
 Route::post('/create-sort', [InrichtingController::class, 'createSort']);
 Route::post('/create-brand', [InrichtingController::class, 'createBrand']);

@@ -77,17 +77,20 @@
                             <p><strong>Category:</strong> {{ $event->category()->category_name }}</p>
                             <div x-data="{ open: false }">
                             <!-- Additional details (visible when open is true) -->
-                            <div x-show="open" x-cloak class="mb-5">
+                            <div x-show="open" x-cloak>
                                 <p><strong>Locatie:</strong> {{ $event->locatie }}</p>
                                 <p><strong>Beschrijving:</strong> {{ $event->beschrijving }}</p>
                                 <p><strong>Link:</strong> <a class="text-blue-500 hover:text-blue-600 hover:underline" href="{{ $event->link }}">{{ $event->link }}</a></p>
                             </div>
 
                             <!-- Dropdown to show more/less details -->
-                                <button @click="open = !open" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                <button @click="open = !open" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-5 focus:ring-offset-2">
                                     <span x-show="!open">More</span>
                                     <span x-show="open">Show less</span>
-                                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <svg x-show="open" class="-mr-1 ml-2 h-5 w-5 transform rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg x-show="!open" class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
@@ -95,7 +98,7 @@
                             </div>
                         </div>
                     @endforeach
-               
+                    {{ $events->links() }}
                 </div>
             </div>
         </div>
