@@ -69,7 +69,7 @@
                     <p class="text-xl p-10 text-white font-semibold">News</p>
 
                    <!-- Inside the loop where you're displaying events -->
-                   @foreach($news as $news)
+                   @foreach($data as $news)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Titel: </strong>{{ $news->titel }}</h2>
                             <p><strong>Category:</strong> {{ $news->category()->category_name }}</p>
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                     @endforeach
-                    {{ $news->links() }}
+                    {{ $data->links() }}
                 </div>
             </div>
         </div>

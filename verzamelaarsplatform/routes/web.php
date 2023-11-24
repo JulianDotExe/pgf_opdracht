@@ -135,8 +135,8 @@ Route::get('/news', function () {
         return redirect('/news'); // Redirect to the login page or any other page
     }
 
-    $news = \App\Models\News::paginate(2);
-    return view('news', ['news' => $news]);
+    $data = \App\Models\News::paginate(2);
+    return view('news', ['data' => $data]);
 });
 
 Route::resource("overviews", OverviewController::class);
