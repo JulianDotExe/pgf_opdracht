@@ -98,7 +98,7 @@
                             </div>
                         </div>
                     @endforeach
-                    {{ $events->links() }}
+                    {{ $events->links('') }}
                 </div>
             </div>
         </div>
