@@ -134,7 +134,9 @@ Route::get('/news', function () {
         Auth::logout();
         return redirect('/news'); // Redirect to the login page or any other page
     }
-    return view('news');
+
+    $news = \App\Models\News::all();
+    return view('news', ['news' => $news]);
 });
 
 Route::resource("overviews", OverviewController::class);
