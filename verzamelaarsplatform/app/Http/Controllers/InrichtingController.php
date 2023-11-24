@@ -120,7 +120,7 @@ class InrichtingController extends Controller
         // Create Color2 record
         Color2::create(['color2' => $color]);
     
-        return redirect()->back()->with('message', 'Color created successfully!');
+        return redirect()->route('inrichtings.index', ['type' => 'sorts'])->with('message', 'Soort deleted successfully!');
     }
 
     //CATEGORY TOEVOEGEN
@@ -155,7 +155,7 @@ class InrichtingController extends Controller
         // Now, delete the Brand record
         $brand->delete();
 
-        return redirect()->route('inrichtings.index')->with('message', 'Merk deleted successfully!');
+        return redirect()->route('inrichtings.index', ['type' => 'brands'])->with('message', 'Merk deleted successfully!');
     }
 
     public function destroyEpoche(Epoche $epoche)
@@ -166,7 +166,7 @@ class InrichtingController extends Controller
         // Now, delete the Epoche record
         $epoche->delete();
 
-        return redirect()->route('inrichtings.index')->with('message', 'Epoche deleted successfully!');
+        return redirect()->route('inrichtings.index', ['type' => 'epoches'])->with('message', 'Epoche deleted successfully!');
     }
 
     public function destroyOwner(Owner $owner)
@@ -177,7 +177,7 @@ class InrichtingController extends Controller
         // Now, delete the Owner record
         $owner->delete();
 
-        return redirect()->route('inrichtings.index')->with('message', 'Eigenaar deleted successfully!');
+        return redirect()->route('inrichtings.index', ['type' => 'owners'])->with('message', 'Eigenaar deleted successfully!');
     }
 
     public function destroyColor($colorId)
@@ -200,22 +200,31 @@ class InrichtingController extends Controller
             $color2->delete();
         }
 
-        return redirect()->route('inrichtings.index')->with('message', 'Kleur deleted successfully!');
+        return redirect()->route('inrichtings.index', ['type' => 'colors'])->with('message', 'Kleur deleted successfully!');
     }
 
 
-    public function destroyCategory(Categorie $categorie)
-{
-    // Delete related news and events
-    $categorie->news()->delete();
-    $categorie->events()->delete();
+    public function destroyCategory(Categorie $category)
+    {
+        try {
+            \Log::info('Deleting category: ' . $category->category_name);
 
-    // Delete related overviews
-    $categorie->overviews()->delete();
+            // Delete related news and events
+            $category->news()->delete();
+            $category->events()->delete();
 
-    // Now, delete the category record
-    $categorie->delete();
+            \Log::info('Related news and events deleted successfully.');
 
-    return redirect()->route('inrichtings.index')->with('message', 'Category deleted successfully!');
-}
+            // Now, delete the category record
+            $category->delete();
+
+            \Log::info('Category deleted successfully!');
+
+            return redirect()->route('inrichtings.index', ['type' => 'categories'])->with('message', 'Category deleted successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Error deleting category: ' . $e->getMessage());
+
+            return redirect()->route('inrichtings.index', ['type' => 'categories'])->with('error', 'Error deleting category.');
+        }
+    }
 }
