@@ -122,7 +122,7 @@ Route::get('/events', function () {
         return redirect('/events'); // Redirect to the login page or any other page
     }
 
-    $events = \App\Models\Event::paginate(1);
+    $events = \App\Models\Event::paginate(2);
     return view('events', ['events' => $events]);
 });
 
@@ -135,7 +135,7 @@ Route::get('/news', function () {
         return redirect('/news'); // Redirect to the login page or any other page
     }
 
-    $news = \App\Models\News::all();
+    $news = \App\Models\News::paginate(2);
     return view('news', ['news' => $news]);
 });
 

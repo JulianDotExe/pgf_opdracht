@@ -73,11 +73,11 @@
                    @foreach($events as $event)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Event name: </strong>{{ $event->event_name }}</h2>
-                            <p><strong>Date: </strong> {{ $event->event_date }}</p>
                             <p><strong>Category:</strong> {{ $event->category()->category_name }}</p>
                             <div x-data="{ open: false }">
                             <!-- Additional details (visible when open is true) -->
                             <div x-show="open" x-cloak>
+                                <p><strong>Date: </strong> {{ $event->event_date }}</p>
                                 <p><strong>Locatie:</strong> {{ $event->locatie }}</p>
                                 <p><strong>Beschrijving:</strong> {{ $event->beschrijving }}</p>
                                 <p><strong>Link:</strong> <a class="text-blue-500 hover:text-blue-600 hover:underline" href="{{ $event->link }}">{{ $event->link }}</a></p>

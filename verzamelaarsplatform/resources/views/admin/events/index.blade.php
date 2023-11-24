@@ -12,7 +12,6 @@
             @forelse($events as $event)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2><strong>Event name: </strong>{{ $event->event_name }}</h2>
-                    <p><strong>Date: </strong> {{ $event->event_date }}</p>
                     <p><strong>Categorie:</strong> {{ $event->category()->category_name }}</p>
 
                     <!-- Verwijderknop -->
