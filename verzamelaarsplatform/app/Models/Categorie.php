@@ -15,15 +15,14 @@ class Categorie extends Model
         'category_name'
     ];
 
-    public function events()
-    {
-        return $this->hasMany(Event::class, 'categories_id', 'id');
-    }
-
+    
     public function news()
     {
-        return $this->hasMany(News::class);
+        return $this->hasMany(News::class, 'categories_id');
     }
 
-
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'categories_id');
+    }
 }
