@@ -20,15 +20,6 @@
 
             @if($type == 'sorts')
                 <div>
-                    <div class="flex justify-between p-2">
-                        <h1 class="flex font-semibold text-xl p-2"></h1>
-                        {{-- Search Bar --}}
-                        <form action="{{ route('inrichtings.index') }}" method="GET">
-                            <input type="text" name="search" placeholder="Search by sort" class="border rounded-md px-2 py-1">
-                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
-                        </form>
-                    </div>
-
                     @forelse($sorts as $sort)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Soort: </strong>{{ $sort->sort_name }}</h2>
@@ -63,15 +54,6 @@
                 </div>
             @elseif($type == 'brands')
                 <div>
-                    <div class="flex justify-between p-2">
-                        <h1 class="flex font-semibold text-xl p-2"></h1>
-                        {{-- Search Bar --}}
-                        <form action="{{ route('inrichtings.index') }}" method="GET">
-                            <input type="text" name="search" placeholder="Search by brand" class="border rounded-md px-2 py-1">
-                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
-                        </form>
-                    </div>
-
                     @forelse($brands as $brand)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Merk: </strong>{{ $brand->brand_name }}</h2>
@@ -105,15 +87,6 @@
                 </div>
             @elseif($type == 'epoches')
                 <div>
-                    <div class="flex justify-between p-2">
-                        <h1 class="flex font-semibold text-xl p-2"></h1>
-                        {{-- Search Bar --}}
-                        <form action="{{ route('inrichtings.index') }}" method="GET">
-                            <input type="text" name="search" placeholder="Search by epoche" class="border rounded-md px-2 py-1">
-                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
-                        </form>
-                    </div>
-
                     @forelse($epoches as $epoche)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Epoche: </strong>{{ $epoche->epoche_name }}</h2>
@@ -147,15 +120,6 @@
                 </div>
             @elseif($type == 'owners')
                 <div>
-                    <div class="flex justify-between p-2">
-                        <h1 class="flex font-semibold text-xl p-2"></h1>
-                        {{-- Search Bar --}}
-                        <form action="{{ route('inrichtings.index') }}" method="GET">
-                            <input type="text" name="search" placeholder="Search by owner" class="border rounded-md px-2 py-1">
-                            <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
-                        </form>
-                    </div>
-
                     @forelse($owners as $owner)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Eigenaar: </strong>{{ $owner->owner_name }}</h2>
@@ -189,15 +153,6 @@
                 </div>
                 @elseif($type == 'colors')
                     <div>
-                        <div class="flex justify-between p-2">
-                            <h1 class="flex font-semibold text-xl p-2"></h1>
-                            {{-- Search Bar --}}
-                            <form action="{{ route('inrichtings.index') }}" method="GET">
-                                <input type="text" name="search" placeholder="Search by color" class="border rounded-md px-2 py-1">
-                                <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
-                            </form>
-                        </div>
-
                         @forelse($colors as $color)
                             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                             <h2><strong>Kleur: </strong>{{ $type == 'colors1' ? $color->color1 : $color->color2 }}</h2>
@@ -231,15 +186,6 @@
                     </div>
                     @elseif($type == 'categories')
                         <div>
-                            <div class="flex justify-between p-2">
-                                <h1 class="flex font-semibold text-xl p-2"></h1>
-                                {{-- Search Bar --}}
-                                <form action="{{ route('inrichtings.index') }}" method="GET">
-                                    <input type="text" name="search" placeholder="Search by category" class="border rounded-md px-2 py-1">
-                                    <button type="submit" class="bg-blue-500 text-white rounded-md px-3 py-1">Search</button>
-                                </form>
-                            </div>
-
                             @forelse($categories as $category)
                                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                                     <h2><strong>Categorie: </strong>{{ $category->category_name }}</h2>
