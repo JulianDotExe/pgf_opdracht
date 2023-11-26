@@ -19,10 +19,10 @@
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Beheermodule') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('overviews.index')" :active="request()->routeIs('overviews.index')">
+                    <x-nav-link :href="route('admin.overviews.index')" :active="request()->routeIs('admin.overviews.index')">
                         {{ __('Collecties') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('inrichtings.index')" :active="request()->routeIs('inrichtings.index')">
+                    <x-nav-link :href="route('admin.inrichtings.index')" :active="request()->routeIs('admin.inrichtings.index')">
                         {{ __('Inrichting') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.events.index')" :active="request()->routeIs('admin.events.index')">
@@ -31,7 +31,15 @@
                     <x-nav-link :href="route('admin.news.index')" :active="request()->routeIs('admin.news.index')">
                         {{ __('News') }}
                     </x-nav-link>
-                     @endrole
+                    @endrole
+                    @role('user')
+                    <x-nav-link :href="route('users.overviews.index')" :active="request()->routeIs('users.overviews.index')">
+                        {{ __('Collecties') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('users.inrichtings.index')" :active="request()->routeIs('users.inrichtings.index')">
+                        {{ __('Inrichting') }}
+                    </x-nav-link>
+                    @endrole
                 </div>
             </div>
 

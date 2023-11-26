@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Overview;
@@ -14,7 +15,7 @@ use App\Models\Color2;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class OverviewController extends Controller
+class OverviewAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,12 +24,11 @@ class OverviewController extends Controller
     {
         $overviewsQuery = Overview::query();
 
-        // Zoekfunctionaliteit op e-mail
-// .....
+        // Search functionality on multiple columns
 
         $overviews = $overviewsQuery->orderBy('created_at', 'desc')->paginate(3);
 
-        return view('users.overviews.index', compact('overviews'));
+        return view('admin.overviews.index', compact('overviews'));
     }
 
     /**
@@ -43,7 +43,7 @@ class OverviewController extends Controller
         $colors1 = Color1::all();
         $colors2 = Color2::all();
 
-        return view('users.overviews.create', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2'));
+        return view('admin.overviews.create', compact('sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2'));
     }   
 
     /**
@@ -99,7 +99,7 @@ class OverviewController extends Controller
                 'foto' => $data['foto'],
             ]);
 
-            return redirect()->route('users.overviews.index')->with('success', 'Data stored successfully.');
+            return redirect()->route('admin.overviews.index')->with('success', 'Data stored successfully.');
         } catch (\Exception $e) {
             return back()->with('error', 'Error storing data. Please try again.');
         }
@@ -110,7 +110,7 @@ class OverviewController extends Controller
      */
     public function show(Overview $overview)
     {
-        return view('users.overviews.show', compact('overview'));
+        return view('admin.overviews.show', compact('overview'));
     }
 
     /**
@@ -125,7 +125,7 @@ class OverviewController extends Controller
         $colors1 = Color1::all();
         $colors2 = Color2::all();
     
-        return view('users.overviews.edit', compact('overview', 'sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2'));
+        return view('admin.overviews.edit', compact('overview', 'sorts', 'brands', 'epoches', 'owners', 'colors1', 'colors2'));
     }
     
 
@@ -173,7 +173,7 @@ class OverviewController extends Controller
         'bijzonderheden' => $request->bijzonderheden,
     ]);
 
-    return redirect()->route('users.overviews.show', ['overview' => $overview]);
+    return redirect()->route('admin.overviews.show', ['overview' => $overview]);
 }
 
     /**
@@ -182,6 +182,6 @@ class OverviewController extends Controller
     public function destroy(Overview $overview)
     {
         $overview->delete();
-        return redirect(route('users.overviews.index'));
+        return redirect(route('admin.overviews.index'));
     }
 }

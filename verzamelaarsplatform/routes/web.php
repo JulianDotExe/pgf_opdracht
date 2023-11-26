@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\OverviewAdminController;
+use App\Http\Controllers\Admin\InrichtingAdminController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
@@ -70,7 +72,42 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
     Route::put('/news/{news}', [NewsController::class,'update'])->name('news.update');
 
+    Route::resource("/overviews", OverviewAdminController::class);
+    Route::resource("/inrichtings", InrichtingAdminController::class);
+
+    Route::post('/create-sort', [InrichtingAdminController::class, 'createSort']);
+    Route::post('/create-brand', [InrichtingAdminController::class, 'createBrand']);
+    Route::post('/create-epoche', [InrichtingAdminController::class, 'createEpoche']);
+    Route::post('/create-owner', [InrichtingAdminController::class, 'createOwner']);
+    Route::post('/create-color', [InrichtingAdminController::class, 'createColor'])->name('createColor');
+    Route::post('/create-categorie', [InrichtingAdminController::class, 'createCategorie']);
+
+
+    Route::delete('/sort/{sort}', [InrichtingAdminController::class, 'destroySort'])->name('inrichtings.destroySort');
+    Route::delete('/brand/{brand}', [InrichtingAdminController::class, 'destroyBrand'])->name('inrichtings.destroyBrand');
+    Route::delete('/epoche/{epoche}', [InrichtingAdminController::class, 'destroyEpoche'])->name('inrichtings.destroyEpoche');
+    Route::delete('/owner/{owner}', [InrichtingAdminController::class, 'destroyOwner'])->name('inrichtings.destroyOwner');
+    Route::delete('/color/{color}', [InrichtingAdminController::class, 'destroyColor'])->name('inrichtings.destroyColor');
+    Route::delete('/category/{category}', [InrichtingAdminController::class, 'destroyCategory'])->name('inrichtings.destroyCategory');
+
 });
+
+Route::middleware(['auth', 'role:user'])->name('users.')->prefix('user')->group(function () {
+    Route::resource("/overviews", OverviewController::class);
+    Route::resource("/inrichtings", InrichtingController::class);
+
+    Route::post('/create-color', [InrichtingController::class, 'createColor'])->name('inrichtings.createColor');
+    Route::post('/create-epoche', [InrichtingController::class, 'createEpoche'])->name('inrichtings.createEpoche');
+    Route::post('/create-owner', [InrichtingController::class, 'createOwner'])->name('inrichtings.createOwner');
+    Route::post('/create-brand', [InrichtingController::class, 'createBrand'])->name('inrichtings.createBrand');
+    Route::post('/create-sort', [InrichtingController::class, 'createSort'])->name('inrichtings.createSort');
+
+    Route::delete('/sort/{sort}', [InrichtingController::class, 'destroySort'])->name('inrichtings.destroySort');
+    Route::delete('/brand/{brand}', [InrichtingController::class, 'destroyBrand'])->name('inrichtings.destroyBrand');
+    Route::delete('/epoche/{epoche}', [InrichtingController::class, 'destroyEpoche'])->name('inrichtings.destroyEpoche');
+    Route::delete('/owner/{owner}', [InrichtingController::class, 'destroyOwner'])->name('inrichtings.destroyOwner');
+    Route::delete('/color/{color}', [InrichtingController::class, 'destroyColor'])->name('inrichtings.destroyColor');
+}); 
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -139,22 +176,6 @@ Route::get('/news', function () {
     return view('news', ['data' => $data]);
 });
 
-Route::resource("overviews", OverviewController::class);
-Route::resource("inrichtings", InrichtingController::class);
 
-Route::post('/create-sort', [InrichtingController::class, 'createSort']);
-Route::post('/create-brand', [InrichtingController::class, 'createBrand']);
-Route::post('/create-epoche', [InrichtingController::class, 'createEpoche']);
-Route::post('/create-owner', [InrichtingController::class, 'createOwner']);
-Route::post('/create-color', [InrichtingController::class, 'createColor'])->name('createColor');
-Route::post('/create-categorie', [InrichtingController::class, 'createCategorie']);
-
-
-Route::delete('/sort/{sort}', [InrichtingController::class, 'destroySort'])->name('inrichtings.destroySort');
-Route::delete('/brand/{brand}', [InrichtingController::class, 'destroyBrand'])->name('inrichtings.destroyBrand');
-Route::delete('/epoche/{epoche}', [InrichtingController::class, 'destroyEpoche'])->name('inrichtings.destroyEpoche');
-Route::delete('/owner/{owner}', [InrichtingController::class, 'destroyOwner'])->name('inrichtings.destroyOwner');
-Route::delete('/color/{color}', [InrichtingController::class, 'destroyColor'])->name('inrichtings.destroyColor');
-Route::delete('/category/{category}', [InrichtingController::class, 'destroyCategory'])->name('inrichtings.destroyCategory');
 
 require __DIR__.'/auth.php';

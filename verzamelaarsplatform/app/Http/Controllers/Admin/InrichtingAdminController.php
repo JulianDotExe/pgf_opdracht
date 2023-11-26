@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Overview;
 use App\Models\Sort;
@@ -25,7 +26,7 @@ use App\Http\Controllers\SortController;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
-class InrichtingController extends Controller
+class InrichtingAdminController extends Controller
 {
     public function index(Request $request)
     {
@@ -46,13 +47,13 @@ class InrichtingController extends Controller
         $brandSearch = $brandQuery->paginate(3, ['*'], 'brand_page');
         // return view('inrichtings.index', compact('sortSearch', 'brandSearch'));
 
-        return view('users.inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors', 'categories', 'type'));
+        return view('admin.inrichtings.index', compact('sorts', 'brands', 'epoches', 'owners', 'colors', 'categories', 'type'));
     }
 
 
     public function create()
     {
-        return view('users.inrichtings.create');
+        return view('admin.inrichtings.create');
     }
 
     //SORT TOEVOEGEN
@@ -99,7 +100,7 @@ class InrichtingController extends Controller
         // Create Color2 record
         Color2::create(['color2' => $color]);
     
-        return redirect()->route('users.inrichtings.index', ['type' => 'sorts'])->with('message', 'Color created successfully!');
+        return redirect()->route('admin.inrichtings.index', ['type' => 'sorts'])->with('message', 'Soort deleted successfully!');
     }
 
     //CATEGORY TOEVOEGEN
@@ -123,7 +124,7 @@ class InrichtingController extends Controller
         // Now, delete the Sort record
         $sort->delete();
 
-        return redirect()->route('users.inrichtings.index')->with('message', 'Soort deleted successfully!');
+        return redirect()->route('admin.inrichtings.index')->with('message', 'Soort deleted successfully!');
     }
 
     public function destroyBrand(Brand $brand)
@@ -134,7 +135,7 @@ class InrichtingController extends Controller
         // Now, delete the Brand record
         $brand->delete();
 
-        return redirect()->route('users.inrichtings.index', ['type' => 'brands'])->with('message', 'Merk deleted successfully!');
+        return redirect()->route('admin.inrichtings.index', ['type' => 'brands'])->with('message', 'Merk deleted successfully!');
     }
 
     public function destroyEpoche(Epoche $epoche)
@@ -145,7 +146,7 @@ class InrichtingController extends Controller
         // Now, delete the Epoche record
         $epoche->delete();
 
-        return redirect()->route('users.inrichtings.index', ['type' => 'epoches'])->with('message', 'Epoche deleted successfully!');
+        return redirect()->route('admin.inrichtings.index', ['type' => 'epoches'])->with('message', 'Epoche deleted successfully!');
     }
 
     public function destroyOwner(Owner $owner)
@@ -156,7 +157,7 @@ class InrichtingController extends Controller
         // Now, delete the Owner record
         $owner->delete();
 
-        return redirect()->route('users.inrichtings.index', ['type' => 'owners'])->with('message', 'Eigenaar deleted successfully!');
+        return redirect()->route('admin.inrichtings.index', ['type' => 'owners'])->with('message', 'Eigenaar deleted successfully!');
     }
 
     public function destroyColor($colorId)
@@ -179,7 +180,7 @@ class InrichtingController extends Controller
             $color2->delete();
         }
 
-        return redirect()->route('users.inrichtings.index', ['type' => 'colors'])->with('message', 'Kleur deleted successfully!');
+        return redirect()->route('admin.inrichtings.index', ['type' => 'colors'])->with('message', 'Kleur deleted successfully!');
     }
 
 
@@ -193,9 +194,9 @@ class InrichtingController extends Controller
             // Now, delete the category record
             $category->delete();
     
-            return redirect()->route('users.inrichtings.index', ['type' => 'categories'])->with('message', 'Category deleted successfully!');
+            return redirect()->route('admin.inrichtings.index', ['type' => 'categories'])->with('message', 'Category deleted successfully!');
         } catch (\Exception $e) {
-            return redirect()->route('users.inrichtings.index', ['type' => 'categories'])->with('error', 'Error deleting category.');
+            return redirect()->route('admin.inrichtings.index', ['type' => 'categories'])->with('error', 'Error deleting category.');
         }
     }
     
