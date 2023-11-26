@@ -14,6 +14,11 @@
         <!-- Favicon -->
         <link rel="shortcut icon" href="{{ asset('../img/favicon_io/favicon-32x32.png') }}">
 
+        <!-- Calendar -->
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>        
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
 
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
@@ -69,9 +74,13 @@
     <Main-content>
         <div class="bg-[#121212] h-full w-full absolute">
             <div class="z-0 w-1/2 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div>
-    
-            <div class="h-screen flex items-center justify-center">
-                <div class="z-10 w-1/2 p-10 rounded">
+
+            <div class="h-screen flex items-center">
+                <div class="z-10 left-0 w-1/2 p-10 rounded absolute">
+                    @livewire('event-calendar')
+                </div>
+
+                <div class="z-10 right-0 w-1/2 p-10 rounded absolute">
                     <p class="text-xl p-10 text-white font-semibold">Evenementen</p>
                     
                     @if($events->isEmpty())

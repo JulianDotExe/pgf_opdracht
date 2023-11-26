@@ -7,17 +7,18 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ApprovalController;
-use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\InrichtingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NewsController;
+use App\livewire\EventCalendar;
 use App\Mail\NewUserRegistered;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Livewire;
 
 
 /*
@@ -114,6 +115,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+    // Calendar
+    Route::get('/event-calendar', EventCalendar::class);
+
+
 Route::get('/welcome', function () {
     // Check if the user is logged in and should be logged out
     if (auth()->check()) {
@@ -161,8 +166,6 @@ Route::get('/events', function () {
     $events = \App\Models\Event::paginate(2);
     return view('events', ['events' => $events]);
 });
-
-Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 
 Route::get('/news', function () {
     // Check if the user is logged in and should be logged out
