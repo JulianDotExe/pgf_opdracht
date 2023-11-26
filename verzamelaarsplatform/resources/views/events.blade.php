@@ -73,12 +73,14 @@
             <div class="z-0 w-1/2 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div>
     
             <div class="h-screen flex items-center justify-center">
-                <div class="z-10 w-1/2 p-10 rounded shadow-md">
+                <div class="z-10 w-1/2 p-10 rounded">
                     <p class="text-xl p-10 text-white font-semibold">Evenementen</p>
                     
                     @if($events->isEmpty())
-                    <p class="text-gray-100">Geen evenementen gevonden.</p>
-
+                    <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                        <p class="text-gray-800 text-center">Geen evenementen gevonden.</p>
+                    </div>
+                    
                     @else
                     <!-- Inside the loop where you're displaying events -->
                     @foreach($events as $event)
