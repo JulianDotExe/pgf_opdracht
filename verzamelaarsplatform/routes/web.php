@@ -75,12 +75,12 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::resource("/overviews", OverviewAdminController::class);
     Route::resource("/inrichtings", InrichtingAdminController::class);
 
-    Route::post('/create-sort', [InrichtingAdminController::class, 'createSort']);
-    Route::post('/create-brand', [InrichtingAdminController::class, 'createBrand']);
-    Route::post('/create-epoche', [InrichtingAdminController::class, 'createEpoche']);
-    Route::post('/create-owner', [InrichtingAdminController::class, 'createOwner']);
-    Route::post('/create-color', [InrichtingAdminController::class, 'createColor'])->name('createColor');
-    Route::post('/create-categorie', [InrichtingAdminController::class, 'createCategorie']);
+    Route::post('/create-color', [InrichtingAdminController::class, 'createColor'])->name('inrichtings.createColor');
+    Route::post('/create-epoche', [InrichtingAdminController::class, 'createEpoche'])->name('inrichtings.createEpoche');
+    Route::post('/create-owner', [InrichtingAdminController::class, 'createOwner'])->name('inrichtings.createOwner');
+    Route::post('/create-brand', [InrichtingAdminController::class, 'createBrand'])->name('inrichtings.createBrand');
+    Route::post('/create-sort', [InrichtingAdminController::class, 'createSort'])->name('inrichtings.createSort');
+    Route::post('/create-categorie', [InrichtingAdminController::class, 'createCategorie'])->name('inrichtings.createCategorie');
 
     Route::delete('/sort/{sort}', [InrichtingAdminController::class, 'destroySort'])->name('inrichtings.destroySort');
     Route::delete('/brand/{brand}', [InrichtingAdminController::class, 'destroyBrand'])->name('inrichtings.destroyBrand');
