@@ -24,8 +24,34 @@ class OverviewController extends Controller
         $overviewsQuery = Overview::query();
 
         // Zoekfunctionaliteit op e-mail
-// .....
-
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $overviewsQuery->where(function ($query) use ($searchTerm) {
+                $query->whereHas('sort', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('sort_name', 'like', "%$searchTerm%");
+                })
+                ->orWhereHas('brand', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('brand_name', 'like', "%$searchTerm%");
+                })
+                ->orWhereHas('owner', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('owner_name', 'like', "%$searchTerm%");
+                })
+                ->orWhereHas('epoche', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('epoche_name', 'like', "%$searchTerm%");
+                })
+                ->orWhereHas('color1', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('color1', 'like', "%$searchTerm%");
+                })
+                ->orWhereHas('color2', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('color2', 'like', "%$searchTerm%");
+                })
+                // Add similar clauses for other relationships...
+                ->orWhere('catalogusnr', 'like', "%$searchTerm%")
+                ->orWhere('nummer', 'like', "%$searchTerm%")
+                ->orWhere('eigenschappen', 'like', "%$searchTerm%")
+                ->orWhere('bijzonderheden', 'like', "%$searchTerm%");
+            });
+        }
         $overviews = $overviewsQuery->orderBy('created_at', 'desc')->paginate(3);
 
         return view('users.overviews.index', compact('overviews'));
