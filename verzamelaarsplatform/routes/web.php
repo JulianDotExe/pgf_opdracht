@@ -82,7 +82,6 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::post('/create-color', [InrichtingAdminController::class, 'createColor'])->name('createColor');
     Route::post('/create-categorie', [InrichtingAdminController::class, 'createCategorie']);
 
-
     Route::delete('/sort/{sort}', [InrichtingAdminController::class, 'destroySort'])->name('inrichtings.destroySort');
     Route::delete('/brand/{brand}', [InrichtingAdminController::class, 'destroyBrand'])->name('inrichtings.destroyBrand');
     Route::delete('/epoche/{epoche}', [InrichtingAdminController::class, 'destroyEpoche'])->name('inrichtings.destroyEpoche');

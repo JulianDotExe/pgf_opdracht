@@ -21,15 +21,33 @@ class OverviewController extends Controller
      */
     public function index(Request $request)
     {
-        $overviewsQuery = Overview::query();
-
-        // Zoekfunctionaliteit op e-mail
-// .....
-
+        $user = Auth::user(); // Haal de huidige ingelogde gebruiker op
+    
+        $overviewsQuery = $user->overviews(); // Haal de overzichten van de gebruiker op
+    
+        // Search functionality on multiple columns
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $overviewsQuery->where(function ($query) use ($searchTerm) {
+                $query->whereHas('sort', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('sort_name', 'like', "%$searchTerm%");
+                })
+                ->orWhereHas('brand', function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('brand_name', 'like', "%$searchTerm%");
+                })
+                // Add similar clauses for other relationships...
+                ->orWhere('catalogusnr', 'like', "%$searchTerm%")
+                ->orWhere('nummer', 'like', "%$searchTerm%")
+                ->orWhere('eigenschappen', 'like', "%$searchTerm%")
+                ->orWhere('bijzonderheden', 'like', "%$searchTerm%");
+            });
+        }
+    
         $overviews = $overviewsQuery->orderBy('created_at', 'desc')->paginate(3);
-
+    
         return view('users.overviews.index', compact('overviews'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
