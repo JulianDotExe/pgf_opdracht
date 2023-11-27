@@ -174,8 +174,8 @@ Route::get('/news', function () {
         return redirect('/news'); // Redirect to the login page or any other page
     }
 
-    $data = \App\Models\News::paginate(2);
-    return view('news', ['data' => $data]);
+    $news = \App\Models\News::paginate(2);
+    return view('news', ['news' => $news]);
 });
 
 

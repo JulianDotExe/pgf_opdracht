@@ -45,6 +45,8 @@
                 <p>Geen evenementen beschikbaar...</p>
             </div>
             @endforelse
+            {{ $events->links() }}
+
         </div>
     </div>
 
