@@ -12,7 +12,7 @@
                 @foreach($news as $new)
                     <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                         <h2><strong>News name: </strong>{{ $new->titel }}</h2>
-                        <p><strong>Link: </strong> {{ $new->link }}</p>
+                        <p><strong>Link: </strong> <a class="text-blue-500 hover:text-blue-700 hover:underline" href="{{ $new->link }}"> {{ $new->link }} </a></p>
 
                         <!-- Verwijderknop -->
                         <div class="flex">
