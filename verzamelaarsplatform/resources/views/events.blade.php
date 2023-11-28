@@ -73,8 +73,7 @@
     <!-- Tijdelijk -->
 
     <Main-content>
-        <div class="bg-[#121212] h-full w-full fixed">
-            <div class="z-0 w-1/2 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div>
+        <div class="bg-[url('../img/trainArt.jpg')] w-full h-screen bg-no-repeat bg-cover absolute"></div>
 
             <div class="h-screen flex items-center">
                 <div class="z-10 left-0 w-1/2 p-10 rounded absolute hidden">
