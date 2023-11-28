@@ -61,10 +61,10 @@
     
     <Main-content>
         <div class="bg-[#1f2936] h-full w-full absolute">
-            <div class="absolute left-1/4 top-1/2 transform -translate-y-1/2 z-10">
+            <div class="absolute left-1/4 top-1/2 transform -translate-y-1/2 -translate-x-1/3 z-10">
                 <div class="bg-[url('../img/Eigenaar.png')] w-80 h-80 bg-no-repeat rounded-full bg-cover shadow-lg"></div>
             </div>
-            <div class="text-container absolute left-2/3 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+            <div class="text-container absolute left-2/3 top-1/2 transform -translate-x-1/3 -translate-y-1/2 z-10">
                 <p class="font-semibold text-white text-6xl">About me</p><br><br>
                 <p class="font-semibold text-white text-2xl mt-2">Wilbert de Leeuw is een enthousiaste modeltreinfanaat en webpionier.</p><br> 
                 <p class="font-semibold text-white text-2xl mt-2">Via zijn website deelt hij zijn modeltreinpassie met anderen, inclusief zijn indrukwekkende verzameling, evenementen en nieuws in deze hobbywereld.</p><br>
