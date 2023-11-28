@@ -134,8 +134,6 @@ class InrichtingSeeder extends Seeder
             'Electrotren',
             'Heki',
             'Märklin',
-            'Fleischman',
-            'Minitrixs'
             // ... voeg meer merken toe indien nodig
         ];
 

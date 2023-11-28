@@ -17,6 +17,7 @@
         <!-- Calendar -->
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>        
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
 
 
@@ -72,11 +73,11 @@
     <!-- Tijdelijk -->
 
     <Main-content>
-        <div class="bg-[#121212] h-full w-full absolute">
+        <div class="bg-[#121212] h-full w-full fixed">
             <div class="z-0 w-1/2 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div>
 
             <div class="h-screen flex items-center">
-                <div class="z-10 left-0 w-1/2 p-10 rounded absolute">
+                <div class="z-10 left-0 w-1/2 p-10 rounded absolute hidden">
                     @livewire('event-calendar')
                 </div>
 
@@ -90,13 +91,14 @@
                     
                     @else
                     <!-- Inside the loop where you're displaying events -->
-                    @foreach($events as $event)
-                        <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                            <h2><strong>Event name: </strong>{{ $event->event_name }}</h2>
-                            <p><strong>Category:</strong> {{ $event->category()->category_name }}</p>
-                            <div x-data="{ open: false }">
+                    @foreach($events as $index => $event)
+                        <div x-data="{ openEventIndex: null }" x-cloak>
+                            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                                <h2><strong>Event name: </strong>{{ $event->event_name }}</h2>
+                                <p><strong>Category:</strong> {{ $event->category()->category_name }}</p>
+
                                 <!-- Additional details (visible when open is true) -->
-                                <div x-show="open" x-cloak>
+                                <div x-show="openEventIndex === {{ $index }}" x-cloak>
                                     <p><strong>Date: </strong> {{ $event->event_date }}</p>
                                     <p><strong>Locatie:</strong> {{ $event->locatie }}</p>
                                     <p><strong>Beschrijving:</strong> {{ $event->beschrijving ?: 'N/A' }}</p>
@@ -108,17 +110,10 @@
                                 </div>
 
                                 <!-- Dropdown to show more/less details -->
-                                <button @click="open = !open" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-5 focus:ring-offset-2">
-                                    <span x-show="!open">More</span>
-                                    <span x-show="open">Show less</span>
-                                    <svg x-show="open" class="-mr-1 ml-2 h-5 w-5 transform rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                    <svg x-show="!open" class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
+                                <button @click="openEventIndex === {{ $index }} ? openEventIndex = null : openEventIndex = {{ $index }}" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-5 focus:ring-offset-2">
+                                    <span x-show="openEventIndex !== {{ $index }}">More</span>
+                                    <span x-show="openEventIndex === {{ $index }}">Show less</span>
                                 </button>
-
                             </div>
                         </div>
                     @endforeach

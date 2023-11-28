@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(PermissionSeeder::class);
         $this->call(InrichtingSeeder::class);
+        $this->call(EventSeeder::class);
+        $this->call(NewsSeeder::class);
+        $this->call(OverviewSeeder::class);
     }
 }

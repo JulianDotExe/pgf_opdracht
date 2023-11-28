@@ -62,28 +62,28 @@
     
     <Main-content>
         <div class="bg-[#121212] h-full w-full absolute">
-            <div class="z-0 w-1/2 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div>
-            <div class="h-screen flex items-center justify-center">
-                <div class="z-10 w-1/2 p-10 rounded">
+            <div class="z-0 w-1/2 h-2/4 mx-auto p-6 left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 fixed bg-[url('../img/Night.png')] bg-no-repeat bg-contain"></div>
+            <div class="h-screen flex items-center justify-center ">
+                <div class="z-10 absolute right-0 w-1/2 p-10 rounded">
                     <p class="text-xl p-10 text-white font-semibold">News</p>
 
-                    @if($data->isEmpty())
+                    @if($news->isEmpty())
                     <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                         <p class="text-gray-800 text-center">Geen nieuws gevonden.</p>
                     </div>
                     @else 
 
                    <!-- Inside the loop where you're displaying events -->
-                   @foreach($data as $news)
+                   @foreach($news as $nieuws)
                         <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                            <h2><strong>Titel: </strong>{{ $news->titel }}</h2>
-                            <p><strong>Categorie:</strong> {{ $news->category()->category_name }}</p>
+                            <h2><strong>Titel: </strong>{{ $nieuws->titel }}</h2>
+                            <p><strong>Categorie:</strong> {{ $nieuws->category()->category_name }}</p>
                             <div x-data="{ open: false }">
                             <!-- Additional details (visible when open is true) -->
                             <div x-show="open" x-cloak class="mb-5">
-                                <p><strong>Inhoud: </strong> {{ $news->inhoud }}</p>
-                                <p><strong>Auteur:</strong> {{ $news->auteur }}</p>
-                                <p><strong>Link:</strong> <a class="text-blue-500 hover:text-blue-600 hover:underline" href="{{ $news->link }}">{{ $news->link }}</a></p>
+                                <p><strong>Inhoud: </strong> {{ $nieuws->inhoud }}</p>
+                                <p><strong>Auteur:</strong> {{ $nieuws->auteur }}</p>
+                                <p><strong>Link:</strong> <a class="text-blue-500 hover:text-blue-600 hover:underline" href="{{ $nieuws->link }}">{{ $nieuws->link }}</a></p>
                             </div>
 
                             <!-- Dropdown to show more/less details -->
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                     @endforeach
-                    {{ $data->links() }}
+                    {{ $news->links() }}
                     @endif
 
                 </div>
