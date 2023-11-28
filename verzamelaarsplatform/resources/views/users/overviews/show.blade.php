@@ -10,7 +10,7 @@
             <div class="flex">
                 <p class="bg-blue-500 text-white py-2 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">
                     <strong>Created: </strong> {{ $overview->created_at->diffForHumans() }}
-                </p> 
+                </p>
                 <p class="bg-blue-500 text-white py-2 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">
                     <strong>Updated at: </strong> {{ $overview->updated_at->diffForHumans() }}
                 </p>
@@ -37,21 +37,40 @@
                         <div>
                             <div>
                                 @foreach($overview->getImages() as $image)
-                                    <img src="{{ asset($image) }}" alt="Collection Image" class="my-4 fixed-size-image">
+                                    <img src="{{ asset($image) }}" alt="Collection Image" class="my-4 fixed-size-image" onclick="openLightbox('{{ asset($image) }}')">
                                 @endforeach
                             </div>
+                        </div>
+                        <!-- Lightbox container -->
+                        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+                            <img id="lightboxImage" src="" alt="Enlarged Image">
                         </div>
                     @else
                         <p>There's no image associated with this collection.</p>
                     @endif 
             </div> <br>
             <a href="{{ url()->previous() }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Terug</a>
-            <a href="{{ route('users.overviews.edit', $overview->id)  }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Collectie wijzigen</a>
+            <a href="{{ route('admin.overviews.edit', $overview->id)  }}" class="bg-blue-500 text-white py-1 px-2 rounded inline-block hover:bg-blue-700 transition duration-300 ease-in-out">Collectie wijzigen</a>
 
             </div>
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function openLightbox(imageSrc) {
+        // Set the lightbox image source
+        document.getElementById('lightboxImage').src = imageSrc;
+        // Show the lightbox
+        document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeLightbox() {
+        // Hide the lightbox
+        document.getElementById('lightbox').style.display = 'none';
+    }
+</script>
+
 
 <style>
     .fixed-size-image-container {
@@ -63,5 +82,26 @@
         max-width: 25%;
         height: auto;
         width: 100%;
+        cursor: pointer; /* Add cursor */
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lightbox img {
+        max-width: 80%;
+        max-height: 80%;
+        border-radius: 5px;
     }
 </style>
+
