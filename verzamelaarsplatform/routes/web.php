@@ -177,7 +177,7 @@ Route::get('/events', function () {
         return redirect('/events'); // Redirect to the login page or any other page
     }
 
-    $events = \App\Models\Event::orderBy('event_date', 'desc')->paginate(3);
+    $events = \App\Models\Event::orderBy('event_date', 'asc')->paginate(2);
     return view('events', ['events' => $events]);
 });
 
