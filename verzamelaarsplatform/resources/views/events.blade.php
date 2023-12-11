@@ -76,9 +76,9 @@
         <div class="bg-[url('../img/trainArt.jpg')] w-full h-screen bg-no-repeat bg-cover absolute"></div>
 
             <div class="h-screen flex items-center">
-                <!-- <div class="z-10 left-0 w-1/2 p-10 rounded absolute hidden">
+                <div class="z-10 left-0 w-1/2 p-10 rounded absolute hidden">
                     @livewire('event-calendar')
-                </div> -->
+                </div>
 
                 <div class="z-10 right-0 w-1/2 p-10 rounded absolute">
                     <p class="text-xl p-10 text-white font-semibold">Evenementen</p>
