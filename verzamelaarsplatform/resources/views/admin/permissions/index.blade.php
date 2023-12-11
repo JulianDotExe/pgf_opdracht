@@ -52,4 +52,6 @@
             </div>
         </div>
     </div>
+    <x-help-admin>
+    </x-help-admin>
 </x-admin-layout>

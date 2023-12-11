@@ -79,6 +79,9 @@
     </div>
 </x-app-layout>
 
+<x-help-admin>
+</x-help-admin>
+
 <script>
     function openLightbox(imageSrc) {
         // Set the lightbox image source
@@ -119,3 +122,4 @@
         border-radius: 5px;
     }
 </style>
+

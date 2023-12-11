@@ -221,6 +221,9 @@
         </div>
     </div>
 
+    <x-help-guest>
+    </x-help-guest>
+
     <!-- Script voor destroy -->
     <script>
         function deleteOpenConfirmationPopup(itemId, type) {

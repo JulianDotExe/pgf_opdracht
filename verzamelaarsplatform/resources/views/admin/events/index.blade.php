@@ -50,6 +50,9 @@
         </div>
     </div>
 
+    <x-help-admin>
+    </x-help-admin>
+    
     <script>
         function deleteOpenConfirmationPopup(eventId) {
             // Show the confirmation popup

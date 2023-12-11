@@ -79,6 +79,9 @@
     </div>
 </x-app-layout>
 
+<x-help-guest>
+</x-help-guest>
+
 <script>
     function openLightbox(imageSrc) {
         // Set the lightbox image source

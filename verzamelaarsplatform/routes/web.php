@@ -37,8 +37,22 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user = auth()->user();
+    if ($user->hasRole('admin')) {
+        // Redirect admin to admin dashboard
+        return view('admin.dashboard'); // Adjust the view path based on your actual file structure
+    } elseif ($user->hasRole('user')) {
+        // Redirect user to user dashboard
+        return view('dashboard'); // Adjust the view path based on your actual file structure
+    } else {
+        // Handle other roles or scenarios
+        abort(403, 'Unauthorized'); // You can customize this as needed
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function() {
     Route::get('/', [IndexController::class, 'index'])->name('index');

@@ -49,6 +49,9 @@
             {{ $news->links() }}
         </div>
     </div>
+    
+    <x-help-admin>
+    </x-help-admin>
 
     <script>
         function deleteOpenConfirmationPopup(artikelId) {
